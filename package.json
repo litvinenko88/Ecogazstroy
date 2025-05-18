@@ -1,0 +1,24 @@
+{
+  "name": "ecogazstroy",
+  "version": "1.0.0",
+  "description": "Газификация и проектирование коммерческих объектов и индивидуальных жилых домов в Ставрополе под ключ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litvinenko88/Ecogazstroy.git"
+  },
+  "keywords": [
+    "Газификация",
+    "Ставрополь газификация",
+    "помещения;провести"
+  ],
+  "author": "litvinenko_n.v@mail.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/litvinenko88/Ecogazstroy/issues"
+  },
+  "homepage": "https://github.com/litvinenko88/Ecogazstroy#readme"
+}
