@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/litvinenko88/Ecogazstroy/issues"
   },
-  "homepage": "https://github.com/litvinenko88/Ecogazstroy#readme"
+  "homepage": "https://github.com/litvinenko88/Ecogazstroy#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "reset.css": "^2.0.2"
+  }
 }
