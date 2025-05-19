@@ -1,2 +1,99 @@
-@import "/node_modules/normalize.css/";
-@import "/node_modules/reset.css/";
+@import "/assets/css/normalize.css";
+@import "/assets/css/reset.css";
+@import "/assets/fonts/stylesheet.css";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto Condensed";
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.header-container {
+  position: relative;
+  width: 100%;
+  background-image: url("/assets/img/XXL_height.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+.header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 96, 184, 0.8);
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 70px;
+  color: white;
+}
+
+.cnt-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cnt-logo__head-logo {
+  height: 80px;
+}
+.cnt-logo__text-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.list-nav {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+.list-nav__item {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.cnt-bt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.cnt-bt button {
+  padding: 10px 20px;
+  background: #fff;
+  color: #2c528c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cnt-bt button:hover {
+  background: #f0f0f0;
+}
+
+.cnt-bt p {
+  font-size: 12px;
+  color: white;
+}
+
+.cnt-ytp {
+  position: relative;
+  z-index: 1;
+  padding: 20px 70px;
+  color: white;
+}
