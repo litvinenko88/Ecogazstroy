@@ -17,52 +17,95 @@
     <title>Газификация коммерческих | частных | садовых домов</title>
     <link rel="canonical" href="https://example.com/ecogazstroy" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   </head>
   <body>
-    <div class="header-container">
-      <div class="header-content">
-        <header>
-          <div class="cnt-logo">
-            <img
-              src="/assets/img/egs_3.png"
-              alt="Логотип ЭкоГазСтрой"
-              class="cnt-logo__head-logo" />
-            <p class="cnt-logo__text-logo">ЭкоГазСтрой</p>
+    <div class="site-wrapper">
+      <div class="header-container">
+        <div class="header-content">
+          <header>
+            <div class="cnt-logo">
+              <a href="/index.html"
+                ><img
+                  src="/assets/img/egs_3.png"
+                  alt="Логотип ЭкоГазСтрой"
+                  class="cnt-logo__head-logo"
+              /></a>
+
+              <p class="cnt-logo__text-logo">ЭкоГазСтрой</p>
+            </div>
+
+            <div class="header-right">
+              <nav class="cnt-nav">
+                <button class="mobile-menu-toggle" aria-label="Меню">
+                  <i class="fas fa-bars"></i>
+                </button>
+                <ul class="cnt-nav__list-nav list-nav">
+                  <li class="list-nav__item">Проекты</li>
+                  <li class="list-nav__item">Стоимость</li>
+                  <li class="list-nav__item">Начало работ</li>
+                  <li class="list-nav__item">О компании</li>
+                  <li class="list-nav__item">Контакты</li>
+                  <li class="list-nav__item">Новости</li>
+                  <li class="list-nav__item mobile-only">
+                    <button class="consult-btn mobile-btn">Консультация</button>
+                  </li>
+                  <li class="list-nav__item mobile-only">
+                    <p class="work-hours">Режим работы: с 08:00 до 17:00</p>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="desktop-bt">
+              <button class="consult-btn">Консультация</button>
+              <p class="work-hours">Режим работы: с 08:00 до 17:00</p>
+            </div>
+          </header>
+
+          <div class="cnt-ytp">
+            <div class="ytp-text-cnt">
+              <h1 class="ytp-text-cnt__ytp">
+                ГАЗИФИКАЦИЯ КОММЕРЧЕСКИХ ОБЪЕКТОВ И ИНДИВИДУАЛЬНЫХ ЖИЛЫХ И
+                САДОВЫХ ДОМОВ
+              </h1>
+            </div>
+
+            <form class="header-form">
+              <h2 class="form-title">
+                Вам нужно рассчитать стоимость газификации вашего объекта?
+              </h2>
+
+              <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="consent" name="consent" required />
+                  <label for="consent"
+                    >Даю согласие на обработку персональных данных</label
+                  >
+                </div>
+              </div>
+
+              <button type="submit" class="submit-btn">Заказать расчет</button>
+            </form>
           </div>
-
-          <nav class="cnt-nav">
-            <ul class="cnt-nav__list-nav list-nav">
-              <li class="list-nav__item">Проекты</li>
-              <li class="list-nav__item">Стоимость</li>
-              <li class="list-nav__item">Начало работ</li>
-              <li class="list-nav__item">О компании</li>
-              <li class="list-nav__item">Контакты</li>
-              <li class="list-nav__item">Новости</li>
-            </ul>
-          </nav>
-
-          <div class="cnt-bt">
-            <button>Консультация</button>
-            <p>Режим работы: с 08:00 до 17:00</p>
-          </div>
-        </header>
-
-        <div class="cnt-ytp">
-          <div class="ytp-text-cnt">
-            <h1>
-              ГАЗИФИКАЦИЯ КОММЕРЧЕСКИХ ОБЪЕКТОВ И ИНДИВИДУАЛЬНЫХ ЖИЛЫХ И САДОВЫХ
-              ДОМОВ
-            </h1>
-          </div>
-
-          <form></form>
         </div>
       </div>
+
+      <main>2</main>
+      <footer>3</footer>
     </div>
-
-    <main>2</main>
-    <footer>3</footer>
-
     <script src="/js/main.js"></script>
   </body>
 </html>
