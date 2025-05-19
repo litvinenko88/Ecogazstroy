@@ -275,14 +275,14 @@ header {
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
 
 .benefit-card {
   background: white;
   border-radius: 8px;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   position: relative;
@@ -295,14 +295,17 @@ header {
 }
 
 .benefit-number {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
   color: #2560b8;
   margin-bottom: 15px;
+  border-right: 2px solid #2560b8;
+  margin-right: 10px;
+  padding-right: 10px;
 }
 
 .benefit-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   color: #2560b8;
   margin-bottom: 15px;
@@ -317,16 +320,17 @@ header {
 
 .image-placeholder {
   width: 100%;
-  height: 200px;
   background-color: #e9ecef;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #6c757d;
   border-radius: 4px;
+  margin-bottom: 20px;
 }
-
+.cnt-car-text {
+  display: flex;
+}
 .cta-section {
   text-align: center;
   margin-top: 40px;
