@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const navList = document.querySelector(".list-nav");
   const body = document.body;
 
+  // Создаем элемент для крестика
+  const closeIcon = document.createElement("i");
+  closeIcon.className = "fas fa-times";
+  menuToggle.appendChild(closeIcon);
+
   menuToggle.addEventListener("click", function () {
     navList.classList.toggle("active");
     this.classList.toggle("active");
