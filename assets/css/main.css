@@ -359,7 +359,7 @@ footer {
   }
 
   .mobile-menu-toggle i {
-    font-size: 24px;
+    font-size: 30px;
     color: white;
     transition: all 0.3s ease;
   }
@@ -467,6 +467,10 @@ footer {
     width: 80%;
     min-width: auto;
     padding: 20px;
+  }
+
+  .mobile-menu-toggle .fa-times {
+    right: 5px;
   }
 }
 
