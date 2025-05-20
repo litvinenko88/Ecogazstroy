@@ -228,29 +228,30 @@ document.addEventListener("DOMContentLoaded", function () {
     nextArrow.addEventListener("click", () => moveSlideFunc(1));
   });
 
+  // Инициализация состояния (по умолчанию свернуто, показываем только первые 2 слайда)
+  function initSectionState() {
+    const savedState = localStorage.getItem("projectsSectionCollapsed");
+    if (savedState === null || savedState === "true") {
+      projectsContainer.classList.add("collapsed");
+      toggleButton.textContent = "Развернуть";
+    } else {
+      projectsContainer.classList.remove("collapsed");
+      toggleButton.textContent = "Свернуть";
+    }
+  }
+
   // Кнопка сворачивания/разворачивания
   toggleButton.addEventListener("click", function () {
     projectsContainer.classList.toggle("collapsed");
-    toggleButton.textContent = projectsContainer.classList.contains("collapsed")
-      ? "Развернуть"
-      : "Свернуть";
+    const isCollapsed = projectsContainer.classList.contains("collapsed");
+    toggleButton.textContent = isCollapsed ? "Развернуть" : "Свернуть";
 
     // Сохраняем состояние в localStorage
-    localStorage.setItem(
-      "projectsSectionCollapsed",
-      projectsContainer.classList.contains("collapsed")
-    );
+    localStorage.setItem("projectsSectionCollapsed", isCollapsed);
   });
 
-  // Проверяем сохраненное состояние при загрузке
-  const savedState = localStorage.getItem("projectsSectionCollapsed");
-  if (savedState === "true") {
-    projectsContainer.classList.add("collapsed");
-    toggleButton.textContent = "Развернуть";
-  } else if (savedState === "false") {
-    projectsContainer.classList.remove("collapsed");
-    toggleButton.textContent = "Свернуть";
-  }
+  // Инициализируем состояние при загрузке
+  initSectionState();
 });
 
 function initSlider(sliderId, dotsId, images) {

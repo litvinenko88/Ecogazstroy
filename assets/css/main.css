@@ -161,7 +161,9 @@ header {
   margin: 0;
   font-weight: 700;
 }
-
+.ytp-text-cnt__ytp span {
+  color: #fefe00;
+}
 .header-form {
   /* background-color: white; */
   border-radius: 8px;
@@ -379,8 +381,8 @@ header {
 
 .projects-section h2 {
   text-align: center;
-  margin-bottom: 40px;
-  font-size: 36px;
+  margin-bottom: 60px;
+  font-size: 48px;
   font-weight: 700;
   color: white;
 }
@@ -398,7 +400,6 @@ header {
   justify-content: center;
   gap: 30px;
   margin: 0 auto;
-  transition: all 0.5s ease;
 }
 
 .project-slider {
@@ -408,6 +409,27 @@ header {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.5s ease, max-height 0.5s ease;
+  transform-origin: top;
+}
+
+.project-slider:nth-child(n + 3) {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transform: scaleY(0);
+}
+
+.projects-container:not(.collapsed) .project-slider:nth-child(n + 3) {
+  max-height: 500px;
+  opacity: 1;
+  margin: initial;
+  padding: initial;
+  border: initial;
+  transform: scaleY(1);
 }
 
 .slider-container {
@@ -452,15 +474,15 @@ header {
 }
 
 .project-info h3 {
-  margin: 0 0 10px 0;
-  font-size: 20px;
+  margin: 0 0 15px 0;
+  font-size: 24px;
   color: #0052a5;
 }
 
 .watch-video {
   display: inline-flex;
   align-items: center;
-  padding: 8px 15px;
+  padding: 10px 20px;
   background-color: #0052a5;
   color: white;
   text-decoration: none;
@@ -469,7 +491,10 @@ header {
   transition: background-color 0.3s;
   gap: 8px;
 }
-
+.watch-video svg {
+  color: #fefe00;
+  background-color: #003366;
+}
 .watch-video:hover {
   background-color: #003366;
 }
@@ -547,11 +572,6 @@ header {
 .toggle-section:hover {
   background-color: #f0f0f0;
 }
-
-.projects-container.collapsed .project-slider:nth-child(n + 3) {
-  display: none;
-}
-
 /**********************************************************/
 
 /* Адаптация для планшетов */
@@ -690,6 +710,9 @@ header {
   /* Анимация для открытия/закрытия меню */
   .list-nav {
     transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+  }
+  .project-slider {
+    width: 100%;
   }
 }
 
