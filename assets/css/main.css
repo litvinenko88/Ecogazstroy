@@ -354,18 +354,42 @@ header {
 /**************третий блок*******************************************/
 
 .projects-section {
-  padding: 60px 20px;
-  background: linear-gradient(rgba(0, 82, 165, 0.85), rgba(0, 82, 165, 0.85));
-  font-family: "Arial", sans-serif;
+  padding: 60px 100px;
+  position: relative;
+  width: 100%;
+  background-image: url("/assets/img/XXL_height.webp");
+  background-size: cover;
+  background-position: center;
   color: white;
   position: relative;
 }
+.projects-section-wrap {
+  position: relative;
+  z-index: 1;
+}
+.projects-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 96, 184, 0.8);
+}
 
-.projects-section h1 {
+.projects-section h2 {
   text-align: center;
   margin-bottom: 40px;
   font-size: 36px;
   font-weight: 700;
+  color: white;
+}
+
+.projects-section h3 {
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
 }
 
 .projects-container {
@@ -373,7 +397,6 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  max-width: 1200px;
   margin: 0 auto;
   transition: all 0.5s ease;
 }
@@ -406,10 +429,10 @@ header {
   height: 100%;
   position: relative;
   flex-shrink: 0;
-  display: flex; /* Добавлено для правильного отображения */
-  align-items: center; /* Центрирование по вертикали */
-  justify-content: center; /* Центрирование по горизонтали */
-  background-color: #f0f0f0; /* Фон на случай, если изображение не загрузится */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
 }
 
 .slide img {
@@ -417,7 +440,7 @@ header {
   height: 100%;
   object-fit: cover;
   display: block;
-  position: absolute; /* Абсолютное позиционирование для гарантии заполнения */
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -431,17 +454,16 @@ header {
   color: white;
   padding: 10px;
   font-size: 14px;
-  z-index: 2; /* Убедимся, что подпись поверх изображения */
+  z-index: 2;
 }
 
-/* Остальные стили остаются без изменений */
 .project-info {
   padding: 20px;
   background-color: white;
   color: #333;
 }
 
-.project-info h2 {
+.project-info h3 {
   margin: 0 0 10px 0;
   font-size: 20px;
   color: #0052a5;
@@ -546,7 +568,7 @@ header {
   background-color: #f0f0f0;
 }
 
-.collapsed .project-slider:nth-child(n + 3) {
+.projects-container.collapsed .project-slider:nth-child(n + 3) {
   display: none;
 }
 
