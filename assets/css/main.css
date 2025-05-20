@@ -445,18 +445,6 @@ header {
   left: 0;
 }
 
-.slide-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px;
-  font-size: 14px;
-  z-index: 2;
-}
-
 .project-info {
   padding: 20px;
   background-color: white;
@@ -506,8 +494,6 @@ header {
 .slider-arrow {
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,17 +502,11 @@ header {
   transition: background-color 0.3s;
   pointer-events: all;
 }
-
-.slider-arrow:hover {
-  background-color: white;
+.arrow-icon svg {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
 }
-
-.arrow-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #333;
-}
-
 .slider-dots {
   position: absolute;
   bottom: 15px;
@@ -572,15 +552,6 @@ header {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .project-slider {
-    width: 100%;
-  }
-
-  .slider-container {
-    height: 300px;
-  }
-}
 /**********************************************************/
 
 /* Адаптация для планшетов */
@@ -598,6 +569,9 @@ header {
   }
   .container {
     padding: 0px 40px;
+  }
+  .projects-section {
+    padding: 60px 40px;
   }
 }
 @media (max-width: 1024px) {
@@ -812,6 +786,14 @@ header {
 
   .section-title h1 {
     font-size: 28px;
+  }
+
+  .project-slider {
+    width: 100%;
+  }
+
+  .slider-container {
+    height: 300px;
   }
 }
 

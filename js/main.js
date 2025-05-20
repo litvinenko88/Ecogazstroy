@@ -33,52 +33,42 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           src: "./assets/img/imgObject/1.png",
           alt: "Храм Александра Невского",
-          desc: "Фасад храма Александра Невского на Бузиметровой 94",
         },
         {
           src: "./assets/img/imgObject/2.png",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/3.png",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/4.jpg",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/5.png",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/6.png",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/7.png",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/8.jpg",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/9.jpg",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
         {
           src: "./assets/img/imgObject/10.jpg",
           alt: "Внутреннее убранство храма",
-          desc: "Роспись стен и купола внутри храма",
         },
       ],
       videoLink: "#",
@@ -89,47 +79,38 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           src: "./assets/img/imgObject/11.jpg",
           alt: "Торговый центр Москва - главный вход",
-          desc: "Современный дизайн главного входа ТЦ Москва",
         },
         {
           src: "./assets/img/imgObject/12.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/13.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/14.png",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/15.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/16.png",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/17.png",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/18.png",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/19.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
       ],
       videoLink: "#",
@@ -140,37 +121,30 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           src: "./assets/img/imgObject/20.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/21.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/22.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/23.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/24.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/25.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/26.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
       ],
       videoLink: "#",
@@ -181,17 +155,14 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           src: "./assets/img/imgObject/27.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/28.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
         {
           src: "./assets/img/imgObject/29.jpg",
           alt: "Интерьер торгового центра",
-          desc: "Просторные торговые залы с естественным освещением",
         },
       ],
       videoLink: "#",
@@ -212,10 +183,19 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="slider" id="${sliderId}"></div>
           <div class="slider-nav">
             <div class="slider-arrow prev">
-              <div class="arrow-icon"></div>
+              <div class="arrow-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+              fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 
+              5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/></svg>
+              </div>
             </div>
             <div class="slider-arrow next">
-              <div class="arrow-icon"></div>
+              <div class="arrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" 
+              height="16" fill="currentColor" class="bi bi-chevron-compact-right" 
+              viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 
+              1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 
+              2.224a.5.5 0 0 1 .223-.671"/></svg></div>
             </div>
           </div>
           <div class="slider-dots" id="${dotsId}"></div>
@@ -223,7 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="project-info">
           <h3>${sliderData.title}</h3>
           <a href="${sliderData.videoLink}" class="watch-video">
-            <div class="video-icon"></div>
+            <div class="video-icon"><svg xmlns="http://www.w3.org/2000/svg" 
+            width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" 
+            viewBox="0 0 16 16"> <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 
+            2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 
+            0 0 0 5.5 4z"/></svg></div>
             Смотреть видео
           </a>
         </div>
@@ -288,7 +272,6 @@ function initSlider(sliderId, dotsId, images) {
     img.onload = function () {
       slide.innerHTML = `
         <img src="${image.src}" alt="${image.alt}">
-        <div class="slide-caption">${image.desc}</div>
       `;
     };
     img.onerror = function () {
