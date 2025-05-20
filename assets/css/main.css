@@ -7,14 +7,15 @@
 }
 body {
   font-family: "Roboto Condensed";
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   margin: 0;
 }
 .site-wrapper {
+  background-color: #f8f9fa;
   max-width: 1600px;
   width: 100%;
-  margin: 0 auto; /* Центрирование по горизонтали */
+  margin: 0 auto;
   position: relative;
 }
 
@@ -40,6 +41,7 @@ body {
   position: relative;
   z-index: 1;
   padding-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 header {
@@ -110,7 +112,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .consult-btn {
@@ -250,15 +252,9 @@ header {
 
 /******************Второй блок*******************************************/
 
-.why-choose-us {
-  background-color: #f8f9fa;
-  padding: 60px 0;
-}
-
 .container {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0px 100px;
 }
 
 .section-title {
@@ -267,10 +263,12 @@ header {
   color: #333;
 }
 
-.section-title h1 {
-  font-size: 36px;
+.section-title h2 {
+  font-size: 48px;
   font-weight: 700;
   margin-bottom: 10px;
+  color: #2560b8;
+  line-height: 1.2;
 }
 
 .benefits-grid {
@@ -295,7 +293,7 @@ header {
 }
 
 .benefit-number {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 700;
   color: #2560b8;
   margin-bottom: 15px;
@@ -305,7 +303,7 @@ header {
 }
 
 .benefit-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #2560b8;
   margin-bottom: 15px;
@@ -359,6 +357,13 @@ header {
   }
   .cnt-ytp {
     padding: 20px 40px;
+  }
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .container {
+    padding: 0px 40px;
   }
 }
 @media (max-width: 1024px) {
@@ -417,11 +422,9 @@ header {
   }
 
   .ytp-text-cnt__ytp {
-    font-size: 36px;
-  }
-  .ytp-text-cnt__ytp {
     text-align: center;
-    padding: 0 100px;
+    padding: 0 40px;
+    font-size: 36px;
   }
   .cnt-logo__head-logo {
     height: 80px;
