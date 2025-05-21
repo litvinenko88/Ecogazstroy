@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
+/*******************слайдер******************************** */
 document.addEventListener("DOMContentLoaded", function () {
   // Данные для слайдеров (пути к изображениям и описания)
   const slidersData = [
@@ -358,3 +358,232 @@ function initSlider(sliderId, dotsId, images) {
 
   return moveSlide;
 }
+/**********************квиз****************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const quizForm = document.getElementById("quizForm");
+  const quizSection = document.getElementById("quizSection");
+  const currentQuestionEl = document.getElementById("currentQuestion");
+  const progressBar = document.querySelector(".progress-bar");
+  const errorModal = document.getElementById("errorModal");
+  const thankModal = document.getElementById("thankModal");
+
+  const questions = [
+    {
+      question: "Какой объект планируете газифицировать?",
+      answers: [
+        "Жилой дом",
+        "Садовый дом",
+        "Коммерческий или промышленный объект",
+        "Другое",
+      ],
+    },
+    {
+      question:
+        "На каком расстоянии от границы земельного участка расположен газопровод, к которому возможно осуществить подключение?",
+      answers: [
+        "Газопровод проходит по участку",
+        "В пределах 5 метров",
+        "От 10 до 20 метров от участка",
+        "От 30 до 50 метров от участка",
+        "Подземный газопровод",
+        "Нет информации",
+      ],
+    },
+    {
+      question: "Давление газа в точке подключения?",
+      answers: [
+        "Низкое давление Г1",
+        "Среднее давление Г2",
+        "Высокое давление Г3",
+        "Нет информации",
+      ],
+    },
+    {
+      question:
+        "Вы уже определились с газовым оборудованием, которое хотите установить?",
+      answers: ["Да", "Выбираем, нужна помощь", "Нет"],
+    },
+    {
+      question: "В каком населенном пункте расположен Ваш объект?",
+      answers: [
+        "Ставрополь",
+        "Невинномысск",
+        "Михайловск",
+        "Изобильный",
+        "Ближайшие 100 километров",
+      ],
+    },
+  ];
+
+  let currentQuestion = 0;
+  const answers = {};
+
+  // Инициализация квиза
+  function initQuiz() {
+    renderQuestion();
+
+    // Обработчики модальных окон
+    document.querySelectorAll(".close-modal").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        errorModal.style.display = "none";
+        thankModal.style.display = "none";
+      });
+    });
+
+    window.addEventListener("click", function (e) {
+      if (e.target === errorModal || e.target === thankModal) {
+        errorModal.style.display = "none";
+        thankModal.style.display = "none";
+      }
+    });
+  }
+
+  // Рендер текущего вопроса
+  function renderQuestion() {
+    currentQuestionEl.textContent = currentQuestion + 1;
+    progressBar.style.setProperty(
+      "--progress",
+      `${(currentQuestion + 1) * 20}%`
+    );
+
+    const question = questions[currentQuestion];
+
+    let html = `
+      <div class="question-container">
+        <h3 class="question-title">${question.question}</h3>
+        <select class="answer-select" name="question${currentQuestion}" required>
+          <option value="" selected disabled>Выберите ответ</option>
+    `;
+
+    question.answers.forEach((answer) => {
+      html += `<option value="${answer}">${answer}</option>`;
+    });
+
+    html += `</select>`;
+
+    // Навигационные кнопки
+    html += `<div class="quiz-navigation">`;
+
+    if (currentQuestion > 0) {
+      html += `<button type="button" class="quiz-btn btn-back">Назад</button>`;
+    } else {
+      html += `<div></div>`; // Для выравнивания кнопки "Далее" справа
+    }
+
+    if (currentQuestion < questions.length - 1) {
+      html += `<button type="button" class="quiz-btn btn-next" disabled>Далее</button>`;
+    } else {
+      html += `<button type="button" class="quiz-btn btn-submit" disabled>Получить результат</button>`;
+    }
+
+    html += `</div></div>`;
+
+    quizForm.innerHTML = html;
+
+    // Обработчики событий
+    const select = quizForm.querySelector(".answer-select");
+    select.addEventListener("change", function () {
+      answers[`question${currentQuestion}`] = this.value;
+
+      const nextBtn = quizForm.querySelector(".btn-next");
+      const submitBtn = quizForm.querySelector(".btn-submit");
+
+      if (nextBtn) nextBtn.disabled = false;
+      if (submitBtn) submitBtn.disabled = false;
+    });
+
+    if (currentQuestion > 0) {
+      quizForm
+        .querySelector(".btn-back")
+        .addEventListener("click", prevQuestion);
+    }
+
+    if (currentQuestion < questions.length - 1) {
+      quizForm
+        .querySelector(".btn-next")
+        .addEventListener("click", nextQuestion);
+    } else {
+      quizForm
+        .querySelector(".btn-submit")
+        .addEventListener("click", showResultForm);
+    }
+  }
+
+  // Следующий вопрос
+  function nextQuestion() {
+    const select = quizForm.querySelector(".answer-select");
+
+    if (!select.value) {
+      errorModal.style.display = "flex";
+      return;
+    }
+
+    currentQuestion++;
+    renderQuestion();
+  }
+
+  // Предыдущий вопрос
+  function prevQuestion() {
+    currentQuestion--;
+    renderQuestion();
+  }
+
+  // Показать форму результата
+  function showResultForm() {
+    const select = quizForm.querySelector(".answer-select");
+
+    if (!select.value) {
+      errorModal.style.display = "flex";
+      return;
+    }
+
+    quizForm.innerHTML = `
+      <div class="question-container">
+        <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
+        
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Ваш телефон</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">Я согласен на обработку персональных данных</label>
+          </div>
+        </div>
+        
+        <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
+      </div>
+    `;
+
+    quizForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      thankModal.style.display = "flex";
+
+      // Здесь можно добавить отправку данных на сервер
+      console.log("Ответы:", answers);
+      console.log("Имя:", this.name.value);
+      console.log("Телефон:", this.phone.value);
+
+      // Очистка формы
+      this.reset();
+      currentQuestion = 0;
+      Object.keys(answers).forEach((key) => delete answers[key]);
+
+      // Через 5 секунд перезагружаем квиз
+      setTimeout(() => {
+        thankModal.style.display = "none";
+        renderQuestion();
+      }, 5000);
+    });
+  }
+
+  // Запуск квиза
+  initQuiz();
+});

@@ -266,7 +266,7 @@
           </div>
         </section>
 
-        <div class="president-container">
+        <section class="president-container">
           <section class="president-section">
             <div class="president-image-container">
               <img
@@ -286,7 +286,47 @@
               <a href="#" class="president-btn">Узнать подробнее</a>
             </div>
           </section>
+        </section>
+
+        <section class="quiz-section" id="quizSection">
+  <div class="container">
+    <div class="quiz-container">
+      <h2 class="quiz-title">Хотите снизить расходы и рассчитать предварительную стоимость газификации?</h2>
+      <p class="quiz-subtitle">Ответьте на 5 вопросов и получите индивидуальный расчет</p>
+      
+      <div class="quiz-wrapper">
+        <div class="quiz-progress">
+          <div class="progress-bar"></div>
+          <span class="progress-text">Вопрос <span id="currentQuestion">1</span> из 5</span>
         </div>
+        
+        <div class="quiz-content">
+          <form id="quizForm">
+            <!-- Вопросы будут вставлены через JS -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Модальное окно ошибки -->
+  <div class="modal-overlay" id="errorModal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <p>Пожалуйста, выберите ответ на вопрос, чтобы продолжить.</p>
+    </div>
+  </div>
+  
+  <!-- Модальное окно благодарности -->
+  <div class="modal-overlay" id="thankModal" style="display: none;">
+    <div class="modal-content thank-content">
+      <span class="close-modal">&times;</span>
+      <h3>Спасибо за ваши ответы!</h3>
+      <p>Наш специалист свяжется с вами в ближайшее время для уточнения деталей и предоставления расчета.</p>
+    </div>
+  </div>
+</section>
+
       </main>
       <footer>3</footer>
     </div>
