@@ -775,7 +775,9 @@ header {
   header {
     padding: var(--spacing-lg) var(--spacing-xxl);
   }
-
+  .section-title h2 {
+    font-size: var(--font-size-xxxl);
+  }
   .mobile-menu-toggle {
     display: block;
     position: relative;
@@ -832,7 +834,8 @@ header {
   .hero-title {
     text-align: center;
     padding: 0 var(--spacing-xxl);
-    font-size: var(--font-size-xxxl);
+    font-size: var(--font-size-huge);
+    margin-bottom: 20px;
   }
 
   .header-logo-img {
@@ -848,7 +851,8 @@ header {
   }
 
   .contact-form {
-    max-width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
   }
 
   /* Стили для анимации гамбургер-меню */
@@ -913,6 +917,10 @@ header {
     display: flex;
     text-align: center;
   }
+
+  .projects-wrapper h2 {
+    font-size: var(--font-size-xxxl);
+  }
 }
 
 /* Адаптация для мобильных устройств */
@@ -920,6 +928,12 @@ header {
   header {
     padding: var(--spacing-md) var(--spacing-lg);
     position: relative;
+  }
+  .header-content {
+    position: relative;
+    z-index: 1;
+    padding-bottom: var(--spacing-xxxl);
+    margin-bottom: var(--spacing-xxxl);
   }
 
   .header-right-section {
