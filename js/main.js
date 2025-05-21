@@ -362,9 +362,8 @@ function initSlider(sliderId, dotsId, images) {
 /**********************квиз****************************** */
 document.addEventListener("DOMContentLoaded", function () {
   const quizForm = document.getElementById("quizForm");
-  const quizSection = document.getElementById("quizSection");
   const currentQuestionEl = document.getElementById("currentQuestion");
-  const progressBar = document.querySelector(".progress-bar");
+  const progressFill = document.querySelector(".progress-fill");
   const errorModal = document.getElementById("errorModal");
   const thankModal = document.getElementById("thankModal");
 
@@ -442,19 +441,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Рендер текущего вопроса
   function renderQuestion() {
     currentQuestionEl.textContent = currentQuestion + 1;
-    progressBar.style.setProperty(
-      "--progress",
-      `${(currentQuestion + 1) * 20}%`
-    );
+    progressFill.style.width = `${(currentQuestion + 1) * 20}%`;
 
     const question = questions[currentQuestion];
 
     let html = `
-      <div class="question-container">
-        <h3 class="question-title">${question.question}</h3>
-        <select class="answer-select" name="question${currentQuestion}" required>
-          <option value="" selected disabled>Выберите ответ</option>
-    `;
+            <div class="question-container">
+                <h3 class="question-title">${question.question}</h3>
+                <select class="answer-select" name="question${currentQuestion}" required>
+                    <option value="" selected disabled>Выберите ответ</option>
+        `;
 
     question.answers.forEach((answer) => {
       html += `<option value="${answer}">${answer}</option>`;
@@ -539,32 +535,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     quizForm.innerHTML = `
-      <div class="question-container">
-        <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
-        
-        <div class="form-group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        
-        <div class="quiz-form-group">
-          <label for="phone">Ваш телефон</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-        
-        <div class="quiz-checkbox-group">
-          <div class="quiz-checkbox-item">
-            <input type="checkbox" id="consent" name="consent" required>
-            <label for="consent">Я согласен на обработку персональных данных</label>
-          </div>
-        </div>
-        
-        <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
-      </div>
-    `;
+            <div class="question-container">
+                <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
+                
+                <div class="quiz-form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="quiz-form-group">
+                    <label for="phone">Ваш телефон</label>
+                    <input type="tel" id="phone" name="phone" required pattern="[+]{0,1}[0-9]{10,15}" title="Введите корректный номер телефона">
+                    <small class="error-message" style="display:none;color:red;">Пожалуйста, введите корректный номер телефона</small>
+                </div>
+                
+                <div class="quiz-checkbox-group">
+                    <div class="quiz-checkbox-item">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Я согласен на обработку персональных данных</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
+            </div>
+        `;
+
+    // Валидация телефона
+    const phoneInput = quizForm.querySelector("#phone");
+    const errorMessage = quizForm.querySelector(".error-message");
+
+    phoneInput.addEventListener("input", function () {
+      const isValid = this.checkValidity();
+      if (!isValid) {
+        errorMessage.style.display = "block";
+      } else {
+        errorMessage.style.display = "none";
+      }
+    });
 
     quizForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      if (!phoneInput.checkValidity()) {
+        errorMessage.style.display = "block";
+        return;
+      }
+
       thankModal.style.display = "flex";
 
       // Здесь можно добавить отправку данных на сервер

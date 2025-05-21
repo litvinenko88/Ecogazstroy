@@ -722,14 +722,13 @@ header {
   background-color: #0056b3;
 }
 
-/**********************пятый блок *********************************/
+/**********************пятый блок квиз *********************************/
 .quiz-section {
   padding: 60px 0;
   position: relative;
-  background-image: url("/assets/img/2754b310c2a90e23f75328d4d23f0781e5194b8d.jpeg"); /* Путь к вашему фоновому изображению */
+  background-image: url("/assets/img/2754b310c2a90e23f75328d4d23f0781e5194b8d.jpeg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
 .quiz-bg-overlay {
@@ -738,7 +737,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(37, 96, 184, 0.8); /* Синий цвет с прозрачностью */
+  background-color: rgba(37, 96, 184, 0.8);
   z-index: 0;
 }
 
@@ -781,11 +780,8 @@ header {
   overflow: hidden;
 }
 
-.progress-bar::after {
-  content: "";
-  display: block;
+.progress-fill {
   height: 100%;
-  width: 20%;
   background: #2560b8;
   transition: width 0.4s ease;
 }
@@ -846,6 +842,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  gap: 20px;
 }
 
 .quiz-btn {
@@ -855,6 +852,8 @@ header {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
 }
 
 .btn-back {
@@ -989,7 +988,7 @@ header {
   }
 
   .quiz-title {
-    font-size: var(--font-size-xxl);
+    font-size: 28px;
   }
 
   .quiz-subtitle {
