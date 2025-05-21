@@ -10,6 +10,8 @@ body {
   font-size: 18px;
   font-weight: 400;
   margin: 0;
+  background: white;
+  color: white;
 }
 .site-wrapper {
   background-color: #f8f9fa;
@@ -53,22 +55,22 @@ header {
   margin-bottom: 100px;
 }
 
-.header-right {
+.header-right-section {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-.cnt-logo {
+.header-logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.cnt-logo__head-logo {
+.header-logo-img {
   height: 80px;
   width: auto;
 }
-.cnt-logo__text-logo {
+.header-logo-text {
   font-size: 24px;
   font-weight: bold;
   color: #fefe00;
@@ -76,7 +78,7 @@ header {
 }
 
 /* Навигация */
-.cnt-nav {
+.main-navigation {
   position: relative;
 }
 
@@ -91,7 +93,7 @@ header {
   z-index: 1001;
 }
 
-.list-nav {
+.nav-list {
   display: flex;
   gap: 20px;
   list-style: none;
@@ -99,49 +101,65 @@ header {
   margin: 0;
   transition: all 0.3s ease;
 }
-.list-nav__item {
+.nav-item {
   cursor: pointer;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
   white-space: nowrap;
+  position: relative;
+  padding: 5px 0;
 }
-.list-nav__item:hover {
+.nav-item:hover {
   color: #f0f0f0;
 }
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fefe00;
+  transition: width 0.3s ease;
+}
+.nav-item:hover::after {
+  width: 100%;
+}
 
-.desktop-bt {
+.desktop-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.consult-btn {
+.consultation-btn {
   padding: 10px 50px;
   background: #fff;
   color: #2c528c;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
-.consult-btn:hover {
+.consultation-btn:hover {
   background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.work-hours {
+.working-hours {
   font-size: 14px;
   color: white;
   margin: 0;
   white-space: nowrap;
 }
 
-.cnt-ytp {
+.hero-section {
   position: relative;
   z-index: 1;
   padding: 20px 100px;
-
   color: white;
   display: flex;
   justify-content: space-between;
@@ -150,22 +168,22 @@ header {
   gap: 50px;
 }
 
-.ytp-text-cnt {
+.hero-text-container {
   flex: 1;
   min-width: 300px;
 }
 
-.ytp-text-cnt__ytp {
+.hero-title {
   font-size: 60px;
   line-height: 1.3;
   margin: 0;
   font-weight: 700;
+  color: white;
 }
-.ytp-text-cnt__ytp span {
+.hero-title span {
   color: #fefe00;
 }
-.header-form {
-  /* background-color: white; */
+.contact-form {
   border-radius: 8px;
   padding: 30px;
   color: #ffffff;
@@ -240,11 +258,12 @@ header {
   font-weight: 500;
   cursor: pointer;
   width: 100%;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
   background-color: #d3d31c;
+  transform: scale(1.05);
 }
 
 /* Mobile only elements */
@@ -253,7 +272,7 @@ header {
 }
 
 /******************Второй блок*******************************************/
-.why-choose-us {
+.benefits-section {
   margin-bottom: 60px;
 }
 .container {
@@ -320,7 +339,7 @@ header {
   line-height: 1.5;
 }
 
-.image-placeholder {
+.benefit-image {
   width: 100%;
   background-color: #e9ecef;
   display: flex;
@@ -330,7 +349,7 @@ header {
   border-radius: 4px;
   margin-bottom: 20px;
 }
-.cnt-car-text {
+.benefit-text-container {
   display: flex;
 }
 .cta-section {
@@ -346,11 +365,12 @@ header {
   border-radius: 4px;
   text-decoration: none;
   font-weight: 700;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .cta-button:hover {
   background-color: #1d4e94;
+  transform: translateY(-2px);
 }
 
 /**************третий блок*******************************************/
@@ -364,8 +384,9 @@ header {
   background-position: center;
   color: white;
   position: relative;
+  margin-bottom: 100px;
 }
-.projects-section-wrap {
+.projects-wrapper {
   position: relative;
   z-index: 1;
 }
@@ -488,7 +509,7 @@ header {
   text-decoration: none;
   border-radius: 4px;
   font-size: 14px;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
   gap: 8px;
 }
 .watch-video svg {
@@ -497,6 +518,7 @@ header {
 }
 .watch-video:hover {
   background-color: #003366;
+  transform: translateY(-2px);
 }
 
 .video-icon {
@@ -524,7 +546,7 @@ header {
   justify-content: center;
   cursor: pointer;
   margin: 0 10px;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
   pointer-events: all;
 }
 .arrow-icon svg {
@@ -549,7 +571,7 @@ header {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .slider-dot.active {
@@ -566,13 +588,107 @@ header {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .toggle-section:hover {
   background-color: #f0f0f0;
+  transform: translateY(-2px);
 }
-/**********************************************************/
+/****************4 блок******************************************/
+.president-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.president-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.president-image-container {
+  width: 100%;
+  height: auto;
+}
+
+.president-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.president-content {
+  padding: 30px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.president-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.president-btn:hover {
+  transform: scale(1.05);
+  background-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+  .president-section {
+    flex-direction: row;
+  }
+
+  .president-image-container {
+    width: 50%;
+  }
+
+  .president-content {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+/*******************************************************/
 
 /* Адаптация для планшетов */
 @media (max-width: 1280px) {
@@ -580,7 +696,7 @@ header {
     padding: 20px 40px;
     margin-bottom: 70px;
   }
-  .cnt-ytp {
+  .hero-section {
     padding: 20px 40px;
   }
   .benefits-grid {
@@ -592,6 +708,13 @@ header {
   }
   .projects-section {
     padding: 60px 40px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 20px;
   }
 }
 @media (max-width: 1024px) {
@@ -605,11 +728,11 @@ header {
     order: 2;
     margin-left: auto;
   }
-  .desktop-bt {
+  .desktop-buttons {
     display: none;
   }
 
-  .list-nav {
+  .nav-list {
     position: fixed;
     top: 0;
     right: -100%;
@@ -623,11 +746,11 @@ header {
     transition: right 0.3s ease;
     z-index: 1000;
   }
-  .list-nav.active {
+  .nav-list.active {
     right: 0;
   }
 
-  .list-nav__item {
+  .nav-item {
     padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
@@ -644,29 +767,30 @@ header {
     width: 100%;
   }
 
-  .cnt-ytp {
+  .hero-section {
+    display: block;
     padding: 20px 40px;
     justify-content: center;
   }
 
-  .ytp-text-cnt__ytp {
+  .hero-title {
     text-align: center;
     padding: 0 40px;
     font-size: 36px;
   }
-  .cnt-logo__head-logo {
+  .header-logo-img {
     height: 80px;
   }
 
-  .cnt-logo__text-logo {
+  .header-logo-text {
     font-size: 26px;
   }
 
-  .list-nav {
+  .nav-list {
     gap: 15px;
   }
 
-  .header-form {
+  .contact-form {
     max-width: 100%;
   }
 
@@ -708,7 +832,7 @@ header {
   }
 
   /* Анимация для открытия/закрытия меню */
-  .list-nav {
+  .nav-list {
     transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
   }
   .project-slider {
@@ -723,15 +847,15 @@ header {
     position: relative;
   }
 
-  .header-right {
+  .header-right-section {
     gap: 15px;
   }
 
-  .cnt-logo__head-logo {
+  .header-logo-img {
     height: 70px;
   }
 
-  .cnt-logo__text-logo {
+  .header-logo-text {
     font-size: 26px;
   }
 
@@ -742,11 +866,11 @@ header {
     margin-left: auto;
   }
 
-  .desktop-bt {
+  .desktop-buttons {
     display: none;
   }
 
-  .list-nav {
+  .nav-list {
     position: fixed;
     top: 0;
     right: -100%;
@@ -761,11 +885,11 @@ header {
     z-index: 1000;
   }
 
-  .list-nav.active {
+  .nav-list.active {
     right: 0;
   }
 
-  .list-nav__item {
+  .nav-item {
     padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
@@ -782,21 +906,21 @@ header {
     width: 100%;
   }
 
-  .cnt-ytp {
+  .hero-section {
     padding: 0px;
     text-align: center;
     gap: 30px;
   }
 
-  .ytp-text-cnt__ytp {
+  .hero-title {
     font-size: 36px;
     text-align: center;
   }
 
-  .header-form {
-    width: 80%;
+  .contact-form {
+    width: 100%;
     min-width: auto;
-    padding: 20px;
+    padding: 40px;
   }
 
   .mobile-menu-toggle .fa-times {
@@ -818,6 +942,25 @@ header {
   .slider-container {
     height: 300px;
   }
+  .president-section {
+    flex-direction: row;
+  }
+
+  .president-image-container {
+    width: 50%;
+  }
+
+  .president-content {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
 }
 
 /* Адаптация для очень маленьких экранов */
@@ -826,24 +969,25 @@ header {
     padding: 10px 15px;
   }
 
-  .ytp-text-cnt__ytp {
+  .hero-title {
     font-size: 28px;
-    padding: 0 10px;
+    padding: 0 20px;
+    margin-bottom: 30px;
   }
 
   .form-title {
     font-size: 18px;
   }
 
-  .cnt-logo {
+  .header-logo-container {
     gap: 5px;
   }
 
-  .cnt-logo__head-logo {
+  .header-logo-img {
     height: 55px;
   }
 
-  .cnt-logo__text-logo {
+  .header-logo-text {
     font-size: 22px;
   }
 
@@ -851,9 +995,16 @@ header {
     font-size: 10px;
     align-items: center;
   }
-  .header-form {
-    width: 90%;
+  .contact-form {
+    width: 100%;
     min-width: auto;
+    padding: 20px;
+  }
+  .container {
+    padding: 20px;
+  }
+
+  .projects-section {
     padding: 20px;
   }
 }
