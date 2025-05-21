@@ -268,6 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализируем состояние при загрузке
   initSectionState();
 });
+/*********************Проекты************************************** */
 
 function initSlider(sliderId, dotsId, images) {
   const slider = document.getElementById(sliderId);
@@ -546,13 +547,13 @@ document.addEventListener("DOMContentLoaded", function () {
           <input type="text" id="name" name="name" required>
         </div>
         
-        <div class="form-group">
+        <div class="quiz-form-group">
           <label for="phone">Ваш телефон</label>
           <input type="tel" id="phone" name="phone" required>
         </div>
         
-        <div class="checkbox-group">
-          <div class="checkbox-item">
+        <div class="quiz-checkbox-group">
+          <div class="quiz-checkbox-item">
             <input type="checkbox" id="consent" name="consent" required>
             <label for="consent">Я согласен на обработку персональных данных</label>
           </div>

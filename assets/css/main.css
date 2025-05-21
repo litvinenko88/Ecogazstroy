@@ -437,7 +437,7 @@ header {
   padding: var(--spacing-huge) var(--spacing-giant);
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/XXL_height.webp");
+  background-image: url("/assets/img/5496d2bebb2ea01a56ea86020033662c.jpg");
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -725,8 +725,21 @@ header {
 /**********************пятый блок *********************************/
 .quiz-section {
   padding: 60px 0;
-  background-color: #f8f9fa;
   position: relative;
+  background-image: url("/assets/img/2754b310c2a90e23f75328d4d23f0781e5194b8d.jpeg"); /* Путь к вашему фоновому изображению */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quiz-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 96, 184, 0.8); /* Синий цвет с прозрачностью */
+  z-index: 0;
 }
 
 .quiz-container {
@@ -736,10 +749,12 @@ header {
   border-radius: 10px;
   padding: 40px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .quiz-title {
-  font-size: 28px;
+  font-size: var(--font-size-xxxl);
   color: #2560b8;
   margin-bottom: 15px;
   text-align: center;
@@ -874,18 +889,18 @@ header {
   background: #218838;
 }
 
-.form-group {
+.quiz-form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.quiz-form-group label {
   display: block;
   margin-bottom: 8px;
   font-size: 16px;
   color: #333;
 }
 
-.form-group input {
+.quiz-form-group input {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid #ddd;
@@ -893,20 +908,20 @@ header {
   font-size: 16px;
 }
 
-.checkbox-group {
+.quiz-checkbox-group {
   margin: 25px 0;
 }
 
-.checkbox-item {
+.quiz-checkbox-item {
   display: flex;
   align-items: center;
 }
 
-.checkbox-item input {
+.quiz-checkbox-item input {
   margin-right: 10px;
 }
 
-.checkbox-item label {
+.quiz-checkbox-item label {
   font-size: 14px;
   color: #555;
 }
@@ -965,12 +980,16 @@ header {
 }
 
 @media (max-width: 768px) {
+  .quiz-section {
+    padding: 30px 0;
+  }
+
   .quiz-container {
     padding: 30px 20px;
   }
 
   .quiz-title {
-    font-size: 24px;
+    font-size: var(--font-size-xxl);
   }
 
   .quiz-subtitle {
