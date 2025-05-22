@@ -604,3 +604,60 @@ document.addEventListener("DOMContentLoaded", function () {
   // Запуск квиза
   initQuiz();
 });
+/*******************слайдер документов**************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  // Элементы слайдера
+  const marqueeContent = document.querySelector(".documents-marquee-content");
+  const modal = document.getElementById("documentsModal");
+  const modalImg = document.getElementById("documentsExpandedImage");
+  const closeModal = document.querySelector(".documents-modal-close");
+
+  // Клонируем элементы для бесконечной прокрутки
+  const items = marqueeContent.querySelectorAll("li");
+  const itemsCount = items.length;
+  const displayedItems = 5;
+
+  for (let i = 0; i < displayedItems; i++) {
+    marqueeContent.appendChild(items[i].cloneNode(true));
+  }
+
+  // Обработчики событий для модального окна
+  document.querySelectorAll(".documents-marquee-content img").forEach((img) => {
+    img.addEventListener("click", function () {
+      modalImg.src = this.src;
+      modalImg.alt = this.alt;
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Закрытие модального окна
+  closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  // Закрытие по ESC
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  // Пауза при наведении
+  marqueeContent.addEventListener("mouseenter", function () {
+    this.style.animationPlayState = "paused";
+  });
+
+  marqueeContent.addEventListener("mouseleave", function () {
+    this.style.animationPlayState = "running";
+  });
+});
