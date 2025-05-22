@@ -404,6 +404,12 @@ header {
   color: #6c757d;
   border-radius: var(--border-radius);
   margin-bottom: var(--spacing-lg);
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.benefit-card:hover .benefit-image {
+  transform: scale(1.03);
 }
 
 .benefit-text-container {
@@ -1603,7 +1609,7 @@ header {
   .error-message {
     font-size: 12px;
   }
-  #phone{
+  #phone {
     margin-bottom: 5px;
   }
 }
