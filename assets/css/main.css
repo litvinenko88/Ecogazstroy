@@ -1073,7 +1073,7 @@ header {
 }
 
 .gas-step-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-base);
   color: #2560b8;
   margin-bottom: 15px;
   font-weight: 600;
