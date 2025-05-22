@@ -1147,7 +1147,7 @@ header {
 .documents-slider-section {
   width: 100%;
   padding: 80px 0;
-  background: url("../img/slider-background.jpg") no-repeat center center;
+  background: url("/assets/img/2.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -1165,7 +1165,6 @@ header {
 
 .documents-slider-container {
   position: relative;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
   z-index: 2;
@@ -1200,8 +1199,7 @@ header {
   left: 0;
   background: linear-gradient(
     to right,
-    rgba(0, 46, 102, 0.7) 0%,
-    transparent 100%
+    /* rgba(0, 46, 102, 0.7) 0%, */ transparent 100%
   );
 }
 
@@ -1209,8 +1207,7 @@ header {
   right: 0;
   background: linear-gradient(
     to left,
-    rgba(0, 46, 102, 0.7) 0%,
-    transparent 100%
+    /* rgba(0, 46, 102, 0.7) 0%, */ transparent 100%
   );
 }
 
