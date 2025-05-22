@@ -995,7 +995,150 @@ header {
     font-size: 16px;
   }
 }
-/***************************************************************/
+/**********************6 блок*****************************************/
+.gas-steps-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.gas-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.gas-section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.gas-section-title h2 {
+  font-size: 36px;
+  color: #2560b8;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.gas-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.gas-step-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.gas-step-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.gas-step-flex-cnt {
+  display: flex;
+  align-items: center;
+}
+.gas-step-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.gas-step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gas-step-card:hover .gas-step-image {
+  transform: scale(1.1);
+}
+
+.gas-step-text-container {
+  padding: var(--spacing-md);
+}
+
+.gas-step-number {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2560b8;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1;
+  border-right: 2px solid var(--primary-color);
+  margin-right: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+}
+
+.gas-step-title {
+  font-size: 20px;
+  color: #2560b8;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.gas-step-description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.gas-step-cta {
+  background-color: #2560b8;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.gas-step-cta .gas-step-title {
+  color: white;
+}
+
+.gas-step-cta .gas-step-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: white;
+  color: #2560b8;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.gas-step-cta .gas-step-button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .gas-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gas-steps-section {
+    padding: 60px 0;
+  }
+
+  .gas-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gas-section-title h2 {
+    font-size: 28px;
+  }
+
+  .gas-step-image-container {
+    height: 180px;
+  }
+}
+/*************************************************************/
 
 /* Адаптация для планшетов */
 @media (max-width: 1280px) {
