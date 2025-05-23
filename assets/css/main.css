@@ -72,7 +72,7 @@ body {
 .header-container {
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/XXL_height.webp");
+  background-image: url("/assets/img/6ZkCHFcKNwTx-1280.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -1303,7 +1303,157 @@ header {
     font-size: 2rem;
   }
 }
-/********************************************************/
+/****************о компании ****************************************/
+/* Стили секции "О компании" */
+.egs-about-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.egs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.egs-about-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 40px;
+}
+
+.egs-main-title {
+  color: #2a7f62;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-align: left;
+}
+
+.egs-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.egs-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.egs-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.egs-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.egs-icon {
+  font-size: 24px;
+  color: #2a7f62;
+  margin-right: 15px;
+}
+
+.egs-card-title {
+  color: #2a7f62;
+  font-size: 18px;
+  margin: 0;
+}
+
+.egs-card-text {
+  font-size: 14px;
+  color: #555;
+  padding-left: 39px;
+}
+
+.egs-company-description {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.egs-description-text {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.egs-director-section {
+  width: 300px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.egs-director-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.egs-director-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.egs-director-info {
+  text-align: center;
+}
+
+.egs-director-position {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.egs-director-name {
+  color: #2a7f62;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .egs-container {
+    flex-direction: column;
+  }
+
+  .egs-about-content {
+    padding: 20px;
+  }
+
+  .egs-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .egs-director-section {
+    width: 100%;
+    padding: 30px 20px;
+    order: -1;
+  }
+
+  .egs-director-photo {
+    width: 150px;
+    height: 150px;
+  }
+}
+/*******************************************************************/
 
 /* Адаптация для планшетов */
 @media (max-width: 1280px) {
