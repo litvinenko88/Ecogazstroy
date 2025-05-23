@@ -1315,7 +1315,7 @@ header {
 }
 
 .egs-main-title {
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 700;
   color: #2560b8;
   margin-bottom: 60px;
@@ -1369,21 +1369,20 @@ header {
 }
 
 .egs-card-header {
-  display: flex;
-  align-items: center;
+  text-align: center;
   margin-bottom: 15px;
 }
 
 .egs-icon {
-  font-size: 24px;
+  font-size: 60px;
   color: #2560b8;
-  margin-right: 15px;
+  margin-bottom: 30px;
 }
 
 .egs-card-title {
   color: #2560b8;
   font-size: 24px;
-  margin: 0;
+
   font-weight: 700;
 }
 
@@ -1391,7 +1390,7 @@ header {
   font-size: 16px;
   color: #555;
   line-height: 1.5;
-  padding-left: 39px;
+  text-align: center;
 }
 
 /* Описание компании */
@@ -1433,7 +1432,7 @@ header {
   }
 
   .egs-card-title {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .egs-card-text {
@@ -1721,6 +1720,9 @@ header {
   .egs-cards-grid {
     grid-template-columns: repeat(1, 1fr);
   }
+  .egs-main-title {
+    font-size: 36px;
+  }
 }
 
 /* Адаптация для мобильных устройств */
@@ -1997,5 +1999,36 @@ header {
   .documents-slider-title {
     font-size: var(--font-size-xl);
     margin-bottom: 0px;
+  }
+  .documents-slider-title {
+    margin-bottom: 40px;
+  }
+  .documents-slider-section {
+    padding: 60px 0;
+    margin: 40px 0;
+  }
+  .egs-main-title {
+    font-size: 24px;
+  }
+  .quiz-section {
+    padding: 40px 20px;
+  }
+  .container {
+    padding: 0;
+  }
+  .president-container {
+    padding: 20px 20px 0 20px;
+  }
+  .projects-section {
+    margin-bottom: 40px;
+  }
+  .benefits-container {
+    padding: 20px;
+  }
+  .gas-steps-section {
+    padding: 20px 20px;
+  }
+  .egs-container {
+    padding: 20px;
   }
 }
