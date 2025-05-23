@@ -57,7 +57,6 @@ body {
   font-size: var(--font-size-base);
   font-weight: 400;
   margin: 0;
-  background: white;
   color: var(--text-color);
 }
 
@@ -331,7 +330,7 @@ header {
   margin-bottom: var(--spacing-huge);
 }
 
-.container {
+.benefits-container {
   margin: 0 auto;
   padding: 0 var(--spacing-giant);
 }
@@ -1003,12 +1002,11 @@ header {
 }
 /**********************6 блок*****************************************/
 .gas-steps-section {
-  padding: 60px 0;
+  padding: 60px 100px;
   background-color: #f8f9fa;
 }
 
 .gas-container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -1082,7 +1080,7 @@ header {
   font-size: var(--font-size-base);
   color: #2560b8;
   margin-bottom: 15px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .gas-step-description {
@@ -1152,6 +1150,7 @@ header {
   background-size: cover;
   position: relative;
   overflow: hidden;
+  margin-bottom: 60px;
 }
 
 .documents-slider-overlay {
@@ -1167,7 +1166,6 @@ header {
 .documents-slider-container {
   position: relative;
   margin: 0 auto;
-  padding: 0 20px;
   z-index: 2;
 }
 
@@ -1304,40 +1302,61 @@ header {
   }
 }
 /****************о компании ****************************************/
-/* Стили секции "О компании" */
+/* Основные стили */
 .egs-about-section {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .egs-container {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.egs-about-content {
-  flex: 1;
-  min-width: 300px;
-  padding: 40px;
+  padding: 60px 100px;
+  box-sizing: border-box;
 }
 
 .egs-main-title {
-  color: #2a7f62;
-  margin-bottom: 30px;
-  font-size: 28px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2560b8;
+  margin-bottom: 60px;
   text-align: left;
+}
+
+.egs-flex-wrapper {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+/* Секция с фото */
+.egs-director-section {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.egs-director-photo {
+  width: 100%;
+  height: 100%;
+}
+
+.egs-director-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Контентная часть с карточками */
+.egs-content-section {
+  flex: 1;
 }
 
 .egs-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-bottom: 30px;
+  height: 100%;
 }
 
 .egs-card {
@@ -1345,11 +1364,8 @@ header {
   border-radius: 8px;
   padding: 20px;
   transition: transform 0.3s ease;
-}
-
-.egs-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .egs-card-header {
@@ -1360,24 +1376,27 @@ header {
 
 .egs-icon {
   font-size: 24px;
-  color: #2a7f62;
+  color: #2560b8;
   margin-right: 15px;
 }
 
 .egs-card-title {
-  color: #2a7f62;
-  font-size: 18px;
+  color: #2560b8;
+  font-size: 24px;
   margin: 0;
+  font-weight: 700;
 }
 
 .egs-card-text {
-  font-size: 14px;
+  font-size: 16px;
   color: #555;
+  line-height: 1.5;
   padding-left: 39px;
 }
 
+/* Описание компании */
 .egs-company-description {
-  margin-top: 30px;
+  width: 100%;
   padding-top: 20px;
   border-top: 1px solid #eee;
 }
@@ -1385,72 +1404,87 @@ header {
 .egs-description-text {
   font-size: 15px;
   line-height: 1.7;
+  color: #555;
 }
 
-.egs-director-section {
-  width: 300px;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0;
+/* Адаптация */
+@media (max-width: 1280px) {
+  .egs-container {
+    padding: 60px 80px;
+  }
+
+  .egs-flex-wrapper {
+    gap: 30px;
+  }
 }
 
-.egs-director-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 20px;
-  border: 5px solid white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 1024px) {
+  .egs-flex-wrapper {
+  }
+  .egs-director-photo img {
+  }
+  .egs-container {
+    padding: 50px 60px;
+  }
 
-.egs-director-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .egs-main-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
 
-.egs-director-info {
-  text-align: center;
-}
+  .egs-card-title {
+    font-size: 22px;
+  }
 
-.egs-director-position {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.egs-director-name {
-  color: #2a7f62;
-  font-size: 18px;
+  .egs-card-text {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 768px) {
   .egs-container {
+    padding: 40px;
+  }
+
+  .egs-flex-wrapper {
     flex-direction: column;
   }
 
-  .egs-about-content {
-    padding: 20px;
+  .egs-director-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 30px;
   }
 
   .egs-cards-grid {
     grid-template-columns: 1fr;
   }
 
-  .egs-director-section {
-    width: 100%;
-    padding: 30px 20px;
-    order: -1;
+  .egs-main-title {
+    font-size: 28px;
   }
 
-  .egs-director-photo {
-    width: 150px;
-    height: 150px;
+  .egs-card-title {
+    font-size: 20px;
+  }
+
+  .egs-card-text {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .egs-container {
+    padding: 30px 20px;
+  }
+
+  .egs-main-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .egs-card-title {
+    font-size: 18px;
   }
 }
 /*******************************************************************/
@@ -1463,7 +1497,10 @@ header {
   }
 
   .hero-section {
-    padding: var(--spacing-lg) var(--spacing-xxl);
+    padding: 20px 60px;
+  }
+  .benefits-container {
+    padding: 20px 60px;
   }
   .hero-title {
     font-size: var(--font-size-huge);
@@ -1473,12 +1510,8 @@ header {
     gap: var(--spacing-xl);
   }
 
-  .container {
-    padding: 0 var(--spacing-xxl);
-  }
-
   .projects-section {
-    padding: var(--spacing-huge) var(--spacing-xxl);
+    padding: 20px 60px;
   }
 
   h1 {
@@ -1490,7 +1523,7 @@ header {
   }
 
   .president-container {
-    padding: 0 var(--spacing-xxl);
+    padding: 20px 60px 0 60px;
   }
 
   .benefit-title {
@@ -1500,11 +1533,21 @@ header {
     margin-bottom: var(--spacing-md);
     line-height: 1.3;
   }
+  .gas-steps-section {
+    padding: 20px 60px;
+  }
+  .gas-container {
+    padding: 0;
+  }
+  .egs-container {
+    padding: 20px 60px;
+  }
 }
 
 @media (max-width: 1024px) {
   header {
     padding: var(--spacing-lg) var(--spacing-xxl);
+    margin-bottom: 10px;
   }
   .section-title h2 {
     font-size: var(--font-size-xxxl);
@@ -1653,6 +1696,30 @@ header {
 
   .projects-wrapper h2 {
     font-size: var(--font-size-xxxl);
+  }
+
+  .quiz-section {
+    padding: 60px;
+    margin-bottom: 60px;
+  }
+
+  .benefits-container {
+    padding: 20px 40px;
+  }
+  .projects-section {
+    padding: 20px 40px;
+  }
+  .president-container {
+    padding: 20px 40px 0 40px;
+  }
+  .gas-steps-section {
+    padding: 20px 40px;
+  }
+  .egs-container {
+    padding: 20px 40px;
+  }
+  .egs-cards-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -1803,6 +1870,9 @@ header {
     padding: 0;
     display: flex;
     text-align: center;
+  }
+  .quiz-section {
+    padding: 60px 40px;
   }
 }
 

@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Данные для слайдеров (пути к изображениям и описания)
   const slidersData = [
     {
-      title: "Бурмистрова 94 Храм Александра Невского",
+      title: "Храм Александра Невского",
       images: [
         {
           src: "./assets/img/imgObject/1.png",
