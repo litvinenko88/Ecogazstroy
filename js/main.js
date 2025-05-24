@@ -729,3 +729,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+/***********************частые вопросы************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const faqItems = document.querySelectorAll(".faq-custom-item");
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-custom-question");
+
+    question.addEventListener("click", () => {
+      // Закрываем все открытые вопросы
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item && otherItem.classList.contains("active")) {
+          otherItem.classList.remove("active");
+        }
+      });
+
+      // Открываем/закрываем текущий вопрос
+      item.classList.toggle("active");
+    });
+  });
+});
