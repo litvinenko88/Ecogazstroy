@@ -801,4 +801,49 @@ window.addEventListener("DOMContentLoaded", function () {
   window.scrollTo(0, 0);
 });
 
-/****************************************************** */
+/**************Главная форма**************************************** */
+
+document
+  .querySelector(".contact-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault(); // Отменяем стандартную отправку формы
+
+    // Получаем данные из формы
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const consent = document.getElementById("consent").checked;
+
+    // Проверяем согласие на обработку данных
+    if (!consent) {
+      alert("Пожалуйста, дайте согласие на обработку персональных данных");
+      return;
+    }
+
+    // Формируем сообщение для Telegram
+    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+    const chatId = "682859146";
+    const message = `📌 Новая заявка 🔥🔥🔥\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🌐 Источник: Главная форма в первом блоке`;
+
+    // Кодируем сообщение для URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Формируем URL для запроса к Telegram API
+    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodedMessage}`;
+
+    // Отправляем запрос к Telegram API
+    fetch(telegramUrl)
+      .then((response) => {
+        if (response.ok) {
+          alert("✅ Спасибо! Ваша заявка отправлена.");
+          document.querySelector(".contact-form").reset(); // Очищаем форму
+        } else {
+          throw new Error("Ошибка при отправке заявки");
+        }
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+        alert(
+          "❌ Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+        );
+      });
+  });
