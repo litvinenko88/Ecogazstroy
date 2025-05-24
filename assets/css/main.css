@@ -1350,6 +1350,327 @@ header {
   color: #555;
 }
 
+/********************карта**********************************/
+/* Основные стили секции */
+.contact-help-section {
+  position: relative;
+  background: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
+    no-repeat center center;
+  background-size: cover;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.contact-help-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 67, 130, 0.85);
+  z-index: 0;
+}
+
+.contact-help-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+  gap: 30px;
+}
+
+/* Стили формы */
+.contact-help-form-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: contactHelpFadeInLeft 0.8s ease-out;
+}
+
+.contact-help-form-title {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.contact-help-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-help-input-group {
+  position: relative;
+}
+
+.contact-help-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.contact-help-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-help-input:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.contact-help-error-msg {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+.contact-help-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.contact-help-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-help-checkbox:checked {
+  background-color: #1e4382;
+  border-color: #1e4382;
+}
+
+.contact-help-checkbox:checked::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact-help-checkbox-label {
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contact-help-submit-btn {
+  background: linear-gradient(135deg, #ff6b00, #e05e00);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.contact-help-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили карточки с информацией */
+.contact-help-info-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: contactHelpSlideUp 0.6s ease-out 0.3s both;
+}
+
+.contact-help-info-title {
+  color: #1e4382;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.contact-help-info-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #ff6b00;
+}
+
+.contact-help-info-content {
+  color: #333333;
+}
+
+.contact-help-address {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1e4382;
+}
+
+.contact-help-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-help-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.contact-help-info-icon {
+  margin-right: 10px;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+/* Стили карты */
+.contact-help-map-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: contactHelpFadeInRight 0.8s ease-out;
+}
+
+.contact-help-map {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+}
+
+.contact-help-map-link {
+  display: block;
+  background: #1e4382;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.contact-help-map-link:hover {
+  background: #15305e;
+}
+
+/* Модальное окно */
+.contact-help-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: contactHelpFadeIn 0.3s;
+}
+
+.contact-help-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.contact-help-close-modal {
+  color: #aaa;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.contact-help-close-modal:hover {
+  color: #333;
+}
+
+/* Анимации */
+@keyframes contactHelpFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contactHelpFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contactHelpSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contactHelpFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /****************************** МЕДИА-ЗАПРОСЫ *************************************/
 
 @media (max-width: 1280px) {
@@ -1591,6 +1912,22 @@ header {
   .gas-section-title h2 {
     font-size: 36px;
   }
+  .contact-help-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-help-form-title {
+    font-size: 22px;
+  }
+
+  .contact-help-map {
+    min-height: 400px;
+  }
+
+  .contact-help-map-wrapper {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1775,6 +2112,15 @@ header {
   .quiz-subtitle {
     font-size: 16px;
   }
+
+  .contact-help-section {
+    padding: 60px 0;
+  }
+
+  .contact-help-form,
+  .contact-help-info-card {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1937,5 +2283,30 @@ header {
   }
   .egs-card-title {
     font-size: 18px;
+  }
+
+  .contact-help-section {
+    padding: 40px 0;
+  }
+
+  .contact-help-form-title {
+    font-size: 20px;
+  }
+
+  .contact-help-input {
+    padding: 12px 15px;
+  }
+
+  .contact-help-submit-btn {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .contact-help-info-item {
+    font-size: 14px;
+  }
+
+  .contact-help-map {
+    min-height: 300px;
   }
 }

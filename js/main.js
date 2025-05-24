@@ -662,3 +662,70 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 /**********************как найти нас ***************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactHelpForm");
+  const phoneInput = document.getElementById("contactHelpPhone");
+  const errorMsg = document.querySelector(".contact-help-error-msg");
+  const modal = document.getElementById("contactHelpModal");
+  const closeModal = document.querySelector(".contact-help-close-modal");
+
+  // Валидация телефона
+  phoneInput.addEventListener("input", function () {
+    const phoneRegex =
+      /^(\+7|7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+    if (this.value.match(phoneRegex)) {
+      this.classList.remove("contact-help-input-error");
+      errorMsg.style.display = "none";
+    } else {
+      this.classList.add("contact-help-input-error");
+      errorMsg.textContent = "Введите корректный номер телефона";
+      errorMsg.style.display = "block";
+    }
+  });
+
+  // Отправка формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Проверка валидности
+    if (
+      !phoneInput.value.match(
+        /^(\+7|7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/
+      )
+    ) {
+      phoneInput.classList.add("contact-help-input-error");
+      errorMsg.textContent = "Пожалуйста, введите корректный номер телефона";
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    if (!document.getElementById("contactHelpAgreement").checked) {
+      alert("Пожалуйста, дайте согласие на обработку данных");
+      return;
+    }
+
+    // Здесь можно добавить AJAX отправку формы
+    console.log("Форма отправлена:", {
+      name: document.getElementById("contactHelpName").value,
+      phone: document.getElementById("contactHelpPhone").value,
+    });
+
+    // Показываем модальное окно
+    modal.style.display = "block";
+
+    // Очищаем форму
+    form.reset();
+  });
+
+  // Закрытие модального окна
+  closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Закрытие при клике вне окна
+  window.addEventListener("click", function (e) {
+    if (e.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});

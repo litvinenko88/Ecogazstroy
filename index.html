@@ -542,7 +542,72 @@
     </div>
         </section>
 
-        
+        <section class="contact-help-section">
+  <div class="contact-help-overlay"></div>
+  <div class="contact-help-container">
+    <!-- Левая часть - форма -->
+    <div class="contact-help-form-wrapper">
+      <h3 class="contact-help-form-title">Вам нужна помощь? Оставьте заявку и мы с вами свяжемся</h3>
+      <form class="contact-help-form" id="contactHelpForm">
+        <div class="contact-help-input-group">
+          <input type="text" id="contactHelpName" placeholder="Имя" class="contact-help-input" required>
+        </div>
+        <div class="contact-help-input-group">
+          <input type="tel" id="contactHelpPhone" placeholder="Телефон" class="contact-help-input" required>
+          <span class="contact-help-error-msg"></span>
+        </div>
+        <div class="contact-help-checkbox-group">
+          <input type="checkbox" id="contactHelpAgreement" class="contact-help-checkbox" required>
+          <label for="contactHelpAgreement" class="contact-help-checkbox-label">Даю согласие на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="contact-help-submit-btn">Нужна помощь</button>
+      </form>
+      
+      <div class="contact-help-info-card">
+        <h4 class="contact-help-info-title">Контактная информация</h4>
+        <div class="contact-help-info-content">
+          <p class="contact-help-address">Ставропольский край г.Ставрополь</p>
+          <ul class="contact-help-info-list">
+            <li class="contact-help-info-item">
+              <span class="contact-help-info-icon">📞</span> +7 (962) 403-02-54
+            </li>
+            <li class="contact-help-info-item">
+              <span class="contact-help-info-icon">🏠</span> ул.Достоевского 54б/6
+            </li>
+            <li class="contact-help-info-item">
+              <span class="contact-help-info-icon">✉️</span> gaz-stv@mail.ru
+            </li>
+            <li class="contact-help-info-item">
+              <span class="contact-help-info-icon">🕒</span> с 08:00 до 18:00
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Правая часть - карта -->
+    <div class="contact-help-map-wrapper">
+      <iframe class="contact-help-map" 
+        src="https://www.openstreetmap.org/export/embed.html?bbox=41.9624%2C45.0255%2C42.0624%2C45.0455&amp;layer=mapnik&amp;marker=45.0355203%2C42.0124027&amp;zoom=17" 
+        frameborder="0">
+      </iframe>
+      <a href="https://www.openstreetmap.org/?mlat=45.0355203&amp;mlon=42.0124027#map=16/45.0355203/42.0124027" 
+         class="contact-help-map-link" 
+         target="_blank">
+         Посмотреть на карте
+      </a>
+    </div>
+  </div>
+  
+  <!-- Модальное окно -->
+  <div class="contact-help-modal" id="contactHelpModal">
+    <div class="contact-help-modal-content">
+      <span class="contact-help-close-modal">&times;</span>
+      <h3>Спасибо за заявку!</h3>
+      <p>Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</section>
       </main>
       <footer>3</footer>
     </div>
