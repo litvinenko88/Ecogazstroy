@@ -790,24 +790,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Добавляем подсветку активного якоря при загрузке страницы
-window.addEventListener("load", function () {
-  if (window.location.hash) {
-    const targetElement = document.querySelector(window.location.hash);
-    if (targetElement) {
-      setTimeout(() => {
-        const headerHeight = document.querySelector("header").offsetHeight;
-        const targetPosition =
-          targetElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          headerHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }, 100);
-    }
-  }
+// Прокручиваем страницу к началу при загрузке
+window.addEventListener("DOMContentLoaded", function () {
+  window.scrollTo(0, 0);
 });
+
+// Убираем подсветку активного якоря при загрузке страницы
+// Если вам нужно оставить эту функциональность, вы можете добавить логику для подсветки активного якоря.
+
 /****************************************************** */
