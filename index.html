@@ -17,9 +17,11 @@
     <title>Газификация коммерческих | частных | садовых домов</title>
     <link rel="canonical" href="https://example.com/ecogazstroy" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+      
   </head>
   <body>
     <div class="site-wrapper">
@@ -43,11 +45,11 @@
                   <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-list">
-                  <li class="nav-item">Проекты</li>
-                  <li class="nav-item">Стоимость</li>
-                  <li class="nav-item">Начало работ</li>
-                  <li class="nav-item">О компании</li>
-                  <li class="nav-item">Контакты</li>
+                  <li class="nav-item"><a href="#project">Проекты</a></li>
+                  <li class="nav-item"><a href="#quizSection">Стоимость</a></li>
+                  <li class="nav-item"><a href="#beginning">Начало работ</a></li>
+                  <li class="nav-item"><a href="#about">О компании</a></li>
+                  <li class="nav-item"><a href="#contacts">Контакты</a></li>
                   <li class="nav-item">Новости</li>
                   <li class="nav-item mobile-only">
                     <button class="consultation-btn mobile-btn">
@@ -106,7 +108,7 @@
       </div>
 
       <main>
-        <section class="benefits-section">
+        <section class="benefits-section" id="advantages">
           <div class="benefits-container">
             <div class="section-title">
               <h2>
@@ -254,7 +256,7 @@
           </div>
         </section>
 
-        <section class="projects-section">
+        <section class="projects-section" id="project">
           <div class="projects-wrapper">
             <h2>Наши выполненные проекты</h2>
 
@@ -329,7 +331,7 @@
         </div>
         </section>
 
-        <section class="gas-steps-section">
+        <section class="gas-steps-section" id="beginning">
   <div class="gas-container">
     <div class="gas-section-title">
       <h2>Что вам нужно для начала работы</h2>
@@ -457,7 +459,7 @@
   </div>
         </section>
 
-       <section class="documents-slider-section">
+       <section class="documents-slider-section" id="documents">
     <div class="documents-slider-overlay"></div>
     <div class="documents-slider-container">
         <h2 class="documents-slider-title">Уставные документы нашей организации</h2>
@@ -488,7 +490,7 @@
     </div>
         </section>
 
-        <section class="egs-about-section">
+        <section class="egs-about-section" id="about">
     <div class="egs-container">
         <h2 class="egs-main-title">О компании ЭкоГазСтрой</h2>
         
@@ -542,7 +544,7 @@
     </div>
         </section>
 
-        <section class="contact-help-section">
+        <section class="contact-help-section" id="contacts">
   <div class="contact-help-overlay"></div>
   <div class="contact-help-container">
     <!-- Левая часть - форма -->
@@ -669,11 +671,6 @@
     </div>
     
     <div class="egs-footer-social">
-      <a href="https://vk.com/ekogazstroy" target="_blank" class="egs-social-link" aria-label="Вконтакте">
-        <svg class="egs-social-icon" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-        </svg>
-      </a>
       <a href="https://wa.me/79624030254?text=" target="_blank" class="egs-social-link" aria-label="WhatsApp">
         <svg class="egs-social-icon" viewBox="0 0 24 24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335 .157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -688,14 +685,12 @@
       <h3 class="egs-footer-title">Услуги</h3>
       <ul class="egs-footer-list">
         <li class="egs-footer-item">
-          <a href="/gazifikaciya" class="egs-footer-link">Газификация</a>
+          <a href="/" class="egs-footer-link">Газификация</a>
         </li>
         <li class="egs-footer-item">
-          <a href="/proektirovanie" class="egs-footer-link">Проектирование</a>
+          <a href="#" class="egs-footer-link">Проектирование</a>
         </li>
-        <li class="egs-footer-item">
-          <a href="/kontakty" class="egs-footer-link">Контакты</a>
-        </li>
+        
       </ul>
     </div>
     
@@ -703,9 +698,9 @@
     <div class="egs-footer-col egs-footer-col-2">
       <h3 class="egs-footer-title">Полезная информация</h3>
       <ul class="egs-footer-list">
-        <li class="egs-footer-item"><a href="#cost" class="egs-footer-link">Стоимость</a></li>
-        <li class="egs-footer-item"><a href="#start" class="egs-footer-link">Начало работ</a></li>
-        <li class="egs-footer-item"><a href="#projects" class="egs-footer-link">Проекты</a></li>
+        <li class="egs-footer-item"><a href="#quizSection" class="egs-footer-link">Стоимость</a></li>
+        <li class="egs-footer-item"><a href="#beginning" class="egs-footer-link">Начало работ</a></li>
+        <li class="egs-footer-item"><a href="#project" class="egs-footer-link">Проекты</a></li>
       </ul>
     </div>
     
@@ -714,8 +709,9 @@
       <h3 class="egs-footer-title">О компании</h3>
       <ul class="egs-footer-list">
         <li class="egs-footer-item"><a href="#advantages" class="egs-footer-link">Преимущества</a></li>
-        <li class="egs-footer-item"><a href="#why-us" class="egs-footer-link">Почему мы</a></li>
-        <li class="egs-footer-item"><a href="#projects" class="egs-footer-link">Проекты</a></li>
+         <li class="egs-footer-item">
+          <a href="#contacts" class="egs-footer-link">Контакты</a>
+        </li>
       </ul>
     </div>
     
@@ -724,7 +720,7 @@
       <h3 class="egs-footer-title">Документы</h3>
       <ul class="egs-footer-list">
         <li class="egs-footer-item"><a href="/privacy-policy" class="egs-footer-link">Политика конфиденциальности</a></li>
-        <li class="egs-footer-item"><a href="#licenses" class="egs-footer-link">Лицензии и разрешения</a></li>
+        <li class="egs-footer-item"><a href="#documents" class="egs-footer-link">Лицензии и разрешения</a></li>
       </ul>
     </div>
     

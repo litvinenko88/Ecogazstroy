@@ -749,3 +749,65 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+/****************якорные ссылки плавная анимация********************** */
+// Плавная прокрутка к якорям
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    // Отменяем стандартное поведение
+    e.preventDefault();
+
+    const targetId = this.getAttribute("href");
+    if (targetId === "#") return;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      // Рассчитываем позицию с учетом фиксированного хедера
+      const headerHeight = document.querySelector("header").offsetHeight;
+      const targetPosition =
+        targetElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight;
+
+      // Плавная прокрутка
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+
+      // Обновляем URL без перезагрузки страницы
+      if (history.pushState) {
+        history.pushState(null, null, targetId);
+      } else {
+        location.hash = targetId;
+      }
+
+      // Для мобильного меню (если нужно закрыть меню после клика)
+      const mobileMenu = document.querySelector(".mobile-menu.active");
+      if (mobileMenu) {
+        mobileMenu.classList.remove("active");
+      }
+    }
+  });
+});
+
+// Добавляем подсветку активного якоря при загрузке страницы
+window.addEventListener("load", function () {
+  if (window.location.hash) {
+    const targetElement = document.querySelector(window.location.hash);
+    if (targetElement) {
+      setTimeout(() => {
+        const headerHeight = document.querySelector("header").offsetHeight;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  }
+});
+/****************************************************** */

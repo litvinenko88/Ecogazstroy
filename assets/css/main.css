@@ -158,6 +158,11 @@ header {
   padding: var(--spacing-xs) 0;
 }
 
+.nav-item a {
+  text-decoration: none;
+  color: #f0f0f0;
+}
+
 .nav-item:hover {
   color: #f0f0f0;
 }
@@ -1767,7 +1772,7 @@ header {
 /********футер**********************************************/
 /* Основные стили подвала */
 .egs-footer {
-  background-color: #1e4382;
+  background-color: rgba(37, 96, 184, 0.8);
   color: #ffffff;
   padding: 60px 100px;
 }
@@ -1818,10 +1823,6 @@ header {
   transition: color 0.3s ease;
 }
 
-.egs-footer-brand:hover .egs-brand-name {
-  color: #ff6b00;
-}
-
 .egs-footer-social {
   display: flex;
   gap: 15px;
@@ -1844,24 +1845,17 @@ header {
 }
 
 .egs-social-icon {
-  width: 24px;
-  height: 24px;
-  fill: #ffffff;
+  width: 48px;
+  height: 48px;
+  fill: #2fce47;
   transition: fill 0.3s ease;
-}
-
-.egs-social-link:hover .egs-social-icon {
-  fill: #ff6b00;
+  background: none;
 }
 
 /* Колонки подвала */
 .egs-footer-columns {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 30px; */
 }
 
 .egs-footer-col-5 {
@@ -1871,7 +1865,7 @@ header {
 .egs-footer-title {
   font-size: 18px;
   margin-bottom: 15px;
-  color: #ff6b00;
+  color: #ffffff;
   font-weight: 600;
   position: relative;
   padding-bottom: 8px;
@@ -1884,7 +1878,7 @@ header {
   left: 0;
   width: 40px;
   height: 2px;
-  background-color: #ff6b00;
+  background-color: #fefe00;
   transition: width 0.3s ease;
 }
 
@@ -1918,7 +1912,7 @@ header {
 }
 
 .egs-footer-link:hover {
-  color: #ff6b00;
+  color: #fefe00;
   transform: translateX(3px);
 }
 
@@ -1943,93 +1937,6 @@ header {
   display: none;
 }
 
-/* Адаптация */
-@media (max-width: 1024px) {
-  .egs-footer {
-    padding: 60px 40px;
-  }
-  .egs-footer-columns {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  .egs-footer-col-1,
-  .egs-footer-col-2 {
-    grid-row: 1;
-  }
-
-  .egs-footer-col-3,
-  .egs-footer-col-4 {
-    grid-row: 2;
-  }
-
-  .egs-footer-col-5 {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
-}
-
-@media (max-width: 768px) {
-  .egs-footer-columns {
-    position: relative;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin-bottom: 20px;
-  }
-  .egs-footer-col-5 {
-    display: none;
-  }
-  .egs-footer-social {
-    margin-top: 15px;
-    align-self: flex-start;
-  }
-
-  .egs-footer-col-1,
-  .egs-footer-col-2,
-  .egs-footer-col-3,
-  .egs-footer-col-4 {
-    grid-row: auto;
-  }
-
-  .egs-footer-col-5 {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .egs-brand-name {
-    font-size: 22px;
-  }
-  .egs-footer {
-    padding: 20px 40px;
-  }
-  .egs-footer-col-6 {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .egs-footer {
-    padding: 20px;
-  }
-  .egs-footer-top {
-  }
-  .egs-footer-brand {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .egs-logo {
-    max-height: 50px;
-  }
-
-  .egs-footer-title {
-    font-size: 17px;
-  }
-
-  .egs-footer-item {
-    font-size: 13px;
-  }
-}
 /****************************** МЕДИА-ЗАПРОСЫ *************************************/
 
 @media (max-width: 1280px) {
@@ -2309,6 +2216,28 @@ header {
   .faq-custom-question-text {
     font-size: 17px;
   }
+  .egs-footer {
+    padding: 60px 40px;
+  }
+  .egs-footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .egs-footer-col-1,
+  .egs-footer-col-2 {
+    grid-row: 1;
+  }
+
+  .egs-footer-col-3,
+  .egs-footer-col-4 {
+    grid-row: 2;
+  }
+
+  .egs-footer-col-5 {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2529,6 +2458,42 @@ header {
   .faq-custom-item.active .faq-custom-answer {
     padding: 0 15px 15px 50px;
   }
+
+  .egs-footer-columns {
+    position: relative;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .egs-footer-col-5 {
+    display: none;
+  }
+  .egs-footer-social {
+    margin-top: 15px;
+    align-self: flex-start;
+  }
+
+  .egs-footer-col-1,
+  .egs-footer-col-2,
+  .egs-footer-col-3,
+  .egs-footer-col-4 {
+    grid-row: auto;
+  }
+
+  .egs-footer-col-5 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .egs-brand-name {
+    font-size: 22px;
+  }
+  .egs-footer {
+    padding: 20px 40px;
+  }
+  .egs-footer-col-6 {
+    display: block;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2741,5 +2706,30 @@ header {
 
   .faq-custom-answer p {
     font-size: 15px;
+  }
+
+  egs-footer {
+    padding: 20px;
+  }
+  .egs-footer-columns{
+    display: block;
+  }
+  .egs-footer-top {
+  }
+  .egs-footer-brand {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .egs-logo {
+    max-height: 50px;
+  }
+
+  .egs-footer-title {
+    font-size: 17px;
+  }
+
+  .egs-footer-item {
+    font-size: 13px;
   }
 }
