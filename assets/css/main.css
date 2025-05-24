@@ -1484,7 +1484,7 @@ header {
 }
 
 .contact-help-submit-btn {
-  background: linear-gradient(135deg, #ff6b00, #e05e00);
+  background: #2560b8;
   color: white;
   border: none;
   padding: 16px;
@@ -1511,7 +1511,7 @@ header {
 }
 
 .contact-help-info-title {
-  color: #1e4382;
+  color: #2560b8;
   font-size: 20px;
   margin-top: 0;
   margin-bottom: 20px;
@@ -1526,7 +1526,7 @@ header {
   left: 0;
   width: 50px;
   height: 3px;
-  background: #ff6b00;
+  background: #2560b8;
 }
 
 .contact-help-info-content {
@@ -1536,7 +1536,7 @@ header {
 .contact-help-address {
   font-weight: 600;
   margin-bottom: 15px;
-  color: #1e4382;
+  color: #2560b8;
 }
 
 .contact-help-info-list {
@@ -1740,7 +1740,6 @@ header {
 
 .faq-custom-item.active .faq-custom-icon {
   transform: rotate(45deg);
-  color: #ff6b00;
 }
 
 .faq-custom-question-text {
@@ -2711,7 +2710,7 @@ header {
   egs-footer {
     padding: 20px;
   }
-  .egs-footer-columns{
+  .egs-footer-columns {
     display: block;
   }
   .egs-footer-top {
