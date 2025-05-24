@@ -1251,6 +1251,7 @@ header {
 .egs-about-section {
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 60px;
 }
 
 .egs-container {
@@ -1357,7 +1358,7 @@ header {
   background: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
     no-repeat center center;
   background-size: cover;
-  padding: 80px 0;
+  padding: 60px 100px;
   overflow: hidden;
 }
 
@@ -1373,9 +1374,7 @@ header {
 
 .contact-help-container {
   display: flex;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
   position: relative;
   z-index: 1;
   gap: 30px;
@@ -1709,13 +1708,19 @@ header {
     line-height: 1.3;
   }
   .gas-steps-section {
-    padding: 20px 60px;
+    padding: 60px 60px;
   }
   .gas-container {
     padding: 0;
   }
   .egs-container {
     padding: 20px 60px;
+  }
+  .documents-slider-section {
+    padding: 60px 0;
+  }
+  .contact-help-section {
+    padding: 60px;
   }
 }
 
@@ -1874,7 +1879,7 @@ header {
   }
 
   .quiz-section {
-    padding: 60px;
+    padding: 40px;
     margin-bottom: 60px;
   }
 
@@ -1882,7 +1887,7 @@ header {
     padding: 20px 40px;
   }
   .projects-section {
-    padding: 20px 40px;
+    padding: 60px 40px;
   }
   .president-container {
     padding: 20px 40px 0 40px;
@@ -1916,7 +1921,9 @@ header {
     flex-direction: column;
     gap: 40px;
   }
-
+  .contact-help-section {
+    padding: 40px;
+  }
   .contact-help-form-title {
     font-size: 22px;
   }
@@ -2090,7 +2097,8 @@ header {
 
   /* Для шагов по газу */
   .gas-steps-section {
-    padding: 60px 0;
+    padding: 0 40px;
+    margin-bottom: 60px;
   }
   .gas-steps-grid {
     grid-template-columns: 1fr;
@@ -2101,7 +2109,7 @@ header {
 
   /* Для квиза */
   .quiz-section {
-    padding: 30px 0;
+    padding: 40px;
   }
   .quiz-container {
     padding: 30px 20px;
@@ -2114,12 +2122,18 @@ header {
   }
 
   .contact-help-section {
-    padding: 60px 0;
+    padding: 60px 40px;
   }
 
   .contact-help-form,
   .contact-help-info-card {
     padding: 20px;
+  }
+  .egs-flex-wrapper {
+    display: block;
+  }
+  .egs-director-photo {
+    margin-bottom: 60px;
   }
 }
 
@@ -2286,7 +2300,7 @@ header {
   }
 
   .contact-help-section {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 
   .contact-help-form-title {
