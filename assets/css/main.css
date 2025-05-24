@@ -243,12 +243,14 @@ header {
 }
 
 .contact-form {
-  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   padding: var(--spacing-xl);
   color: var(--text-color);
   min-width: 350px;
   max-width: 40%;
-  box-shadow: var(--box-shadow);
 }
 
 .form-title {
