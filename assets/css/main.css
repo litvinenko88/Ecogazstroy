@@ -983,23 +983,6 @@ header {
   }
 }
 
-@media (max-width: 768px) {
-  .quiz-section {
-    padding: 30px 0;
-  }
-
-  .quiz-container {
-    padding: 30px 20px;
-  }
-
-  .quiz-title {
-    font-size: 28px;
-  }
-
-  .quiz-subtitle {
-    font-size: 16px;
-  }
-}
 /**********************6 блок*****************************************/
 .gas-steps-section {
   padding: 60px 100px;
@@ -1119,28 +1102,6 @@ header {
   transform: translateY(-2px);
 }
 
-@media (max-width: 1024px) {
-  .gas-steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .gas-section-title h2 {
-    font-size: 36px;
-  }
-}
-
-@media (max-width: 768px) {
-  .gas-steps-section {
-    padding: 60px 0;
-  }
-
-  .gas-steps-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gas-step-image-container {
-    height: 180px;
-  }
-}
 /*************************слайдер************************************/
 .documents-slider-section {
   width: 100%;
@@ -1215,7 +1176,6 @@ header {
 }
 
 .documents-marquee-content img {
-  /* max-width: 100%; */
   max-height: 100%;
   object-fit: contain;
   cursor: pointer;
@@ -1286,21 +1246,6 @@ header {
   }
 }
 
-@media (max-width: 768px) {
-  .documents-marquee-content li {
-    flex: 0 0 calc(25% - 20px);
-  }
-}
-
-@media (max-width: 576px) {
-  .documents-marquee-content li {
-    flex: 0 0 calc(33.333% - 20px);
-  }
-
-  .documents-slider-title {
-    font-size: 2rem;
-  }
-}
 /****************о компании ****************************************/
 /* Основные стили */
 .egs-about-section {
@@ -1382,7 +1327,6 @@ header {
 .egs-card-title {
   color: #2560b8;
   font-size: 24px;
-
   font-weight: 700;
 }
 
@@ -1406,91 +1350,8 @@ header {
   color: #555;
 }
 
-/* Адаптация */
-@media (max-width: 1280px) {
-  .egs-container {
-    padding: 60px 80px;
-  }
+/****************************** МЕДИА-ЗАПРОСЫ *************************************/
 
-  .egs-flex-wrapper {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .egs-flex-wrapper {
-  }
-  .egs-director-photo img {
-  }
-  .egs-container {
-    padding: 50px 60px;
-  }
-
-  .egs-main-title {
-    font-size: 32px;
-    margin-bottom: 40px;
-  }
-
-  .egs-card-title {
-    font-size: 24px;
-  }
-
-  .egs-card-text {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 768px) {
-  .egs-container {
-    padding: 40px;
-  }
-
-  .egs-flex-wrapper {
-    flex-direction: column;
-  }
-
-  .egs-director-section {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto 30px;
-  }
-
-  .egs-cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .egs-main-title {
-    font-size: 28px;
-  }
-
-  .egs-card-title {
-    font-size: 20px;
-  }
-
-  .egs-card-text {
-    padding-left: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .egs-container {
-    padding: 30px 20px;
-  }
-
-  .egs-main-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-  }
-
-  .egs-card-title {
-    font-size: 18px;
-  }
-}
-/******************************как найти нас *************************************/
-
-/************************************************************/
-
-/* Адаптация для планшетов */
 @media (max-width: 1280px) {
   header {
     padding: var(--spacing-lg) var(--spacing-xxl);
@@ -1513,14 +1374,6 @@ header {
 
   .projects-section {
     padding: 20px 60px;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  p {
-    font-size: 20px;
   }
 
   .president-container {
@@ -1725,9 +1578,21 @@ header {
   .egs-main-title {
     font-size: 36px;
   }
+
+  /* Для слайдера документов */
+  .documents-marquee-content li {
+    flex: 0 0 calc(25% - 20px);
+  }
+
+  /* Для шагов по газу */
+  .gas-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gas-section-title h2 {
+    font-size: 36px;
+  }
 }
 
-/* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
   header {
     padding: var(--spacing-md) var(--spacing-lg);
@@ -1755,7 +1620,6 @@ header {
   .mobile-menu-toggle {
     display: block;
     position: relative;
-    /* order: 2; */
     margin-left: auto;
   }
 
@@ -1878,9 +1742,41 @@ header {
   .quiz-section {
     padding: 60px 40px;
   }
+
+  /* Для слайдера документов */
+  .documents-marquee-content li {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+  .documents-slider-title {
+    font-size: 2rem;
+  }
+
+  /* Для шагов по газу */
+  .gas-steps-section {
+    padding: 60px 0;
+  }
+  .gas-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .gas-step-image-container {
+    height: 180px;
+  }
+
+  /* Для квиза */
+  .quiz-section {
+    padding: 30px 0;
+  }
+  .quiz-container {
+    padding: 30px 20px;
+  }
+  .quiz-title {
+    font-size: 28px;
+  }
+  .quiz-subtitle {
+    font-size: 16px;
+  }
 }
 
-/* Адаптация для очень маленьких экранов */
 @media (max-width: 480px) {
   header {
     padding: var(--spacing-sm) var(--spacing-md);
@@ -2032,5 +1928,14 @@ header {
   }
   .egs-container {
     padding: 20px;
+  }
+
+  /* Для о компании */
+  .egs-main-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  .egs-card-title {
+    font-size: 18px;
   }
 }
