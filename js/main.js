@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
           alt: "Внутреннее убранство храма",
         },
       ],
-      videoLink: "#",
+      videoLink:
+        "https://disk.yandex.ru/d/HxA0jt4iXB1AeQ/ул.%20Бурмистрова%2C%2094%20ХРАМ/YouCut_20240625_193101098.mp4",
     },
     {
       title: "Тухачевского 8 ТЦ Москва",
@@ -162,7 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
           alt: "Интерьер торгового центра",
         },
       ],
-      videoLink: "#",
+      videoLink:
+        "https://disk.yandex.ru/d/HxA0jt4iXB1AeQ/ул.%20Мичурина%2062а/YouCut_20240625_192940687.mp4",
     },
     {
       title: "пр-кт. Кулакова 24/1",
@@ -218,13 +220,17 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="project-info">
           <h3>${sliderData.title}</h3>
           <a href="${sliderData.videoLink}" class="watch-video">
-            <div class="video-icon"><svg xmlns="http://www.w3.org/2000/svg" 
-            width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" 
-            viewBox="0 0 16 16"> <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 
-            2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 
-            0 0 0 5.5 4z"/></svg></div>
-            Смотреть видео
-          </a>
+    <div class="video-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
+        </svg>
+    </div>
+    ${
+      sliderData.videoLink && sliderData.videoLink !== "#"
+        ? "Смотреть видео"
+        : "Просмотр недоступен"
+    }
+</a>
         </div>
       </div>
     `;
@@ -794,8 +800,5 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 window.addEventListener("DOMContentLoaded", function () {
   window.scrollTo(0, 0);
 });
-
-// Убираем подсветку активного якоря при загрузке страницы
-// Если вам нужно оставить эту функциональность, вы можете добавить логику для подсветки активного якоря.
 
 /****************************************************** */
