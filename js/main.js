@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentQuestion > 0) {
       html += `<button type="button" class="quiz-btn btn-back">Назад</button>`;
     } else {
-      html += `<div></div>`; // Для выравнивания кнопки "Далее" справа
+      html += `<div></div>`;
     }
 
     if (currentQuestion < questions.length - 1) {
@@ -541,7 +541,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     quizForm.innerHTML = `
-            <div class="question-container">
+            <form class="question-container">
                 <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
                 
                 <div class="quiz-form-group">
@@ -563,7 +563,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 
                 <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
-            </div>
+            </form>
         `;
 
     // Валидация телефона
@@ -579,6 +579,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // Обработчик отправки формы
     quizForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -587,23 +588,55 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      thankModal.style.display = "flex";
+      // Формируем сообщение для Telegram
+      let message = `📌 Новая заявка 🔥🔥🔥\n\n`;
+      message += `👤 Имя: ${this.name.value}\n`;
+      message += `📞 Телефон: ${this.phone.value}\n\n`;
+      message += `📋 Ответы на вопросы:\n`;
 
-      // Здесь можно добавить отправку данных на сервер
-      console.log("Ответы:", answers);
-      console.log("Имя:", this.name.value);
-      console.log("Телефон:", this.phone.value);
+      // Добавляем все вопросы и ответы
+      questions.forEach((q, i) => {
+        const answerKey = `question${i}`;
+        message += `\n${i + 1}. ${q.question}\n➡ ${
+          answers[answerKey] || "Нет ответа"
+        }\n`;
+      });
 
-      // Очистка формы
-      this.reset();
-      currentQuestion = 0;
-      Object.keys(answers).forEach((key) => delete answers[key]);
+      message += `\n🌐 Квиз опросник`;
 
-      // Через 5 секунд перезагружаем квиз
-      setTimeout(() => {
-        thankModal.style.display = "none";
-        renderQuestion();
-      }, 5000);
+      // Данные Telegram бота
+      const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+      const chatId = "682859146";
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
+        message
+      )}`;
+
+      // Отправляем в Telegram
+      fetch(url)
+        .then((response) => {
+          if (response.ok) {
+            thankModal.style.display = "flex";
+
+            // Очистка формы
+            this.reset();
+            currentQuestion = 0;
+            Object.keys(answers).forEach((key) => delete answers[key]);
+
+            // Через 5 секунд перезагружаем квиз
+            setTimeout(() => {
+              thankModal.style.display = "none";
+              renderQuestion();
+            }, 5000);
+          } else {
+            throw new Error("Ошибка при отправке в Telegram");
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка:", error);
+          alert(
+            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+          );
+        });
     });
   }
 
