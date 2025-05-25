@@ -2229,46 +2229,124 @@ body.gas-step-modal-open {
   background: #15305e;
 }
 
-/* Модальное окно */
+/* Стили для модального окна */
 .contact-help-modal {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-help-modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-help-close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+}
+
+.contact-help-modal-title {
+  color: #4caf50;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.contact-help-modal-text {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.contact-help-modal-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.contact-help-modal-btn:hover {
+  background-color: #45a049;
+}
+/* Стили для модального окна благодарности */
+.contact-help-thankyou-modal {
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  animation: contactHelpFadeIn 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.contact-help-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+.contact-help-thankyou-content {
+  background-color: #fff;
   padding: 30px;
-  border-radius: 10px;
-  width: 80%;
+  border-radius: 8px;
   max-width: 400px;
-  position: relative;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
   text-align: center;
+  position: relative;
 }
 
-.contact-help-close-modal {
-  color: #aaa;
+.contact-help-thankyou-close {
   position: absolute;
-  right: 20px;
   top: 10px;
-  font-size: 28px;
-  font-weight: bold;
+  right: 15px;
+  font-size: 24px;
   cursor: pointer;
-  transition: color 0.3s;
-}
-
-.contact-help-close-modal:hover {
   color: #333;
 }
 
+.contact-help-thankyou-title {
+  color: #2560b8;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.contact-help-thankyou-text {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Стили для ошибок валидации */
+.js-contact-help-phone-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+.contact-help-input.error {
+  border-color: #e74c3c !important;
+}
 /* Анимации */
 @keyframes contactHelpFadeInLeft {
   from {

@@ -1598,3 +1598,132 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+/****************контакты************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactHelpForm");
+  const submitBtn = document.querySelector(".js-contact-help-submit");
+  const phoneInput = document.getElementById("contactHelpPhone");
+  const phoneError = document.querySelector(".js-contact-help-phone-error");
+  const thankyouModal = document.querySelector(
+    ".js-contact-help-thankyou-modal"
+  );
+  const closeThankyou = document.querySelector(
+    ".js-contact-help-thankyou-close"
+  );
+
+  // Валидация телефона
+  function validatePhone(phone) {
+    const regex =
+      /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+    return regex.test(phone);
+  }
+
+  // Форматирование телефона
+  function formatPhone(phone) {
+    // Удаляем все нецифровые символы
+    let cleaned = phone.replace(/\D/g, "");
+
+    // Проверяем длину номера
+    if (cleaned.length === 11) {
+      if (cleaned[0] === "8") {
+        cleaned = "7" + cleaned.slice(1);
+      }
+      return "+" + cleaned;
+    } else if (cleaned.length === 10) {
+      return "+7" + cleaned;
+    }
+    return phone; // Возвращаем как есть, если не соответствует формату
+  }
+
+  // Обработчик ввода телефона
+  phoneInput.addEventListener("input", function (e) {
+    const value = e.target.value;
+    if (!validatePhone(value)) {
+      phoneError.style.display = "block";
+      phoneError.textContent =
+        "Введите корректный номер телефона (начинается с 8 или +7)";
+      phoneInput.classList.add("error");
+    } else {
+      phoneError.style.display = "none";
+      phoneInput.classList.remove("error");
+    }
+  });
+
+  // Отправка формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Проверяем валидность формы
+    if (!form.checkValidity()) {
+      return;
+    }
+
+    // Проверяем телефон
+    const phoneValue = phoneInput.value;
+    if (!validatePhone(phoneValue)) {
+      phoneError.style.display = "block";
+      phoneError.textContent =
+        "Введите корректный номер телефона (начинается с 8 или +7)";
+      phoneInput.classList.add("error");
+      return;
+    }
+
+    // Форматируем телефон
+    const formattedPhone = formatPhone(phoneValue);
+    const nameValue = document.getElementById("contactHelpName").value;
+
+    // Отправляем данные в Telegram
+    sendToTelegram(nameValue, formattedPhone);
+  });
+
+  // Функция отправки в Telegram
+  function sendToTelegram(name, phone) {
+    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+    const chatId = "682859146";
+    const text = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${phone} \n🌐 Источник: Блок контакты `;
+    
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Отправка...";
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Показываем окно благодарности
+        thankyouModal.style.display = "flex";
+        // Очищаем форму
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Нужна помощь";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+        );
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Нужна помощь";
+      });
+  }
+
+  // Закрытие модального окна
+  closeThankyou.addEventListener("click", function () {
+    thankyouModal.style.display = "none";
+  });
+
+  // Закрытие при клике вне окна
+  window.addEventListener("click", function (e) {
+    if (e.target === thankyouModal) {
+      thankyouModal.style.display = "none";
+    }
+  });
+});

@@ -704,14 +704,23 @@
         </div>
         <div class="contact-help-input-group">
           <input type="tel" id="contactHelpPhone" placeholder="Телефон" class="contact-help-input" required>
-          <span class="contact-help-error-msg"></span>
+          <span class="contact-help-error-msg js-contact-help-phone-error"></span>
         </div>
         <div class="contact-help-checkbox-group">
           <input type="checkbox" id="contactHelpAgreement" class="contact-help-checkbox" required>
           <label for="contactHelpAgreement" class="contact-help-checkbox-label">Даю согласие на обработку персональных данных</label>
         </div>
-        <button type="submit" class="contact-help-submit-btn">Нужна помощь</button>
+        <button type="submit" class="contact-help-submit-btn js-contact-help-submit">Нужна помощь</button>
       </form>
+      
+      <!-- Модальное окно благодарности -->
+      <div class="contact-help-thankyou-modal js-contact-help-thankyou-modal" style="display: none;">
+        <div class="contact-help-thankyou-content">
+          <span class="contact-help-thankyou-close js-contact-help-thankyou-close">&times;</span>
+          <h3 class="contact-help-thankyou-title">Спасибо за вашу заявку!</h3>
+          <p class="contact-help-thankyou-text">Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+      </div>
       
       <div class="contact-help-info-card">
         <h4 class="contact-help-info-title">Контактная информация</h4>
@@ -748,16 +757,7 @@
       </a>
     </div>
   </div>
-  
-  <!-- Модальное окно -->
-  <div class="contact-help-modal" id="contactHelpModal">
-    <div class="contact-help-modal-content">
-      <span class="contact-help-close-modal">&times;</span>
-      <h3>Спасибо за заявку!</h3>
-      <p>Мы свяжемся с вами в ближайшее время.</p>
-    </div>
-  </div>
-        </section>
+</section>
 
         <section class="faq-custom-section">
   <h2 class="faq-custom-title">Часто задаваемые вопросы</h2>
@@ -808,7 +808,9 @@
     </div>
   </div>
         </section>
+
       </main>
+
       <footer class="egs-footer">
   <div class="egs-footer-top">
     <div class="egs-footer-brand">
