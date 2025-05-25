@@ -332,6 +332,118 @@ header {
   display: none;
 }
 
+/* Стили для модального окна консультации */
+.consult-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.consult-modal-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.consult-modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.consult-modal-title {
+  margin-top: 0;
+  color: #2560b8;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.consult-form-group {
+  margin-bottom: 20px;
+}
+
+.consult-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.consult-form-group input[type="text"],
+.consult-form-group input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.consult-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.consult-checkbox-group input {
+  margin-right: 10px;
+  width: auto;
+}
+
+.consult-checkbox-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.consult-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.consult-submit-btn:hover {
+  background-color: #45a049;
+}
+
+.consult-error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Отключение прокрутки при открытом модальном окне */
+body.consult-modal-open {
+  overflow: hidden;
+}
+
 /******************Второй блок*******************************************/
 .benefits-section {
   margin-bottom: var(--spacing-huge);
@@ -2732,6 +2844,20 @@ header {
 
   .egs-footer-item {
     font-size: 13px;
+  }
+
+  .consult-modal-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .consult-form-group input[type="text"],
+  .consult-form-group input[type="tel"] {
+    padding: 10px;
+  }
+
+  .consult-submit-btn {
+    padding: 10px;
   }
 }
 /***********************************************/

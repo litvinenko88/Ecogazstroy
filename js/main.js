@@ -880,3 +880,163 @@ document
         );
       });
   });
+/***********************кнопка консультации******************************** */
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Элементы модального окна
+  const modalOverlay = document.getElementById("consultModalOverlay");
+  const consultationBtns = document.querySelectorAll(
+    ".consultation-btn, .mobile-btn"
+  );
+  const closeBtn = document.querySelector(".consult-modal-close-btn");
+  const form = document.getElementById("consultModalForm");
+  const phoneInput = document.getElementById("consult-phone");
+  const phoneError = document.getElementById("consult-phone-error");
+
+  // Маска для телефона
+  phoneInput.addEventListener("input", function (e) {
+    let value = this.value.replace(/\D+/g, "");
+    let formattedValue = "";
+
+    if (value.startsWith("7") || value.startsWith("8")) {
+      value = value.substring(1);
+      formattedValue = "+7 (";
+    } else if (value.startsWith("9")) {
+      formattedValue = "+7 (";
+    } else {
+      formattedValue = value;
+    }
+
+    if (value.length > 0) {
+      formattedValue += value.substring(0, 3);
+    }
+    if (value.length > 3) {
+      formattedValue += ") " + value.substring(3, 6);
+    }
+    if (value.length > 6) {
+      formattedValue += "-" + value.substring(6, 8);
+    }
+    if (value.length > 8) {
+      formattedValue += "-" + value.substring(8, 10);
+    }
+
+    this.value = formattedValue;
+  });
+
+  // Валидация телефона
+  function validatePhone(phone) {
+    const phoneRegex =
+      /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+    return phoneRegex.test(phone);
+  }
+
+  // Открытие модального окна
+  consultationBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      modalOverlay.style.display = "flex";
+      document.body.classList.add("consult-modal-open");
+    });
+  });
+
+  // Закрытие модального окна
+  closeBtn.addEventListener("click", function () {
+    modalOverlay.style.display = "none";
+    document.body.classList.remove("consult-modal-open");
+  });
+
+  modalOverlay.addEventListener("click", function (e) {
+    if (e.target === modalOverlay) {
+      modalOverlay.style.display = "none";
+      document.body.classList.remove("consult-modal-open");
+    }
+  });
+
+  // Отправка формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Валидация
+    const name = document.getElementById("consult-name").value.trim();
+    const phone = phoneInput.value.trim();
+    const privacyChecked = document.getElementById(
+      "consult-privacy-policy"
+    ).checked;
+
+    let isValid = true;
+
+    if (name === "") {
+      isValid = false;
+      document.getElementById("consult-name").style.borderColor = "red";
+    } else {
+      document.getElementById("consult-name").style.borderColor = "#ddd";
+    }
+
+    if (!validatePhone(phone)) {
+      isValid = false;
+      phoneInput.style.borderColor = "red";
+      phoneError.textContent = "Введите корректный номер телефона";
+      phoneError.style.display = "block";
+    } else {
+      phoneInput.style.borderColor = "#ddd";
+      phoneError.style.display = "none";
+    }
+
+    if (!privacyChecked) {
+      isValid = false;
+      document.getElementById(
+        "consult-privacy-policy"
+      ).nextElementSibling.style.color = "red";
+    } else {
+      document.getElementById(
+        "consult-privacy-policy"
+      ).nextElementSibling.style.color = "";
+    }
+
+    if (!isValid) return;
+
+    // Форматирование телефона для отправки
+    let cleanPhone = phone.replace(/\D+/g, "");
+    if (cleanPhone.startsWith("8")) {
+      cleanPhone = "7" + cleanPhone.substring(1);
+    } else if (cleanPhone.startsWith("9")) {
+      cleanPhone = "7" + cleanPhone;
+    }
+
+    // Отправка данных в Telegram
+    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+    const chatId = "682859146";
+    const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: Кнопка консультация`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          alert(
+            "Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+          );
+          form.reset();
+          modalOverlay.style.display = "none";
+          document.body.classList.remove("consult-modal-open");
+        } else {
+          alert(
+            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+        );
+      });
+  });
+});

@@ -69,6 +69,30 @@
             </div>
           </header>
 
+          <div class="consult-modal-overlay" id="consultModalOverlay">
+  <div class="consult-modal-container">
+    <button class="consult-modal-close-btn">&times;</button>
+    <h2 class="consult-modal-title">Заявка на консультацию</h2>
+    <form id="consultModalForm" class="consult-modal-form">
+      <div class="consult-form-group">
+        <label for="consult-name">Имя:</label>
+        <input type="text" id="consult-name" name="name" required>
+      </div>
+      <div class="consult-form-group">
+        <label for="consult-phone">Телефон:</label>
+        <input type="tel" id="consult-phone" name="phone" required placeholder="+7 (___) ___-__-__">
+        <span class="consult-error-message" id="consult-phone-error"></span>
+      </div>
+      <div class="consult-checkbox-group">
+        <input type="checkbox" id="consult-privacy-policy" name="privacyPolicy" required>
+        <label for="consult-privacy-policy">Я согласен на обработку персональных данных</label>
+      </div>
+      <button type="submit" class="consult-submit-btn">Отправить</button>
+    </form>
+  </div>
+</div>
+
+
           <div class="hero-section">
             <div class="hero-text-container">
               <h1 class="hero-title">
