@@ -1681,7 +1681,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
     const chatId = "682859146";
     const text = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${phone} \n🌐 Источник: Блок контакты `;
-    
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Отправка...";
@@ -1726,4 +1725,40 @@ document.addEventListener("DOMContentLoaded", function () {
       thankyouModal.style.display = "none";
     }
   });
+});
+/********************ватсап*********************************** */
+// WhatsApp кнопка
+document.addEventListener("DOMContentLoaded", function () {
+  const whatsappBtn = document.querySelector(".js-egs-whatsapp-btn");
+  const benefitsSection = document.querySelector(".benefits-section");
+
+  if (whatsappBtn && benefitsSection) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            whatsappBtn.style.display = "block";
+          } else {
+            // Если хотите, чтобы кнопка скрывалась при скролле вверх
+            // whatsappBtn.style.display = 'none';
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Срабатывает, когда 10% секции видно
+      }
+    );
+
+    observer.observe(benefitsSection);
+
+    // Плавное появление через 3 секунды после загрузки страницы (опционально)
+    setTimeout(() => {
+      if (
+        window.scrollY >=
+        benefitsSection.offsetTop - window.innerHeight * 0.9
+      ) {
+        whatsappBtn.style.display = "block";
+      }
+    }, 3000);
+  }
 });
