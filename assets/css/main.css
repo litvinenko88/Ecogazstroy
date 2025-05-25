@@ -1596,6 +1596,154 @@ body.details-modal-open {
   transform: translateY(-2px);
 }
 
+/* Стили для модального окна заявки */
+.gas-step-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.gas-step-modal-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gas-step-modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.gas-step-modal-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #2560b8;
+  font-weight: 700;
+}
+
+.gas-step-form-group {
+  margin-bottom: 20px;
+}
+
+.gas-step-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.gas-step-form-group input[type="text"],
+.gas-step-form-group input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.gas-step-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.gas-step-checkbox-group input {
+  margin-right: 10px;
+  width: auto;
+}
+
+.gas-step-checkbox-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.gas-step-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.gas-step-submit-btn:hover {
+  background-color: #45a049;
+}
+
+.gas-step-error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Стили для окна благодарности */
+.gas-step-thank-you {
+  text-align: center;
+  padding: 30px;
+}
+
+.gas-step-thank-you-title {
+  color: #2560b8;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.gas-step-thank-you-text {
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 16px;
+}
+
+.gas-step-thank-you-btn {
+  padding: 12px 24px;
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.gas-step-thank-you-btn:hover {
+  background-color: #2560b8;
+}
+
+/* Адаптация под разные размеры экрана */
+
+/* Отключение прокрутки при открытом модальном окне */
+body.gas-step-modal-open {
+  overflow: hidden;
+}
+
 /*************************слайдер************************************/
 .documents-slider-section {
   width: 100%;
@@ -3259,6 +3407,19 @@ body.details-modal-open {
   }
 
   .details-submit-btn {
+    padding: 10px;
+  }
+  .gas-step-modal-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .gas-step-form-group input[type="text"],
+  .gas-step-form-group input[type="tel"] {
+    padding: 10px;
+  }
+
+  .gas-step-submit-btn {
     padding: 10px;
   }
 }
