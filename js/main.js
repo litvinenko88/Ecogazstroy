@@ -1196,3 +1196,165 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+/*****************блок с призидентом ************************* */
+document.addEventListener("DOMContentLoaded", function () {
+  // Элементы модального окна
+  const modalOverlay = document.getElementById("detailsModalOverlay");
+  const detailsBtn = document.querySelector(".president-btn");
+  const closeBtn = document.querySelector(".details-modal-close-btn");
+  const form = document.getElementById("detailsModalForm");
+  const phoneInput = document.getElementById("details-phone");
+  const phoneError = document.getElementById("details-phone-error");
+  const thankYouSection = document.getElementById("detailsThankYou");
+  const thankYouBtn = document.getElementById("detailsThankYouBtn");
+  const formSection = document.querySelector(".details-modal-content");
+
+  // Маска для телефона
+  phoneInput.addEventListener("input", function (e) {
+    let value = this.value.replace(/\D+/g, "");
+    let formattedValue = "";
+
+    if (value.startsWith("7") || value.startsWith("8")) {
+      value = value.substring(1);
+      formattedValue = "+7 (";
+    } else if (value.startsWith("9")) {
+      formattedValue = "+7 (";
+    } else {
+      formattedValue = value;
+    }
+
+    if (value.length > 0) {
+      formattedValue += value.substring(0, 3);
+    }
+    if (value.length > 3) {
+      formattedValue += ") " + value.substring(3, 6);
+    }
+    if (value.length > 6) {
+      formattedValue += "-" + value.substring(6, 8);
+    }
+    if (value.length > 8) {
+      formattedValue += "-" + value.substring(8, 10);
+    }
+
+    this.value = formattedValue;
+  });
+
+  // Валидация телефона
+  function validatePhone(phone) {
+    const phoneRegex =
+      /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+    return phoneRegex.test(phone);
+  }
+
+  // Открытие модального окна
+  detailsBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    modalOverlay.style.display = "flex";
+    document.body.classList.add("details-modal-open");
+  });
+
+  // Закрытие модального окна
+  function closeModal() {
+    modalOverlay.style.display = "none";
+    document.body.classList.remove("details-modal-open");
+    // Сбрасываем форму и показываем её снова
+    form.reset();
+    formSection.style.display = "block";
+    thankYouSection.style.display = "none";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+  thankYouBtn.addEventListener("click", closeModal);
+
+  modalOverlay.addEventListener("click", function (e) {
+    if (e.target === modalOverlay) {
+      closeModal();
+    }
+  });
+
+  // Отправка формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Валидация
+    const name = document.getElementById("details-name").value.trim();
+    const phone = phoneInput.value.trim();
+    const privacyChecked = document.getElementById(
+      "details-privacy-policy"
+    ).checked;
+
+    let isValid = true;
+
+    if (name === "") {
+      isValid = false;
+      document.getElementById("details-name").style.borderColor = "red";
+    } else {
+      document.getElementById("details-name").style.borderColor = "#ddd";
+    }
+
+    if (!validatePhone(phone)) {
+      isValid = false;
+      phoneInput.style.borderColor = "red";
+      phoneError.textContent = "Введите корректный номер телефона";
+      phoneError.style.display = "block";
+    } else {
+      phoneInput.style.borderColor = "#ddd";
+      phoneError.style.display = "none";
+    }
+
+    if (!privacyChecked) {
+      isValid = false;
+      document.getElementById(
+        "details-privacy-policy"
+      ).nextElementSibling.style.color = "red";
+    } else {
+      document.getElementById(
+        "details-privacy-policy"
+      ).nextElementSibling.style.color = "";
+    }
+
+    if (!isValid) return;
+
+    // Форматирование телефона для отправки
+    let cleanPhone = phone.replace(/\D+/g, "");
+    if (cleanPhone.startsWith("8")) {
+      cleanPhone = "7" + cleanPhone.substring(1);
+    } else if (cleanPhone.startsWith("9")) {
+      cleanPhone = "7" + cleanPhone;
+    }
+
+    // Отправка данных в Telegram
+    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+    const chatId = "682859146";
+    const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: О бесплатной газификации`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          // Показываем окно благодарности и скрываем форму
+          formSection.style.display = "none";
+          thankYouSection.style.display = "block";
+        } else {
+          alert(
+            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+        );
+      });
+  });
+});

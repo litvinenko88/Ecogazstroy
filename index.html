@@ -301,7 +301,7 @@
       <button type="submit" class="request-submit-btn">Отправить заявку</button>
     </form>
   </div>
-</div>
+        </div>
 
 
         <section class="projects-section" id="project">
@@ -317,7 +317,7 @@
         </section>
 
         <section class="president-container">
-          <section class="president-section">
+          <div class="president-section">
             <div class="president-image-container">
               <img
                 src="/assets/img/1808332726_0_296_3048_2011_1920x0_80_0_0_84207be3dac70635c92.jpg"
@@ -335,8 +335,40 @@
               </p>
               <a href="#" class="president-btn">Узнать подробнее</a>
             </div>
-          </section>
+          </div>
         </section>
+
+        <div class="details-modal-overlay" id="detailsModalOverlay">
+  <div class="details-modal-container">
+    <button class="details-modal-close-btn">&times;</button>
+    <div class="details-modal-content">
+      <h2 class="details-modal-title">Узнать подробнее о бесплатной газификации</h2>
+      <form id="detailsModalForm" class="details-modal-form">
+        <div class="details-form-group">
+          <label for="details-name">Ваше имя:</label>
+          <input type="text" id="details-name" name="name" required>
+        </div>
+        <div class="details-form-group">
+          <label for="details-phone">Ваш телефон:</label>
+          <input type="tel" id="details-phone" name="phone" required placeholder="+7 (___) ___-__-__">
+          <span class="details-error-message" id="details-phone-error"></span>
+        </div>
+        <div class="details-checkbox-group">
+          <input type="checkbox" id="details-privacy-policy" name="privacyPolicy" required>
+          <label for="details-privacy-policy">Я согласен на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="details-submit-btn">Узнать подробнее</button>
+      </form>
+    </div>
+    
+    <!-- Окно благодарности (изначально скрыто) -->
+    <div class="details-thank-you" id="detailsThankYou" style="display: none;">
+      <h2 class="details-thank-you-title">Спасибо за заявку!</h2>
+      <p class="details-thank-you-text">Наш специалист свяжется с вами в ближайшее время для консультации.</p>
+      <button class="details-thank-you-btn" id="detailsThankYouBtn">Закрыть</button>
+    </div>
+  </div>
+</div>
 
         <section class="quiz-section" id="quizSection">
         <div class="quiz-bg-overlay"></div>
