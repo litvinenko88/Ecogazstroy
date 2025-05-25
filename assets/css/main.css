@@ -444,6 +444,40 @@ body.consult-modal-open {
   overflow: hidden;
 }
 
+/* Стили для окна благодарности */
+.consult-thank-you {
+  text-align: center;
+  padding: 20px;
+}
+
+.consult-thank-you-title {
+  color: #2560b8;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.consult-thank-you-text {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 16px;
+}
+
+.consult-thank-you-btn {
+  padding: 12px 24px;
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.consult-thank-you-btn:hover {
+  background-color: #2560b8;
+}
+
 /******************Второй блок*******************************************/
 .benefits-section {
   margin-bottom: var(--spacing-huge);

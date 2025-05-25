@@ -892,6 +892,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("consultModalForm");
   const phoneInput = document.getElementById("consult-phone");
   const phoneError = document.getElementById("consult-phone-error");
+  const formContent = document.getElementById("consultFormContent");
+  const thankYouContent = document.getElementById("consultThankYou");
+  const thankYouCloseBtn = document.getElementById("consultThankYouBtn");
+
+  // Функция закрытия модального окна
+  function closeModal() {
+    modalOverlay.style.display = "none";
+    document.body.classList.remove("consult-modal-open");
+    form.reset();
+    formContent.style.display = "block";
+    thankYouContent.style.display = "none";
+  }
 
   // Маска для телефона
   phoneInput.addEventListener("input", function (e) {
@@ -932,22 +944,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Открытие модального окна
   consultationBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
       modalOverlay.style.display = "flex";
       document.body.classList.add("consult-modal-open");
     });
   });
 
   // Закрытие модального окна
-  closeBtn.addEventListener("click", function () {
-    modalOverlay.style.display = "none";
-    document.body.classList.remove("consult-modal-open");
-  });
+  closeBtn.addEventListener("click", closeModal);
+  thankYouCloseBtn.addEventListener("click", closeModal);
 
   modalOverlay.addEventListener("click", function (e) {
     if (e.target === modalOverlay) {
-      modalOverlay.style.display = "none";
-      document.body.classList.remove("consult-modal-open");
+      closeModal();
     }
   });
 
@@ -1020,12 +1030,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.ok) {
-          alert(
-            "Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
-          );
-          form.reset();
-          modalOverlay.style.display = "none";
-          document.body.classList.remove("consult-modal-open");
+          formContent.style.display = "none";
+          thankYouContent.style.display = "block";
         } else {
           alert(
             "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
