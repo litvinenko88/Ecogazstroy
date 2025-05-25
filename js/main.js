@@ -835,51 +835,109 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 /**************Главная форма**************************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".contact-form");
+  const thankYouOverlay = document.getElementById("calcThankYouOverlay");
+  const thankYouBtn = document.getElementById("calcThankYouBtn");
 
-document
-  .querySelector(".contact-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault(); // Отменяем стандартную отправку формы
+  // Функция для форматирования телефона
+  function formatPhone(phone) {
+    return phone
+      .replace(/\D/g, "")
+      .replace(/^(\d)/, "+7")
+      .replace(/^(\+\d{3})(\d)/, "$1 ($2")
+      .replace(/^(\+\d{3}\s\(\d{2})(\d)/, "$1) $2")
+      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3})(\d)/, "$1-$2")
+      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2})(\d)/, "$1-$2");
+  }
+
+  // Обработчик отправки формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
     // Получаем данные из формы
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
     const consent = document.getElementById("consent").checked;
 
-    // Проверяем согласие на обработку данных
+    // Валидация
+    if (!name) {
+      alert("Пожалуйста, введите ваше имя");
+      return;
+    }
+
+    if (!phone) {
+      alert("Пожалуйста, введите ваш телефон");
+      return;
+    }
+
     if (!consent) {
       alert("Пожалуйста, дайте согласие на обработку персональных данных");
       return;
     }
 
-    // Формируем сообщение для Telegram
+    // Форматируем телефон
+    const cleanPhone = phone.replace(/\D/g, "");
+    let formattedPhone;
+    if (cleanPhone.startsWith("8")) {
+      formattedPhone = "+7" + cleanPhone.substring(1);
+    } else if (cleanPhone.startsWith("7")) {
+      formattedPhone = "+" + cleanPhone;
+    } else if (cleanPhone.startsWith("9")) {
+      formattedPhone = "+7" + cleanPhone;
+    } else {
+      formattedPhone = "+7" + cleanPhone;
+    }
+
+    // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
     const chatId = "682859146";
-    const message = `📌 Новая заявка 🔥🔥🔥\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n🌐 Источник: Главная форма в первом блоке`;
+    const message = `📌 Новая заявка на расчет:\n\n👤 Имя: ${name}\n📞 Телефон: ${formattedPhone}\n🌐 Источник: Форма "Заказать расчет"`;
 
-    // Кодируем сообщение для URL
-    const encodedMessage = encodeURIComponent(message);
-
-    // Формируем URL для запроса к Telegram API
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodedMessage}`;
-
-    // Отправляем запрос к Telegram API
-    fetch(telegramUrl)
-      .then((response) => {
-        if (response.ok) {
-          alert("✅ Спасибо! Ваша заявка отправлена.");
-          document.querySelector(".contact-form").reset(); // Очищаем форму
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          // Показываем окно благодарности
+          thankYouOverlay.style.display = "flex";
+          document.body.classList.add("calc-modal-open");
+          // Очищаем форму
+          form.reset();
         } else {
-          throw new Error("Ошибка при отправке заявки");
+          throw new Error("Ошибка при отправке");
         }
       })
       .catch((error) => {
-        console.error("Ошибка:", error);
+        console.error("Error:", error);
         alert(
-          "❌ Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
         );
       });
   });
+
+  // Закрытие окна благодарности
+  thankYouBtn.addEventListener("click", function () {
+    thankYouOverlay.style.display = "none";
+    document.body.classList.remove("calc-modal-open");
+  });
+
+  // Закрытие по клику вне окна
+  thankYouOverlay.addEventListener("click", function (e) {
+    if (e.target === thankYouOverlay) {
+      thankYouOverlay.style.display = "none";
+      document.body.classList.remove("calc-modal-open");
+    }
+  });
+});
 /***********************кнопка консультации******************************** */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -1055,6 +1113,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("requestModalForm");
   const phoneInput = document.getElementById("request-phone");
   const phoneError = document.getElementById("request-phone-error");
+  const formContent = document.getElementById("requestFormContent");
+  const thankYouContent = document.getElementById("requestThankYou");
+  const thankYouBtn = document.getElementById("requestThankYouBtn");
+
+  // Функция закрытия модального окна
+  function closeModal() {
+    modalOverlay.style.display = "none";
+    document.body.classList.remove("request-modal-open");
+    // Сбрасываем форму и показываем её снова
+    form.reset();
+    formContent.style.display = "block";
+    thankYouContent.style.display = "none";
+  }
 
   // Маска для телефона
   phoneInput.addEventListener("input", function (e) {
@@ -1098,18 +1169,18 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     modalOverlay.style.display = "flex";
     document.body.classList.add("request-modal-open");
+    // Убедимся, что показывается форма
+    formContent.style.display = "block";
+    thankYouContent.style.display = "none";
   });
 
   // Закрытие модального окна
-  closeBtn.addEventListener("click", function () {
-    modalOverlay.style.display = "none";
-    document.body.classList.remove("request-modal-open");
-  });
+  closeBtn.addEventListener("click", closeModal);
+  thankYouBtn.addEventListener("click", closeModal);
 
   modalOverlay.addEventListener("click", function (e) {
     if (e.target === modalOverlay) {
-      modalOverlay.style.display = "none";
-      document.body.classList.remove("request-modal-open");
+      closeModal();
     }
   });
 
@@ -1167,7 +1238,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
     const chatId = "682859146";
-    const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: Карточка остались вопросы`;
+    const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone}\n🌐 Источник: Карточка "Остались вопросы"`;
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
@@ -1182,12 +1253,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.ok) {
-          alert(
-            "Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
-          );
-          form.reset();
-          modalOverlay.style.display = "none";
-          document.body.classList.remove("request-modal-open");
+          // Показываем окно благодарности и скрываем форму
+          formContent.style.display = "none";
+          thankYouContent.style.display = "block";
         } else {
           alert(
             "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."

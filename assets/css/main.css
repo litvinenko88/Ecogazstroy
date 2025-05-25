@@ -477,7 +477,57 @@ body.consult-modal-open {
 .consult-thank-you-btn:hover {
   background-color: #2560b8;
 }
+/* Стили для окна благодарности расчета */
+.calc-thank-you-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.calc-thank-you-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.calc-thank-you-title {
+  color: #2560b8;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.calc-thank-you-text {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.calc-thank-you-btn {
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.calc-thank-you-btn:hover {
+  background-color: #45a049;
+}
 /******************Второй блок*******************************************/
 .benefits-section {
   margin-bottom: var(--spacing-huge);
@@ -700,7 +750,39 @@ body.consult-modal-open {
 body.request-modal-open {
   overflow: hidden;
 }
+/* Стили для окна благодарности */
+.request-thank-you {
+  text-align: center;
+  padding: 30px;
+}
 
+.request-thank-you-title {
+  color: #2560b8;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.request-thank-you-text {
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 16px;
+}
+
+.request-thank-you-btn {
+  padding: 12px 24px;
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.request-thank-you-btn:hover {
+  background-color: #45a049;
+}
 /**************третий блок*******************************************/
 
 .projects-section {
@@ -1108,6 +1190,7 @@ body.request-modal-open {
 
 .details-thank-you-title {
   color: #0052a5;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 15px;
 }
@@ -1369,6 +1452,8 @@ body.details-modal-open {
 
 .thank-content h3 {
   color: #2560b8;
+  font-size: 16px;
+  line-height: 1.2;
   margin-bottom: 15px;
 }
 

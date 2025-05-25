@@ -139,6 +139,17 @@
               <button type="submit" class="submit-btn">Заказать расчет</button>
             </form>
           </div>
+
+          <!-- Окно благодарности для формы расчета -->
+<div class="calc-thank-you-overlay" id="calcThankYouOverlay" style="display: none;">
+  <div class="calc-thank-you-container">
+    <div class="calc-thank-you-content">
+      <h2 class="calc-thank-you-title">Спасибо за заявку!</h2>
+      <p class="calc-thank-you-text">Наш специалист свяжется с вами для расчета стоимости.</p>
+      <button class="calc-thank-you-btn" id="calcThankYouBtn">Закрыть</button>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
@@ -289,30 +300,42 @@
               </div>
             </div>
           </div>
-        </section>
 
-        <div class="request-modal-overlay" id="requestModalOverlay">
+          <div class="request-modal-overlay" id="requestModalOverlay">
   <div class="request-modal-container">
     <button class="request-modal-close-btn">&times;</button>
-    <h2 class="request-modal-title">Оставить заявку</h2>
-    <form id="requestModalForm" class="request-modal-form">
-      <div class="request-form-group">
-        <label for="request-name">Имя:</label>
-        <input type="text" id="request-name" name="name" required>
-      </div>
-      <div class="request-form-group">
-        <label for="request-phone">Телефон:</label>
-        <input type="tel" id="request-phone" name="phone" required placeholder="+7 (___) ___-__-__">
-        <span class="request-error-message" id="request-phone-error"></span>
-      </div>
-      <div class="request-checkbox-group">
-        <input type="checkbox" id="request-privacy-policy" name="privacyPolicy" required>
-        <label for="request-privacy-policy">Я согласен на обработку персональных данных</label>
-      </div>
-      <button type="submit" class="request-submit-btn">Отправить заявку</button>
-    </form>
-  </div>
+    
+    <!-- Основная форма -->
+    <div id="requestFormContent">
+      <h2 class="request-modal-title">Оставить заявку</h2>
+      <form id="requestModalForm" class="request-modal-form">
+        <div class="request-form-group">
+          <label for="request-name">Имя:</label>
+          <input type="text" id="request-name" name="name" required>
         </div>
+        <div class="request-form-group">
+          <label for="request-phone">Телефон:</label>
+          <input type="tel" id="request-phone" name="phone" required placeholder="+7 (___) ___-__-__">
+          <span class="request-error-message" id="request-phone-error"></span>
+        </div>
+        <div class="request-checkbox-group">
+          <input type="checkbox" id="request-privacy-policy" name="privacyPolicy" required>
+          <label for="request-privacy-policy">Я согласен на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="request-submit-btn">Отправить заявку</button>
+      </form>
+    </div>
+    
+    <!-- Окно благодарности -->
+    <div class="request-thank-you" id="requestThankYou" style="display: none;">
+      <h2 class="request-thank-you-title">Спасибо за заявку!</h2>
+      <p class="request-thank-you-text">Наш специалист свяжется с вами в ближайшее время.</p>
+      <button class="request-thank-you-btn" id="requestThankYouBtn">Закрыть</button>
+    </div>
+  </div>
+</div>
+        </section>
+
 
 
         <section class="projects-section" id="project">
