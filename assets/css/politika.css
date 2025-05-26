@@ -1,0 +1,20 @@
+.cnt {
+  padding: 50px 100px;
+}
+
+h2,
+h3,
+p {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .cnt {
+    padding: 50px 60px;
+  }
+}
+@media (max-width: 480px) {
+  .cnt {
+    padding: 40px 20px;
+  }
+}
