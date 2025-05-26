@@ -785,30 +785,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Данные Telegram бота
       const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-      const chatId = "682859146";
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
-        message
-      )}`;
+      const chatIds = [682859146, 258608199]; // Массив с chat_id
+      const promises = chatIds.map((chatId) => {
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(
+          message
+        )}`;
+        return fetch(url);
+      });
 
-      // Отправляем в Telegram
-      fetch(url)
-        .then((response) => {
-          if (response.ok) {
-            thankModal.style.display = "flex";
+      // Отправляем в Telegram одновременно по всем ID
+      Promise.all(promises)
+        .then((responses) => {
+          // Проверяем все ответы
+          responses.forEach((response) => {
+            if (!response.ok) {
+              throw new Error("Ошибка при отправке в Telegram");
+            }
+          });
 
-            // Очистка формы
-            this.reset();
-            currentQuestion = 0;
-            Object.keys(answers).forEach((key) => delete answers[key]);
+          thankModal.style.display = "flex";
 
-            // Через 5 секунд перезагружаем квиз
-            setTimeout(() => {
-              thankModal.style.display = "none";
-              renderQuestion();
-            }, 5000);
-          } else {
-            throw new Error("Ошибка при отправке в Telegram");
-          }
+          // Очистка формы
+          this.reset();
+          currentQuestion = 0;
+          Object.keys(answers).forEach((key) => delete answers[key]);
+
+          // Через 5 секунд перезагружаем квиз
+          setTimeout(() => {
+            thankModal.style.display = "none";
+            renderQuestion();
+          }, 5000);
         })
         .catch((error) => {
           console.error("Ошибка:", error);
@@ -1251,28 +1257,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
+    const chatIds = ["682859146", "258608199"]; // Массив с chat_id получателей
     const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: Кнопка консультация`;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
+    // Функция для отправки сообщения
+    const sendMessage = (chatId) => {
+      return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+    };
+
+    // Отправляем сообщения всем получателям
+    Promise.all(chatIds.map(sendMessage))
+      .then((responses) => {
+        return Promise.all(responses.map((res) => res.json()));
+      })
+      .then((dataArray) => {
+        // Проверяем, что хотя бы одно сообщение отправилось успешно
+        const isSuccess = dataArray.some((data) => data.ok);
+        if (isSuccess) {
           formContent.style.display = "none";
           thankYouContent.style.display = "block";
         } else {
-          alert(
-            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
-          );
+          throw new Error("Не удалось отправить ни одного сообщения");
         }
       })
       .catch((error) => {
@@ -1416,29 +1430,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
+    const chatIds = ["682859146", "258608199"]; // Массив с ID получателей
     const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone}\n🌐 Источник: Карточка "Остались вопросы"`;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
+    // Создаем массив промисов для отправки сообщений
+    const sendPromises = chatIds.map((chatId) => {
+      return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+    });
+
+    // Отправляем все сообщения
+    Promise.all(sendPromises)
+      .then((responses) => Promise.all(responses.map((res) => res.json())))
+      .then((results) => {
+        // Проверяем, что хотя бы одно сообщение отправилось успешно
+        const isSuccess = results.some((result) => result.ok);
+        if (isSuccess) {
           // Показываем окно благодарности и скрываем форму
           formContent.style.display = "none";
           thankYouContent.style.display = "block";
         } else {
-          alert(
-            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
-          );
+          throw new Error("Не удалось отправить ни одно сообщение");
         }
       })
       .catch((error) => {
@@ -1578,29 +1598,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
+    const chatIds = ["682859146", "258608199"]; // Массив с chat_id получателей
     const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: О бесплатной газификации`;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
+    // Функция для отправки сообщения
+    const sendMessage = (chatId) => {
+      return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+    };
+
+    // Отправляем сообщения всем получателям
+    Promise.all(chatIds.map(sendMessage))
+      .then((responses) => {
+        return Promise.all(responses.map((res) => res.json()));
+      })
+      .then((dataArray) => {
+        // Проверяем, что хотя бы одно сообщение отправилось успешно
+        const isSuccess = dataArray.some((data) => data.ok);
+        if (isSuccess) {
           // Показываем окно благодарности и скрываем форму
           formSection.style.display = "none";
           thankYouSection.style.display = "block";
         } else {
-          alert(
-            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
-          );
+          throw new Error("Не удалось отправить ни одного сообщения");
         }
       })
       .catch((error) => {
@@ -1692,6 +1720,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Отправка формы
+  // Отправка формы
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -1744,22 +1773,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Отправка данных в Telegram
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
+    const chatIds = ["682859146", "258608199"]; // Массив с ID чатов
     const message = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${cleanPhone} \n🌐 Источник: Что нужно для работы (блок) нужна консультация `;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
+    // Функция отправки сообщения
+    const sendMessageToChat = (chatId) => {
+      return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      });
+    };
+
+    const sendPromises = chatIds.map((chatId) => sendMessageToChat(chatId));
+
+    Promise.all(sendPromises)
+      .then((responses) => {
+        return Promise.all(responses.map((response) => response.json()));
+      })
+      .then((dataArray) => {
+        const allSuccess = dataArray.every((data) => data.ok);
+
+        if (allSuccess) {
           // Показываем окно благодарности и скрываем форму
           formContent.style.display = "none";
           thankYouContent.style.display = "block";
@@ -1799,10 +1839,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Форматирование телефона
   function formatPhone(phone) {
-    // Удаляем все нецифровые символы
     let cleaned = phone.replace(/\D/g, "");
-
-    // Проверяем длину номера
     if (cleaned.length === 11) {
       if (cleaned[0] === "8") {
         cleaned = "7" + cleaned.slice(1);
@@ -1811,7 +1848,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (cleaned.length === 10) {
       return "+7" + cleaned;
     }
-    return phone; // Возвращаем как есть, если не соответствует формату
+    return phone;
   }
 
   // Обработчик ввода телефона
@@ -1858,36 +1895,50 @@ document.addEventListener("DOMContentLoaded", function () {
   // Функция отправки в Telegram
   function sendToTelegram(name, phone) {
     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
+    const chatIds = ["682859146", "258608199"]; // Массив ID чатов
     const text = `Новая заявка 🔥🔥🔥:\n\n👤 Имя: ${name}\n📞 Телефон: +${phone} \n🌐 Источник: Блок контакты `;
+
+    const sendPromises = chatIds.map((chatId) =>
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+        }),
+      })
+    );
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Отправка...";
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: text,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Показываем окно благодарности
-        thankyouModal.style.display = "flex";
-        // Очищаем форму
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Нужна помощь";
+    Promise.all(sendPromises)
+      .then((responses) =>
+        Promise.all(responses.map((response) => response.json()))
+      )
+      .then((dataArray) => {
+        const allSuccess = dataArray.every((data) => data.ok);
+
+        if (allSuccess) {
+          // Показываем окно благодарности
+          thankyouModal.style.display = "flex";
+          // Очищаем форму
+          form.reset();
+        } else {
+          alert(
+            "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+          );
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
         alert(
           "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
         );
+      })
+      .finally(() => {
         submitBtn.disabled = false;
         submitBtn.textContent = "Нужна помощь";
       });
@@ -1905,6 +1956,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
 /********************ватсап*********************************** */
 // WhatsApp кнопка
 document.addEventListener("DOMContentLoaded", function () {
