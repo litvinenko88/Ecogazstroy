@@ -7,7 +7,17 @@ h3,
 p {
   text-align: center;
 }
-
+a {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 40px;
+  background: #2560b8;
+  border: none;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
 @media (max-width: 1024px) {
   .cnt {
     padding: 50px 60px;

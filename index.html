@@ -51,7 +51,7 @@
                   <li class="nav-item"><a href="#beginning">Начало работ</a></li>
                   <li class="nav-item"><a href="#about">О компании</a></li>
                   <li class="nav-item"><a href="#contacts">Контакты</a></li>
-                  <li class="nav-item">Новости</li>
+                  <li class="nav-item"><a href="/pages/novosti.html">Новости</a></li>
                   <li class="nav-item mobile-only">
                     <button class="consultation-btn mobile-btn">
                       Консультация
@@ -70,8 +70,8 @@
             </div>
           </header>
 
-          <div class="consult-modal-overlay" id="consultModalOverlay"></div>
-  <div class="consult-modal-container"></div>
+          <div class="consult-modal-overlay" id="consultModalOverlay">
+  <div class="consult-modal-container">
     <button class="consult-modal-close-btn">&times;</button>
     
     <!-- Основная форма -->
@@ -348,6 +348,27 @@
             <button class="toggle-section" id="toggleButton">Развернуть</button>
           </div>
         </section>
+
+        <div class="ds-video-modal" id="dsVideoModal">
+        <div class="ds-video-container">
+            <button class="ds-close-modal" id="dsCloseModal">&times;</button>
+            <div class="ds-video-player">
+                <video id="dsVideoPlayer">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+                <div class="ds-video-controls">
+                    <button class="ds-control-btn" id="dsPlayPauseBtn">▶</button>
+                    <div class="ds-progress-bar" id="dsProgressBar">
+                        <div class="ds-progress-filled" id="dsProgressFilled"></div>
+                    </div>
+                    <span class="ds-time" id="dsCurrentTime">00:00</span>
+                    <span class="ds-time">/</span>
+                    <span class="ds-time" id="dsTotalTime">00:00</span>
+                    <button class="ds-control-btn ds-fullscreen-btn" id="dsFullscreenBtn">⛶</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <section class="president-container">
           <div class="president-section">
@@ -839,7 +860,7 @@
           <a href="/" class="egs-footer-link">Газификация</a>
         </li>
         <li class="egs-footer-item">
-          <a href="#" class="egs-footer-link">Проектирование</a>
+          <a href="/pages/proyektirovaniye.html" class="egs-footer-link">Проектирование</a>
         </li>
         
       </ul>

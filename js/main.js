@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-/*******************слайдер******************************** */
+/*******************слайдер проектов******************************** */
 document.addEventListener("DOMContentLoaded", function () {
   // Данные для слайдеров (пути к изображениям и описания)
   const slidersData = [
@@ -86,8 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alt: "Внутреннее убранство храма",
         },
       ],
-      videoLink:
-        "https://disk.yandex.ru/d/HxA0jt4iXB1AeQ/ул.%20Бурмистрова%2C%2094%20ХРАМ/YouCut_20240625_193101098.mp4",
+      videoLink: "/assets/video/Бурмистрова.mp4",
     },
     {
       title: "Тухачевского 8 ТЦ Москва",
@@ -163,8 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alt: "Интерьер торгового центра",
         },
       ],
-      videoLink:
-        "https://disk.yandex.ru/d/HxA0jt4iXB1AeQ/ул.%20Мичурина%2062а/YouCut_20240625_192940687.mp4",
+      videoLink: "/assets/video/Мичурина.mp4",
     },
     {
       title: "пр-кт. Кулакова 24/1",
@@ -189,51 +187,229 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectsContainer = document.getElementById("projectsContainer");
   const toggleButton = document.getElementById("toggleButton");
 
+  // Элементы видеоплеера
+  const dsVideoModal = document.getElementById("dsVideoModal");
+  const dsVideoPlayer = document.getElementById("dsVideoPlayer");
+  const dsCloseModal = document.getElementById("dsCloseModal");
+  const dsPlayPauseBtn = document.getElementById("dsPlayPauseBtn");
+  const dsProgressBar = document.getElementById("dsProgressBar");
+  const dsProgressFilled = document.getElementById("dsProgressFilled");
+  const dsCurrentTime = document.getElementById("dsCurrentTime");
+  const dsTotalTime = document.getElementById("dsTotalTime");
+  const dsFullscreenBtn = document.getElementById("dsFullscreenBtn");
+
+  // Функция для инициализации слайдера
+  function initSlider(sliderId, dotsId, images) {
+    const slider = document.getElementById(sliderId);
+    const dotsContainer = document.getElementById(dotsId);
+    let currentSlide = 0;
+
+    // Создаем слайды
+    images.forEach((image, index) => {
+      // Создаем слайд
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.style.width = "100%";
+      slide.style.height = "100%";
+      slide.style.flexShrink = "0";
+
+      const img = document.createElement("img");
+      img.src = image.src;
+      img.alt = image.alt;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+
+      slide.appendChild(img);
+      slider.appendChild(slide);
+
+      // Создаем точку для навигации
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      if (index === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => {
+        goToSlide(index);
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    // Функция для перехода к конкретному слайду
+    function goToSlide(index) {
+      if (index < 0 || index >= images.length) return;
+
+      currentSlide = index;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      // Обновляем активную точку
+      const dots = dotsContainer.querySelectorAll(".dot");
+      dots.forEach((dot, i) => {
+        if (i === currentSlide) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    // Функция для перемещения слайда
+    function moveSlide(direction) {
+      let newSlide = currentSlide + direction;
+
+      if (newSlide < 0) {
+        newSlide = images.length - 1;
+      } else if (newSlide >= images.length) {
+        newSlide = 0;
+      }
+
+      goToSlide(newSlide);
+    }
+
+    // Возвращаем функцию для внешнего использования
+    return moveSlide;
+  }
+
+  // Функция для форматирования времени в мм:сс
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes
+      .toString()
+      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
+
+  // Инициализация видеоплеера
+  function initVideoPlayer() {
+    // Открытие модального окна с видео
+    document.querySelectorAll(".watch-video").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        if (this.getAttribute("href") === "#") {
+          e.preventDefault();
+          return;
+        }
+
+        e.preventDefault();
+        const videoSrc = this.getAttribute("href");
+
+        dsVideoPlayer.src = videoSrc;
+        dsVideoModal.classList.add("show");
+        dsVideoPlayer.play();
+        dsPlayPauseBtn.textContent = "❚❚";
+      });
+    });
+
+    // Закрытие модального окна
+    dsCloseModal.addEventListener("click", function () {
+      dsVideoModal.classList.remove("show");
+      dsVideoPlayer.pause();
+    });
+
+    // Закрытие при клике вне плеера
+    dsVideoModal.addEventListener("click", function (e) {
+      if (e.target === this) {
+        dsVideoModal.classList.remove("show");
+        dsVideoPlayer.pause();
+      }
+    });
+
+    // Управление воспроизведением
+    dsPlayPauseBtn.addEventListener("click", function () {
+      if (dsVideoPlayer.paused) {
+        dsVideoPlayer.play();
+        this.textContent = "❚❚";
+      } else {
+        dsVideoPlayer.pause();
+        this.textContent = "▶";
+      }
+    });
+
+    // Обновление прогресс-бара
+    dsVideoPlayer.addEventListener("timeupdate", function () {
+      const percent =
+        (dsVideoPlayer.currentTime / dsVideoPlayer.duration) * 100;
+      dsProgressFilled.style.width = `${percent}%`;
+      dsCurrentTime.textContent = formatTime(dsVideoPlayer.currentTime);
+    });
+
+    // Установка времени при клике на прогресс-бар
+    dsProgressBar.addEventListener("click", function (e) {
+      const clickPosition = e.offsetX;
+      const progressBarWidth = this.offsetWidth;
+      const percentClicked = clickPosition / progressBarWidth;
+      dsVideoPlayer.currentTime = percentClicked * dsVideoPlayer.duration;
+    });
+
+    // Обновление общего времени при загрузке метаданных
+    dsVideoPlayer.addEventListener("loadedmetadata", function () {
+      dsTotalTime.textContent = formatTime(dsVideoPlayer.duration);
+    });
+
+    // Кнопка полноэкранного режима
+    dsFullscreenBtn.addEventListener("click", function () {
+      if (!document.fullscreenElement) {
+        dsVideoModal.requestFullscreen().catch((err) => {
+          console.error(
+            `Ошибка при переходе в полноэкранный режим: ${err.message}`
+          );
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    // Обновление кнопки play/pause при окончании видео
+    dsVideoPlayer.addEventListener("ended", function () {
+      dsPlayPauseBtn.textContent = "▶";
+    });
+  }
+
   // Создаем слайдеры на основе данных
   slidersData.forEach((sliderData, index) => {
     const sliderId = `slider${index + 1}`;
     const dotsId = `dots${index + 1}`;
 
     const sliderHTML = `
-      <div class="project-slider">
-        <div class="slider-container">
-          <div class="slider" id="${sliderId}"></div>
-          <div class="slider-nav">
-            <div class="slider-arrow prev">
-              <div class="arrow-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
-              fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 
-              5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/></svg>
-              </div>
-            </div>
-            <div class="slider-arrow next">
-              <div class="arrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" 
-              height="16" fill="currentColor" class="bi bi-chevron-compact-right" 
-              viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 
-              1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 
-              2.224a.5.5 0 0 1 .223-.671"/></svg></div>
-            </div>
-          </div>
-          <div class="slider-dots" id="${dotsId}"></div>
-        </div>
-        <div class="project-info">
-          <h3>${sliderData.title}</h3>
-          <a href="${sliderData.videoLink}" class="watch-video">
-    <div class="video-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
-        </svg>
-    </div>
-    ${
-      sliderData.videoLink && sliderData.videoLink !== "#"
-        ? "Смотреть видео"
-        : "Просмотр недоступен"
-    }
-</a>
-        </div>
-      </div>
-    `;
+                    <div class="project-slider">
+                        <div class="slider-container">
+                            <div class="slider" id="${sliderId}"></div>
+                            <div class="slider-nav">
+                                <div class="slider-arrow prev">
+                                    <div class="arrow-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+                                    fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 
+                                    5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/></svg>
+                                    </div>
+                                </div>
+                                <div class="slider-arrow next">
+                                    <div class="arrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" 
+                                    height="16" fill="currentColor" class="bi bi-chevron-compact-right" 
+                                    viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 
+                                    1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 
+                                    2.224a.5.5 0 0 1 .223-.671"/></svg></div>
+                                </div>
+                            </div>
+                            <div class="slider-dots" id="${dotsId}"></div>
+                        </div>
+                        <div class="project-info">
+                            <h3>${sliderData.title}</h3>
+                            <a href="${
+                              sliderData.videoLink
+                            }" class="watch-video">
+                                <div class="video-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
+                                    </svg>
+                                </div>
+                                ${
+                                  sliderData.videoLink &&
+                                  sliderData.videoLink !== "#"
+                                    ? "Смотреть видео"
+                                    : "Просмотр недоступен"
+                                }
+                            </a>
+                        </div>
+                    </div>
+                `;
 
     projectsContainer.insertAdjacentHTML("beforeend", sliderHTML);
 
@@ -248,6 +424,9 @@ document.addEventListener("DOMContentLoaded", function () {
     prevArrow.addEventListener("click", () => moveSlideFunc(-1));
     nextArrow.addEventListener("click", () => moveSlideFunc(1));
   });
+
+  // Инициализация видеоплеера
+  initVideoPlayer();
 
   // Инициализация состояния (по умолчанию свернуто, показываем только первые 2 слайда)
   function initSectionState() {
@@ -274,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализируем состояние при загрузке
   initSectionState();
 });
-/*********************Проекты************************************** */
+/*********************Слайдер************************************** */
 
 function initSlider(sliderId, dotsId, images) {
   const slider = document.getElementById(sliderId);

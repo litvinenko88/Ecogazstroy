@@ -1011,6 +1011,144 @@ body.request-modal-open {
   background-color: #f0f0f0;
   transform: translateY(-2px);
 }
+.ds-video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ds-video-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.ds-video-container {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ds-video-player {
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  position: relative;
+}
+
+.ds-video-player video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.ds-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.ds-video-container:hover .ds-video-controls {
+  transform: translateY(0);
+}
+
+.ds-control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-progress-bar {
+  flex-grow: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.ds-progress-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #4a6bff;
+  border-radius: 3px;
+}
+
+.ds-time {
+  color: white;
+  font-size: 12px;
+  margin: 0 5px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.ds-fullscreen-btn {
+  margin-left: auto;
+}
+
+.ds-close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-video-container {
+    width: 95%;
+  }
+
+  .ds-video-controls {
+    transform: translateY(0);
+  }
+}
 
 /****************4 блок******************************************/
 .president-container {
