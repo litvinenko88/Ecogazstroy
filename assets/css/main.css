@@ -3294,7 +3294,8 @@ body.gas-step-modal-open {
     flex: 0 0 calc(33.333% - 20px);
   }
   .documents-slider-title {
-    font-size: 2rem;
+    font-size: 36px;
+    padding: 0 20px;
   }
 
   /* Для шагов по газу */
