@@ -199,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dsFullscreenBtn = document.getElementById("dsFullscreenBtn");
 
   // Функция для инициализации слайдера
+  // Замените функцию initSlider в вашем коде на эту улучшенную версию:
   function initSlider(sliderId, dotsId, images) {
     const slider = document.getElementById(sliderId);
     const dotsContainer = document.getElementById(dotsId);
@@ -206,6 +207,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let touchStartX = 0;
     let touchEndX = 0;
     let autoSlideInterval;
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
 
     // Создаем слайды
     images.forEach((image, index) => {
@@ -222,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.objectFit = "cover";
+      img.draggable = false; // Предотвращаем перетаскивание изображений
 
       slide.appendChild(img);
       slider.appendChild(slide);
@@ -237,12 +244,17 @@ document.addEventListener("DOMContentLoaded", function () {
       dotsContainer.appendChild(dot);
     });
 
+    // Получаем все слайды
+    const slides = slider.querySelectorAll(".slide");
+
     // Функция для перехода к конкретному слайду
     function goToSlide(index) {
       if (index < 0 || index >= images.length) return;
 
       currentSlide = index;
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      currentTranslate = -currentSlide * slider.offsetWidth;
+      prevTranslate = currentTranslate;
 
       // Обновляем активную точку
       const dots = dotsContainer.querySelectorAll(".dot");
@@ -281,36 +293,72 @@ document.addEventListener("DOMContentLoaded", function () {
       startAutoSlide();
     }
 
+    // Анимация перетаскивания
+    function animation() {
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+      if (isDragging) requestAnimationFrame(animation);
+    }
+
     // Обработчики событий для сенсорных устройств
-    slider.addEventListener(
-      "touchstart",
-      (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(autoSlideInterval);
-      },
-      { passive: true }
-    );
+    slider.addEventListener("touchstart", touchStart, { passive: false });
+    slider.addEventListener("touchmove", touchMove, { passive: false });
+    slider.addEventListener("touchend", touchEnd);
 
-    slider.addEventListener(
-      "touchend",
-      (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startAutoSlide();
-      },
-      { passive: true }
-    );
+    // Обработчики событий для мыши (для тестирования на десктопе)
+    slider.addEventListener("mousedown", touchStart);
+    slider.addEventListener("mousemove", touchMove);
+    slider.addEventListener("mouseup", touchEnd);
+    slider.addEventListener("mouseleave", touchEnd);
 
-    // Обработчик свайпа
-    function handleSwipe() {
-      const difference = touchStartX - touchEndX;
-      if (difference > 50) {
-        // Свайп влево - следующий слайд
-        moveSlide(1);
-      } else if (difference < -50) {
-        // Свайп вправо - предыдущий слайд
-        moveSlide(-1);
+    function touchStart(e) {
+      if (e.type === "touchstart") {
+        touchStartX = e.touches[0].clientX;
+      } else {
+        touchStartX = e.clientX;
+        e.preventDefault(); // Только для mouse events
       }
+      startPos = touchStartX;
+      isDragging = true;
+      clearInterval(autoSlideInterval);
+      animationID = requestAnimationFrame(animation);
+      slider.style.cursor = "grabbing";
+      slider.style.transition = "none";
+    }
+
+    function touchMove(e) {
+      if (!isDragging) return;
+
+      let currentPos;
+      if (e.type === "touchmove") {
+        currentPos = e.touches[0].clientX;
+        e.preventDefault(); // Предотвращаем скролл страницы
+      } else {
+        currentPos = e.clientX;
+        e.preventDefault();
+      }
+
+      currentTranslate = prevTranslate + currentPos - startPos;
+    }
+
+    function touchEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+      slider.style.cursor = "grab";
+      slider.style.transition = "transform 0.3s ease-out";
+
+      const movedBy = currentTranslate - prevTranslate;
+
+      if (movedBy < -100 && currentSlide < images.length - 1) {
+        // Свайп влево
+        currentSlide += 1;
+      } else if (movedBy > 100 && currentSlide > 0) {
+        // Свайп вправо
+        currentSlide -= 1;
+      }
+
+      goToSlide(currentSlide);
+      startAutoSlide();
     }
 
     // Запускаем автоматическое переключение
