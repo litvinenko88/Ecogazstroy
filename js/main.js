@@ -203,6 +203,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const slider = document.getElementById(sliderId);
     const dotsContainer = document.getElementById(dotsId);
     let currentSlide = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let autoSlideInterval;
 
     // Создаем слайды
     images.forEach((image, index) => {
@@ -229,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (index === 0) dot.classList.add("active");
       dot.addEventListener("click", () => {
         goToSlide(index);
+        resetAutoSlide();
       });
       dotsContainer.appendChild(dot);
     });
@@ -263,6 +267,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
       goToSlide(newSlide);
     }
+
+    // Функция для автоматического переключения слайдов
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        moveSlide(1);
+      }, 4000);
+    }
+
+    // Функция для сброса автоматического переключения
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    // Обработчики событий для сенсорных устройств
+    slider.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(autoSlideInterval);
+      },
+      { passive: true }
+    );
+
+    slider.addEventListener(
+      "touchend",
+      (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoSlide();
+      },
+      { passive: true }
+    );
+
+    // Обработчик свайпа
+    function handleSwipe() {
+      const difference = touchStartX - touchEndX;
+      if (difference > 50) {
+        // Свайп влево - следующий слайд
+        moveSlide(1);
+      } else if (difference < -50) {
+        // Свайп вправо - предыдущий слайд
+        moveSlide(-1);
+      }
+    }
+
+    // Запускаем автоматическое переключение
+    startAutoSlide();
 
     // Возвращаем функцию для внешнего использования
     return moveSlide;
@@ -421,8 +473,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevArrow = sliderContainer.querySelector(".prev");
     const nextArrow = sliderContainer.querySelector(".next");
 
-    prevArrow.addEventListener("click", () => moveSlideFunc(-1));
-    nextArrow.addEventListener("click", () => moveSlideFunc(1));
+    prevArrow.addEventListener("click", () => {
+      moveSlideFunc(-1);
+      resetAutoSlide();
+    });
+    nextArrow.addEventListener("click", () => {
+      moveSlideFunc(1);
+      resetAutoSlide();
+    });
   });
 
   // Инициализация видеоплеера
