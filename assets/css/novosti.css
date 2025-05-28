@@ -1,18 +1,327 @@
+@import "/assets/css/normalize.css";
+@import "/assets/css/reset.css";
+@import "/assets/fonts/stylesheet.css";
+
+:root {
+  /* Цвета */
+  --primary-color: #2560b8;
+  --primary-dark: #1d4e94;
+  --secondary-color: #0052a5;
+  --secondary-dark: #003366;
+  --accent-color: #fefe00;
+  --accent-dark: #d3d31c;
+  --text-color: #ffffff;
+  --text-dark: #333333;
+  --text-gray: #555555;
+  --bg-light: #f8f9fa;
+  --bg-gray: #e9ecef;
+  --border-gray: #ddd;
+
+  /* Размеры шрифтов */
+  --font-size-base: 18px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 28px;
+  --font-size-xxxl: 36px;
+  --font-size-huge: 48px;
+  --font-size-giant: 60px;
+
+  /* Отступы */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+  --spacing-xxl: 40px;
+  --spacing-xxxl: 50px;
+  --spacing-huge: 60px;
+  --spacing-giant: 100px;
+
+  /* Прочие */
+  --border-radius: 4px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 10px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #2560b8;
+  font-family: "Roboto Condensed";
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  margin: 0;
+  color: var(--text-color);
 }
-.cnt {
-  text-align: center;
-  color: rgb(255, 255, 255);
-}
-a {
-  display: block;
-  text-align: center;
+
+.header-container {
+  position: relative;
   width: 100%;
-  padding: 20px;
-  margin-top: 40px;
-  background: #ffffff;
+  background-image: url("/assets/img/6ZkCHFcKNwTx-1280.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 96, 184, 0.8);
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--spacing-giant);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-giant);
+  color: var(--text-color);
+}
+
+.header-right-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.header-logo-img {
+  height: 80px;
+  width: auto;
+}
+
+.header-logo-text {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+/* Навигация */
+.main-navigation {
+  position: relative;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
   border: none;
-  color: #2560b8;
+  color: var(--text-color);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  z-index: 1001;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--spacing-lg);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: var(--transition);
+}
+
+.nav-item {
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  position: relative;
+  padding: var(--spacing-xs) 0;
+}
+
+.nav-item a {
   text-decoration: none;
+  color: #f0f0f0;
+}
+
+.nav-item:hover {
+  color: #f0f0f0;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-lg) var(--spacing-giant);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xxxl);
+}
+
+.hero-text-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-title {
+  font-size: var(--font-size-giant);
+  font-weight: 700;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Медиа-запросы только для элементов, используемых в HTML */
+@media (max-width: 1024px) {
+  .mobile-menu-toggle {
+    display: block;
+    position: relative;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .nav-list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: rgba(37, 96, 184, 0.98);
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    align-items: flex-start;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  .nav-list.active {
+    right: 0;
+  }
+
+  .nav-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
+
+  /* Стили для анимации гамбургер-меню */
+  .mobile-menu-toggle {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+
+  .mobile-menu-toggle i {
+    font-size: 30px;
+    color: white;
+    transition: var(--transition);
+  }
+
+  .mobile-menu-toggle .fa-times {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-90deg);
+    top: 0;
+  }
+
+  .mobile-menu-toggle.active .fa-bars {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  .mobile-menu-toggle.active .fa-times {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    position: relative;
+  }
+
+  .header-content {
+    padding-bottom: var(--spacing-xxxl);
+    margin-bottom: var(--spacing-xxxl);
+  }
+
+  .header-right-section {
+    gap: var(--spacing-md);
+  }
+
+  .header-logo-img {
+    height: 70px;
+  }
+
+  .header-logo-text {
+    font-size: 26px;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-xxxl);
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .header-content {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-xxl);
+    padding: 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .header-logo-container {
+    gap: var(--spacing-xs);
+  }
+
+  .header-logo-img {
+    height: 55px;
+  }
+
+  .header-logo-text {
+    font-size: 22px;
+  }
 }
