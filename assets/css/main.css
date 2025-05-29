@@ -71,7 +71,7 @@ body {
 .header-container {
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/6ZkCHFcKNwTx-1280.jpg");
+  background-image: url("/assets/img/Главное\ фото.webp");
   background-size: cover;
   background-position: center;
 }
@@ -789,7 +789,7 @@ body.request-modal-open {
   padding: var(--spacing-huge) var(--spacing-giant);
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/5496d2bebb2ea01a56ea86020033662c.jpg");
+  background-image: url("/assets/img/Блок\ 3.webp");
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -1361,7 +1361,7 @@ body.details-modal-open {
 .quiz-section {
   padding: 60px 0;
   position: relative;
-  background-image: url("/assets/img/2754b310c2a90e23f75328d4d23f0781e5194b8d.jpeg");
+  background-image: url("/assets/img/Блок\ 5.webp");
   background-size: cover;
   background-position: center;
 }
@@ -1886,7 +1886,7 @@ body.gas-step-modal-open {
 .documents-slider-section {
   width: 100%;
   padding: 80px 0;
-  background: url("/assets/img/5cecb1694cbec742341692.jpeg") no-repeat center
+  background: url("/assets/img/Блок\ 7.webp") no-repeat center
     center;
   background-size: cover;
   position: relative;
@@ -2135,7 +2135,7 @@ body.gas-step-modal-open {
 /* Основные стили секции */
 .contact-help-section {
   position: relative;
-  background: url("/assets/img/653e523985f5403d4a701c40.jpg") no-repeat center
+  background: url("/assets/img/Блок\ 9.webp") no-repeat center
     center;
   background-size: cover;
   padding: 60px 100px;
