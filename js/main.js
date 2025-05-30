@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alt: "Пояльный аппрат протва",
         },
       ],
-      videoLink: "#",
+      videoLink: "/assets/video/Москва.mp4",
     },
     {
       title: "Мичурина 62а",
