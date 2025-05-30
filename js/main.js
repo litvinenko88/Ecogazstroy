@@ -2009,82 +2009,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 /***********прайс************************** */
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.querySelector(".gas-toggle-button");
-  const toggleText = document.querySelector(".gas-toggle-text");
-  const hiddenCards = document.querySelectorAll(".gas-card-hidden");
-  const visibleCards = document.querySelectorAll(".gas-card-visible");
+  const toggleBtn = document.querySelector(".price-toggle-btn");
+  const hiddenRows = document.querySelectorAll(".price-table-row.hidden");
+  let isExpanded = false;
 
-  function initPricingCards() {
-    if (window.innerWidth <= 768) {
-      // На мобильных показываем только первые 2 или 3 карточки
-      if (window.innerWidth <= 576) {
-        // На очень маленьких экранах - 2 карточки
-        visibleCards.forEach((card, index) => {
-          if (index >= 2) {
-            card.classList.add("gas-card-hidden");
-            card.style.display = "none";
-          }
-        });
-      } else {
-        // На средних мобильных - 3 карточки
-        visibleCards.forEach((card, index) => {
-          if (index >= 3) {
-            card.classList.add("gas-card-hidden");
-            card.style.display = "none";
-          }
-        });
-      }
-
-      toggleBtn.style.display = "flex";
-    } else {
-      // На десктопах показываем все карточки
-      hiddenCards.forEach((card) => {
-        card.style.display = "block";
-        card.style.opacity = "1";
-        card.style.transform = "none";
-      });
-      toggleBtn.style.display = "none";
-    }
-  }
-
-  // Инициализация при загрузке
-  initPricingCards();
-
-  // Обработчик кнопки
   toggleBtn.addEventListener("click", function () {
-    this.classList.toggle("active");
+    isExpanded = !isExpanded;
 
-    if (this.classList.contains("active")) {
-      // Показываем все карточки с анимацией
-      hiddenCards.forEach((card) => {
-        card.style.display = "block";
+    // Обновляем атрибут доступности
+    this.setAttribute("aria-expanded", isExpanded);
+
+    // Обновляем текст кнопки
+    const toggleText = this.querySelector(".price-toggle-text");
+    toggleText.textContent = isExpanded ? "Свернуть" : "Показать все услуги";
+
+    // Анимируем показ/скрытие строк
+    if (isExpanded) {
+      hiddenRows.forEach((row, index) => {
         setTimeout(() => {
-          card.style.opacity = "1";
-          card.style.transform = "translateY(0)";
-        }, 10);
+          row.classList.add("expanded");
+          row.style.display = "table-row";
+        }, index * 50);
       });
-      toggleText.textContent = "Свернуть услуги";
     } else {
-      // Скрываем карточки с анимацией
-      hiddenCards.forEach((card) => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(10px)";
-        setTimeout(() => {
-          card.style.display = "none";
-        }, 400);
+      hiddenRows.forEach((row) => {
+        row.classList.remove("expanded");
+        row.style.display = "none";
       });
-      toggleText.textContent = "Показать все услуги";
     }
   });
 
-  // Реакция на изменение размера окна
-  window.addEventListener("resize", function () {
-    initPricingCards();
-
-    // Сбрасываем состояние кнопки при переходе на десктоп
-    if (window.innerWidth > 768) {
-      toggleBtn.classList.remove("active");
-      toggleText.textContent = "Показать все услуги";
-    }
+  // Для SEO: скрытые строки должны быть доступны поисковым ботам
+  // Поэтому мы просто скрываем их визуально, но оставляем в DOM
+  hiddenRows.forEach((row) => {
+    row.style.display = "none";
   });
 });

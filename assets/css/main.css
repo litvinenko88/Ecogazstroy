@@ -530,189 +530,233 @@ body.consult-modal-open {
 }
 
 /*******************Прайс блок***********************************************/
-.gas-pricing-section {
+.price-table-section {
   padding: 60px 100px;
-  background-color: #f9f9f9;
-  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
 }
 
-.gas-pricing-container {
-  max-width: 1440px;
+.price-table-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.container {
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.gas-pricing-title {
+.price-table-header {
   text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.price-table-title {
   font-size: 48px;
   color: #2560b8;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   font-weight: 700;
-}
-
-.gas-pricing-subtitle {
-  text-align: center;
-  color: #555;
-  margin: 0 auto 40px;
-  font-size: 18px;
-  line-height: 1.5;
-  max-width: 800px;
-}
-
-.gas-pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
-}
-
-.gas-price-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.gas-price-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.gas-card-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.gas-card-title {
-  font-size: 16px;
-  color: #2560b8;
-  padding: 15px 15px 0;
-  margin: 0;
-  font-weight: 700;
-  min-height: 54px;
   line-height: 1.2;
 }
 
-.gas-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border-top: 1px solid #eee;
+.price-table-description {
+  font-size: 1.125rem;
+  color: #64748b;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-.gas-card-price {
-  font-size: 14px;
-  font-weight: 700;
-  color: #555;
+.price-table-wrapper {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
 }
 
-.gas-card-button {
-  font-size: 14px;
-  color: #0066cc;
-  font-weight: 400;
-  text-decoration: none;
-  transition: color 0.2s;
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
 }
 
-.gas-card-button:hover {
-  color: #004499;
-  text-decoration: underline;
+.price-table thead {
+  background-color: #2560b8;
+  color: white;
 }
 
-.gas-toggle-button {
+.price-table th {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.price-table-row {
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.price-table-row:last-child {
+  border-bottom: none;
+}
+
+.price-table-row:hover {
+  background-color: #f8fafc;
+}
+
+.price-table-row.visible {
+  display: table-row;
+  animation: fadeInRow 0.5s ease-out;
+}
+
+.price-table-row.hidden {
   display: none;
-  margin: 30px auto 0;
-  background: none;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.price-table-row.expanded {
+  display: table-row;
+  animation: fadeInRow 0.5s ease-out forwards;
+}
+
+.service-cell,
+.price-cell {
+  padding: 1.25rem 1.5rem;
+}
+
+.service-cell {
+  color: #555;
+  font-weight: 500;
+  width: 70%;
+}
+
+.price-cell {
+  color: #2560b8;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.price-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f1f5f9;
   border: none;
   color: #2560b8;
   font-weight: 600;
-  font-size: 16px;
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 4px;
   transition: all 0.3s ease;
-  align-items: center;
 }
 
-.gas-toggle-button:hover {
-  background-color: rgba(37, 96, 184, 0.1);
+.price-toggle-btn:hover {
+  background-color: #e2e8f0;
 }
 
-.gas-toggle-icon {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
-
-.gas-toggle-button.active .gas-toggle-icon {
+.price-toggle-btn[aria-expanded="true"] .price-toggle-icon {
   transform: rotate(180deg);
 }
 
-.gas-card-hidden {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+.price-toggle-text {
+  margin-right: 0.5rem;
 }
 
-/* Адаптация */
+.price-toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1280px) {
-  .gas-pricing-section {
-    padding: 40px 60px;
-  }
-  .gas-pricing-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .price-table-section {
+    padding: 20px 60px;
+    margin-bottom: 60px;
   }
 }
-
 @media (max-width: 1024px) {
-  .gas-pricing-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .price-table-section {
+    padding: 20px 40px;
+    margin-bottom: 60px;
   }
-  .gas-pricing-title {
+  .price-table-title {
     font-size: 36px;
   }
 }
-
+/* Адаптация */
 @media (max-width: 768px) {
-  .gas-pricing-section {
-    padding: 30px 40px;
+  .price-table-section {
+    padding: 20px 40px;
+    margin-bottom: 60px;
   }
 
-  .gas-card-mobile-hidden {
-    display: none !important;
+  .price-table-title {
+    font-size: 36px;
   }
 
-  .gas-toggle-button {
-    display: flex;
-  }
-}
-
-@media (max-width: 576px) {
-  .gas-pricing-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .price-table-description {
+    font-size: 1rem;
   }
 
-  .gas-pricing-section {
-    padding: 20px;
+  .service-cell,
+  .price-cell,
+  .price-table th {
+    padding: 1rem;
   }
 
-  .gas-pricing-title {
-    font-size: 28px;
-  }
-
-  .gas-pricing-subtitle {
-    font-size: 16px;
+  .service-cell {
+    width: 60%;
   }
 }
 
 @media (max-width: 480px) {
-  .gas-pricing-grid {
-    grid-template-columns: 1fr;
+  .price-table-section {
+    padding: 20px;
   }
 
-  .gas-pricing-title {
+  .price-table-title {
     font-size: 24px;
   }
 }
