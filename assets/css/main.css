@@ -99,7 +99,7 @@ header {
   align-items: center;
   padding: var(--spacing-xl) var(--spacing-giant);
   color: var(--text-color);
-  margin-bottom: var(--spacing-giant);
+  margin-bottom: 60px;
 }
 
 .header-right-section {
@@ -527,6 +527,194 @@ body.consult-modal-open {
 
 .calc-thank-you-btn:hover {
   background-color: #45a049;
+}
+
+/*******************Прайс блок***********************************************/
+.gas-pricing-section {
+  padding: 60px 100px;
+  background-color: #f9f9f9;
+  margin-bottom: 60px;
+}
+
+.gas-pricing-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.gas-pricing-title {
+  text-align: center;
+  font-size: 48px;
+  color: #2560b8;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.gas-pricing-subtitle {
+  text-align: center;
+  color: #555;
+  margin: 0 auto 40px;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.gas-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.gas-price-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.gas-price-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.gas-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.gas-card-title {
+  font-size: 16px;
+  color: #2560b8;
+  padding: 15px 15px 0;
+  margin: 0;
+  font-weight: 700;
+  min-height: 54px;
+  line-height: 1.2;
+}
+
+.gas-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+
+.gas-card-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+}
+
+.gas-card-button {
+  font-size: 14px;
+  color: #0066cc;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.gas-card-button:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+.gas-toggle-button {
+  display: none;
+  margin: 30px auto 0;
+  background: none;
+  border: none;
+  color: #2560b8;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.gas-toggle-button:hover {
+  background-color: rgba(37, 96, 184, 0.1);
+}
+
+.gas-toggle-icon {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gas-toggle-button.active .gas-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.gas-card-hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Адаптация */
+@media (max-width: 1280px) {
+  .gas-pricing-section {
+    padding: 40px 60px;
+  }
+  .gas-pricing-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .gas-pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gas-pricing-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gas-pricing-section {
+    padding: 30px 40px;
+  }
+
+  .gas-card-mobile-hidden {
+    display: none !important;
+  }
+
+  .gas-toggle-button {
+    display: flex;
+  }
+}
+
+@media (max-width: 576px) {
+  .gas-pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gas-pricing-section {
+    padding: 20px;
+  }
+
+  .gas-pricing-title {
+    font-size: 28px;
+  }
+
+  .gas-pricing-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gas-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gas-pricing-title {
+    font-size: 24px;
+  }
 }
 /******************Второй блок*******************************************/
 .benefits-section {
@@ -1886,8 +2074,7 @@ body.gas-step-modal-open {
 .documents-slider-section {
   width: 100%;
   padding: 80px 0;
-  background: url("/assets/img/Блок\ 7.webp") no-repeat center
-    center;
+  background: url("/assets/img/Блок\ 7.webp") no-repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -2135,8 +2322,7 @@ body.gas-step-modal-open {
 /* Основные стили секции */
 .contact-help-section {
   position: relative;
-  background: url("/assets/img/Блок\ 9.webp") no-repeat center
-    center;
+  background: url("/assets/img/Блок\ 9.webp") no-repeat center center;
   background-size: cover;
   padding: 60px 100px;
   overflow: hidden;
@@ -2859,7 +3045,7 @@ body.gas-step-modal-open {
   }
 
   .projects-section {
-    padding: 20px 60px;
+    padding: 60px;
   }
 
   .president-container {

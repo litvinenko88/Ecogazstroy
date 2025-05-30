@@ -2007,3 +2007,84 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 });
+/***********прайс************************** */
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.querySelector(".gas-toggle-button");
+  const toggleText = document.querySelector(".gas-toggle-text");
+  const hiddenCards = document.querySelectorAll(".gas-card-hidden");
+  const visibleCards = document.querySelectorAll(".gas-card-visible");
+
+  function initPricingCards() {
+    if (window.innerWidth <= 768) {
+      // На мобильных показываем только первые 2 или 3 карточки
+      if (window.innerWidth <= 576) {
+        // На очень маленьких экранах - 2 карточки
+        visibleCards.forEach((card, index) => {
+          if (index >= 2) {
+            card.classList.add("gas-card-hidden");
+            card.style.display = "none";
+          }
+        });
+      } else {
+        // На средних мобильных - 3 карточки
+        visibleCards.forEach((card, index) => {
+          if (index >= 3) {
+            card.classList.add("gas-card-hidden");
+            card.style.display = "none";
+          }
+        });
+      }
+
+      toggleBtn.style.display = "flex";
+    } else {
+      // На десктопах показываем все карточки
+      hiddenCards.forEach((card) => {
+        card.style.display = "block";
+        card.style.opacity = "1";
+        card.style.transform = "none";
+      });
+      toggleBtn.style.display = "none";
+    }
+  }
+
+  // Инициализация при загрузке
+  initPricingCards();
+
+  // Обработчик кнопки
+  toggleBtn.addEventListener("click", function () {
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+      // Показываем все карточки с анимацией
+      hiddenCards.forEach((card) => {
+        card.style.display = "block";
+        setTimeout(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }, 10);
+      });
+      toggleText.textContent = "Свернуть услуги";
+    } else {
+      // Скрываем карточки с анимацией
+      hiddenCards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(10px)";
+        setTimeout(() => {
+          card.style.display = "none";
+        }, 400);
+      });
+      toggleText.textContent = "Показать все услуги";
+    }
+  });
+
+  // Реакция на изменение размера окна
+  window.addEventListener("resize", function () {
+    initPricingCards();
+
+    // Сбрасываем состояние кнопки при переходе на десктоп
+    if (window.innerWidth > 768) {
+      toggleBtn.classList.remove("active");
+      toggleText.textContent = "Показать все услуги";
+    }
+  });
+});
