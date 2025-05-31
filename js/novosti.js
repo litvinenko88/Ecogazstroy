@@ -42,24 +42,37 @@ document.addEventListener("DOMContentLoaded", function () {
 // Фильтрация новостей
 document.addEventListener("DOMContentLoaded", function () {
   const filterButtons = document.querySelectorAll(".filter-btn");
+  const filterSelect = document.querySelector(".filter-select");
   const newsCards = document.querySelectorAll(".news-card");
 
+  // Функция фильтрации
+  function filterNews(category) {
+    newsCards.forEach((card) => {
+      if (category === "all" || card.dataset.category === category) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  // Обработчики для кнопок
   filterButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Удаляем активный класс у всех кнопок
       filterButtons.forEach((btn) => btn.classList.remove("active"));
-      // Добавляем активный класс текущей кнопке
       this.classList.add("active");
+      filterNews(this.dataset.category);
+    });
+  });
 
-      const category = this.dataset.category;
+  // Обработчик для выпадающего списка
+  filterSelect.addEventListener("change", function () {
+    const category = this.value;
+    filterNews(category);
 
-      newsCards.forEach((card) => {
-        if (category === "all" || card.dataset.category === category) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
+    // Обновляем активную кнопку (для синхронизации состояний)
+    filterButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.category === category);
     });
   });
 
