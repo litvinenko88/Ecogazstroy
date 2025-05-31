@@ -2076,4 +2076,55 @@ document.addEventListener("DOMContentLoaded", function () {
     row.style.display = "none";
   });
 });
-/******************выподающие меню услуг********************** */
+/******************скрипт ленивой загрузки********************** */
+document.addEventListener("DOMContentLoaded", function () {
+  // Проверяем поддержку loading="lazy"
+  const supportsLazyLoading = "loading" in HTMLImageElement.prototype;
+
+  // Получаем все изображения с loading="lazy"
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+  // Если браузер не поддерживает lazy loading
+  if (!supportsLazyLoading) {
+    // Загружаем все "ленивые" изображения сразу
+    lazyImages.forEach((img) => {
+      // Если изображение еще не загружено
+      if (!img.complete && !img.getAttribute("data-loaded")) {
+        // Создаем новое изображение для принудительной загрузки
+        const tempImg = new Image();
+        tempImg.src = img.src;
+        tempImg.onload = function () {
+          img.setAttribute("data-loaded", "true");
+        };
+      }
+    });
+
+    // Добавляем IntersectionObserver для браузеров без поддержки loading="lazy"
+    if ("IntersectionObserver" in window) {
+      const lazyImageObserver = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const lazyImage = entry.target;
+            lazyImage.src = lazyImage.dataset.src || lazyImage.src;
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+
+      // Наблюдаем за всеми "ленивыми" изображениями
+      lazyImages.forEach(function (lazyImage) {
+        // Сохраняем оригинальный src в data-src, если его еще нет
+        if (!lazyImage.dataset.src) {
+          lazyImage.dataset.src = lazyImage.src;
+        }
+        lazyImageObserver.observe(lazyImage);
+      });
+    }
+  }
+
+  // Для браузеров с поддержкой loading="lazy" ничего дополнительно не делаем
+  // Они сами позаботятся о ленивой загрузке
+});

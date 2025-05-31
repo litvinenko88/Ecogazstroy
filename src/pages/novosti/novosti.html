@@ -11,8 +11,11 @@
       name="keywords"
       content="новости газификации, газовое оборудование, проектирование инженерных сетей, системы водоснабжения, вентиляция и кондиционирование" />
     <link rel="stylesheet" href="news-page.css" />
-    <link rel="stylesheet" href="/src/assets/css/novosti.css" />
-    <link rel="icon" href="/src/assets/img/icon.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="/src/pages/novosti/novosti.css" />
+    <link
+      rel="icon"
+      href="/src/assets/img/icon/icon.webp"
+      type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -41,7 +44,7 @@
               <div class="logo-container">
                 <a href="/">
                   <img
-                    src="/assets/img/egs_3.webp"
+                    src="/src/assets/img/icon/egs_3.webp"
                     alt="Логотип ЭкоГазСтрой"
                     class="logo-img" />
                   <span class="logo-text">ЭкоГазСтрой</span>
@@ -56,13 +59,19 @@
                 <ul class="nav-list">
                   <li class="nav-item"><a href="/">Газификация</a></li>
                   <li class="nav-item">
-                    <a href="/pages/proyektirovaniye.html">Проектирование</a>
+                    <a href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                      >Проектирование</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a href="/pages/proyektirovaniye.html">Водоснабжение</a>
+                    <a href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                      >Водоснабжение</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a href="/pages/proyektirovaniye.html">Вентиляция</a>
+                    <a href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                      >Вентиляция</a
+                    >
                   </li>
                 </ul>
               </nav>
@@ -118,13 +127,13 @@
           <section class="news-grid">
             <!-- Карточка 1 -->
             <a
-              href="/pages/pages-novosti/gazifikaciya/tekhnologii-gazifikatsii.html"
+              href="/src/pages/novosti/novostnyye-stranitsy/gazifikaciya/tekhnologii-gazifikatsii.html"
               class="news-card animate-fade-up"
               data-category="gazifikaciya"
               data-delay="0.1s">
               <div class="card-image">
                 <img
-                  src="/assets/img/nevosti/Газификация дома.webp"
+                  src="/src/assets/img/news-page/news-card/Газификация дома.webp"
                   alt="Современные технологии газификации" />
               </div>
               <div class="card-content">
@@ -137,9 +146,6 @@
                 <time class="card-date" datetime="2023-11-15">30 Мая 2025</time>
               </div>
             </a>
-
-            <!-- Остальные карточки новостей (2-8) -->
-            <!-- ... -->
           </section>
         </div>
       </main>
@@ -150,7 +156,7 @@
           <div class="egs-footer-brand">
             <a href="/" class="egs-logo-link"
               ><img
-                src="/assets/img/egs_3.webp"
+                src="/src/assets/img/icon/egs_3.webp"
                 alt="ЭкоГазСтрой"
                 class="egs-logo" />
 
@@ -177,17 +183,23 @@
                 <a href="/" class="egs-footer-link">Газификация</a>
               </li>
               <li class="egs-footer-item">
-                <a href="/pages/proyektirovaniye.html" class="egs-footer-link"
+                <a
+                  href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                  class="egs-footer-link"
                   >Проектирование</a
                 >
               </li>
               <li class="egs-footer-item">
-                <a href="/pages/proyektirovaniye.html" class="egs-footer-link"
+                <a
+                  href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                  class="egs-footer-link"
                   >Водоснабжение</a
                 >
               </li>
               <li class="egs-footer-item">
-                <a href="/pages/proyektirovaniye.html" class="egs-footer-link"
+                <a
+                  href="/src/pages/proyektirovaniye/proyektirovaniye.html"
+                  class="egs-footer-link"
                   >Вентиляция</a
                 >
               </li>
@@ -220,7 +232,7 @@
             <ul class="egs-footer-list">
               <li class="egs-footer-item">
                 <a
-                  href="/pages/politika-konfidentsialnosti.html"
+                  href="/src/pages/politika-konfidentsialnosti/politika-konfidentsialnosti.html"
                   class="egs-footer-link"
                   >Политика конфиденциальности</a
                 >
@@ -263,6 +275,6 @@
       </footer>
     </div>
 
-    <script src="/js/novosti.js"></script>
+    <script src="/src/pages/novosti/novosti.js"></script>
   </body>
 </html>

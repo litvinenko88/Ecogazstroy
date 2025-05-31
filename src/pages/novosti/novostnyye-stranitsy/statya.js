@@ -81,26 +81,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Lazy loading for images
-  if ("loading" in HTMLImageElement.prototype) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    lazyImages.forEach((img) => {
-      img.src = img.dataset.src;
-    });
-  } else {
-    // Fallback for browsers that don't support native lazy loading
-    const lazyLoadObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          lazyLoadObserver.unobserve(img);
+  // Enhanced lazy loading for images
+  const lazyLoadImages = () => {
+    // If browser supports native lazy loading
+    if ("loading" in HTMLImageElement.prototype) {
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach((img) => {
+        // Make sure image is in viewport to trigger loading
+        if (img.getBoundingClientRect().top < window.innerHeight + 100) {
+          img.src = img.getAttribute("src");
         }
       });
-    });
+    } else {
+      // Fallback for browsers without native lazy loading
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
 
-    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-      lazyLoadObserver.observe(img);
-    });
-  }
+      const lazyLoadObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.getAttribute("src");
+              lazyLoadObserver.unobserve(img);
+            }
+          });
+        },
+        {
+          rootMargin: "200px 0px", // Load images 200px before they enter viewport
+        }
+      );
+
+      lazyImages.forEach((img) => {
+        // If image is already in viewport, load it immediately
+        if (img.getBoundingClientRect().top < window.innerHeight) {
+          img.src = img.getAttribute("src");
+        } else {
+          lazyLoadObserver.observe(img);
+        }
+      });
+    }
+  };
+
+  // Initial load
+  lazyLoadImages();
+
+  // Load images on scroll/resize
+  let lazyLoadTimeout;
+  window.addEventListener("scroll", () => {
+    clearTimeout(lazyLoadTimeout);
+    lazyLoadTimeout = setTimeout(lazyLoadImages, 200);
+  });
+  window.addEventListener("resize", lazyLoadImages);
 });

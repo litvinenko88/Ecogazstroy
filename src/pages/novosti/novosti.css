@@ -35,7 +35,7 @@ body {
       rgba(37, 96, 184, 0.9),
       rgba(37, 96, 184, 0.9)
     ),
-    url("/assets/img/Главное\ фото.webp");
+    url("/src/assets/img/main-page/Главное\ фото.webp");
   background-size: cover;
   background-position: center;
   color: white;
