@@ -46,137 +46,137 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Храм Александра Невского",
       images: [
         {
-          src: "./assets/img/imgObject/1_1_11zon.webp",
+          src: "/src/assets/img/main-page/project/1_1_11zon.webp",
           alt: "Котельная в храме Александра Невского",
         },
         {
-          src: "./assets/img/imgObject/2_2_11zon.webp",
+          src: "/src/assets/img/main-page/project/2_2_11zon.webp",
           alt: "Вентиляция в котельной",
         },
         {
-          src: "./assets/img/imgObject/3_3_11zon.webp",
+          src: "/src/assets/img/main-page/project/3_3_11zon.webp",
           alt: "Информационный стенд котельной",
         },
         {
-          src: "./assets/img/imgObject/4_4_11zon.webp",
+          src: "/src/assets/img/main-page/project/4_4_11zon.webp",
           alt: "Котлы навиен в котельной",
         },
         {
-          src: "./assets/img/imgObject/5_5_11zon.webp",
+          src: "/src/assets/img/main-page/project/5_5_11zon.webp",
           alt: "Газовый шкаф открытый",
         },
         {
-          src: "./assets/img/imgObject/6_6_11zon.webp",
+          src: "/src/assets/img/main-page/project/6_6_11zon.webp",
           alt: "Новый газовый шкаф",
         },
         {
-          src: "./assets/img/imgObject/7_7_11zon.webp",
+          src: "/src/assets/img/main-page/project/7_7_11zon.webp",
           alt: "Газовый счетчик",
         },
         {
-          src: "./assets/img/imgObject/8_8_11zon.webp",
+          src: "/src/assets/img/main-page/project/8_8_11zon.webp",
           alt: "Устройство котельной внутри",
         },
         {
-          src: "./assets/img/imgObject/9_9_11zon.webp",
+          src: "/src/assets/img/main-page/project/9_9_11zon.webp",
           alt: "Газовый стояк с приборами контроля",
         },
         {
-          src: "./assets/img/imgObject/10_10_11zon.webp",
+          src: "/src/assets/img/main-page/project/10_10_11zon.webp",
           alt: "Фасад котельной",
         },
       ],
-      videoLink: "/assets/video/Бурмистрова.mp4",
+      videoLink: "/src/assets/video/Бурмистрова.mp4",
     },
     {
       title: "Тухачевского 8 ТЦ Москва",
       images: [
         {
-          src: "./assets/img/imgObject/11_11_11zon.webp",
+          src: "/src/assets/img/main-page/project/11_11_11zon.webp",
           alt: "Газовый шкаф в ТЦ Москва",
         },
         {
-          src: "./assets/img/imgObject/12_12_11zon.webp",
+          src: "/src/assets/img/main-page/project/12_12_11zon.webp",
           alt: "Подключение газового шкафа",
         },
         {
-          src: "./assets/img/imgObject/13_13_11zon.webp",
+          src: "/src/assets/img/main-page/project/13_13_11zon.webp",
           alt: "Подключения газа к котельной",
         },
         {
-          src: "./assets/img/imgObject/14_14_11zon.webp",
+          src: "/src/assets/img/main-page/project/14_14_11zon.webp",
           alt: "Пайка газовых труб",
         },
         {
-          src: "./assets/img/imgObject/15_15_11zon.webp",
+          src: "/src/assets/img/main-page/project/15_15_11zon.webp",
           alt: "Газовая труба",
         },
         {
-          src: "./assets/img/imgObject/16_16_11zon.webp",
+          src: "/src/assets/img/main-page/project/16_16_11zon.webp",
           alt: "Траншея с газовой трубой",
         },
         {
-          src: "./assets/img/imgObject/17_17_11zon.webp",
+          src: "/src/assets/img/main-page/project/17_17_11zon.webp",
           alt: "Траншея выкопаная под газификацию",
         },
         {
-          src: "./assets/img/imgObject/18_18_11zon.webp",
+          src: "/src/assets/img/main-page/project/18_18_11zon.webp",
           alt: "ПВХ труба газовая",
         },
         {
-          src: "./assets/img/imgObject/19_19_11zon.webp",
+          src: "/src/assets/img/main-page/project/19_19_11zon.webp",
           alt: "Пояльный аппрат протва",
         },
       ],
-      videoLink: "/assets/video/Москва.mp4",
+      videoLink: "/src/assets/video/Москва.mp4",
     },
     {
       title: "Мичурина 62а",
       images: [
         {
-          src: "./assets/img/imgObject/20_20_11zon.webp",
+          src: "/src/assets/img/main-page/project/20_20_11zon.webp",
           alt: "Газовый счетчик",
         },
         {
-          src: "./assets/img/imgObject/21_21_11zon.webp",
+          src: "/src/assets/img/main-page/project/21_21_11zon.webp",
           alt: "Маленький газовый шкаф",
         },
         {
-          src: "./assets/img/imgObject/22_22_11zon.webp",
+          src: "/src/assets/img/main-page/project/22_22_11zon.webp",
           alt: "Газовая труба",
         },
         {
-          src: "./assets/img/imgObject/23_23_11zon.webp",
+          src: "/src/assets/img/main-page/project/23_23_11zon.webp",
           alt: "Естествинная винтиляция в доме под газ",
         },
         {
-          src: "./assets/img/imgObject/24_24_11zon.webp",
+          src: "/src/assets/img/main-page/project/24_24_11zon.webp",
           alt: "Фасад дома с газовыми трубами",
         },
         {
-          src: "./assets/img/imgObject/25_25_11zon.webp",
+          src: "/src/assets/img/main-page/project/25_25_11zon.webp",
           alt: "Труба винтиляции",
         },
         {
-          src: "./assets/img/imgObject/26_26_11zon.webp",
+          src: "/src/assets/img/main-page/project/26_26_11zon.webp",
           alt: "Настенный кател Навиен",
         },
       ],
-      videoLink: "/assets/video/Мичурина.mp4",
+      videoLink: "/src/assets/video/Мичурина.mp4",
     },
     {
       title: "пр-кт. Кулакова 24/1",
       images: [
         {
-          src: "./assets/img/imgObject/27_27_11zon.webp",
+          src: "/src/assets/img/main-page/project/27_27_11zon.webp",
           alt: "Разводка газовых труб",
         },
         {
-          src: "./assets/img/imgObject/28_28_11zon.webp",
+          src: "/src/assets/img/main-page/project/28_28_11zon.webp",
           alt: "Разводка труб в газовой кательной",
         },
         {
-          src: "./assets/img/imgObject/29_29_11zon.webp",
+          src: "/src/assets/img/main-page/project/29_29_11zon.webp",
           alt: "Котельная газовая",
         },
       ],

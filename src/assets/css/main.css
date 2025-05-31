@@ -1,6 +1,6 @@
-@import "/assets/css/normalize.css";
-@import "/assets/css/reset.css";
-@import "/assets/fonts/stylesheet.css";
+@import "/src/assets/css/normalize.css";
+@import "/src/assets/css/reset.css";
+@import "/src/assets/fonts/stylesheet.css";
 
 :root {
   /* Цвета */
@@ -71,7 +71,7 @@ body {
 .header-container {
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/Главное\ фото.webp");
+  background-image: url("/src/assets/img/main-page/Главное\ фото.webp");
   background-size: cover;
   background-position: center;
 }
@@ -1088,7 +1088,7 @@ body.request-modal-open {
   padding: var(--spacing-huge) var(--spacing-giant);
   position: relative;
   width: 100%;
-  background-image: url("/assets/img/Блок\ 3.webp");
+  background-image: url("/src/assets/img/main-page/Блок\ 3.webp");
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -1660,7 +1660,7 @@ body.details-modal-open {
 .quiz-section {
   padding: 60px 0;
   position: relative;
-  background-image: url("/assets/img/Блок\ 5.webp");
+  background-image: url("/src/assets/img/main-page/Блок\ 5.webp");
   background-size: cover;
   background-position: center;
 }
@@ -2185,7 +2185,7 @@ body.gas-step-modal-open {
 .documents-slider-section {
   width: 100%;
   padding: 80px 0;
-  background: url("/assets/img/Блок\ 7.webp") no-repeat center center;
+  background: url("/src/assets/img/main-page/Блок\ 7.webp") no-repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -2479,7 +2479,7 @@ body.gas-step-modal-open {
 /* Основные стили секции */
 .contact-help-section {
   position: relative;
-  background: url("/assets/img/Блок\ 9.webp") no-repeat center center;
+  background: url("/src/assets/img/main-page/Блок\ 9.webp") no-repeat center center;
   background-size: cover;
   padding: 60px 100px;
   overflow: hidden;

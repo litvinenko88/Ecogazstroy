@@ -1,6 +1,6 @@
-@import "/assets/css/normalize.css";
-@import "/assets/css/reset.css";
-@import "/assets/fonts/stylesheet.css";
+@import "/src/assets/css/normalize.css";
+@import "/src/assets/css/reset.css";
+@import "/src/assets/fonts/stylesheet.css";
 
 /* Base styles */
 :root {
