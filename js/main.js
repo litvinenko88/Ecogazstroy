@@ -860,7 +860,38 @@ document.addEventListener("DOMContentLoaded", function () {
     marqueeContent.appendChild(items[i].cloneNode(true));
   }
 
-  // Обработчики событий для модального окна
+  // Обработчики событий для кнопок просмотра и скачивания
+  document.querySelectorAll(".document-view-btn").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const img = this.closest(".document-image-container").querySelector(
+        "img"
+      );
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  document.querySelectorAll(".document-download-btn").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const pdfUrl = this.closest(".document-image-container").querySelector(
+        "img"
+      ).dataset.pdf;
+      if (pdfUrl) {
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    });
+  });
+
+  // Обработчики событий для модального окна (старый функционал)
   document.querySelectorAll(".documents-marquee-content img").forEach((img) => {
     img.addEventListener("click", function () {
       modalImg.src = this.src;

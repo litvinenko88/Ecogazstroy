@@ -2252,14 +2252,60 @@ body.gas-step-modal-open {
   justify-content: center;
 }
 
+.document-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .documents-marquee-content img {
   max-height: 100%;
   object-fit: contain;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   background-color: #fff;
   padding: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.document-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.document-image-container:hover .document-overlay {
+  opacity: 1;
+}
+
+.document-view-btn,
+.document-download-btn {
+  background-color: #2560b8;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.document-view-btn:hover,
+.document-download-btn:hover {
+  background-color: #1a4a8f;
 }
 
 .documents-marquee-content:hover {
