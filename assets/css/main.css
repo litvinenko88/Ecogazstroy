@@ -108,10 +108,11 @@ header {
   gap: var(--spacing-xl);
 }
 
-.header-logo-container {
+.header-logo-container a {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  text-decoration: none;
 }
 
 .header-logo-img {
@@ -122,6 +123,7 @@ header {
 .header-logo-text {
   font-size: var(--font-size-xl);
   font-weight: 700;
+  color: #ffffff
 }
 
 /* Навигация */
@@ -3949,14 +3951,13 @@ body.gas-step-modal-open {
     font-size: 15px;
   }
 
-  egs-footer {
+  .egs-footer {
     padding: 20px;
   }
   .egs-footer-columns {
     display: block;
   }
-  .egs-footer-top {
-  }
+
   .egs-footer-brand {
     flex-direction: column;
     gap: 10px;

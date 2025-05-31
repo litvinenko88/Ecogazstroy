@@ -198,7 +198,7 @@ body {
 .pros h4,
 .cons h4 {
   margin-top: 0;
-  padding-bottom: 5px;
+  padding: 0 20px;
   border-bottom: 2px solid;
 }
 
