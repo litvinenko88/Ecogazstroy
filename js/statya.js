@@ -1,53 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".mobile-menu-toggle");
-  const navList = document.querySelector(".nav-list");
-  const body = document.body;
-
-  // Создаем элемент для крестика
-  const closeIcon = document.createElement("i");
-  closeIcon.className = "fas fa-times";
-  menuToggle.appendChild(closeIcon);
-
-  menuToggle.addEventListener("click", function () {
-    navList.classList.toggle("active");
-    this.classList.toggle("active");
-    body.classList.toggle("no-scroll");
-
-    // Переключаем иконку между бургером и крестиком
-    const icon = this.querySelector("i");
-    if (navList.classList.contains("active")) {
-      icon.classList.remove("fa-bars");
-      icon.classList.add("fa-times");
-    } else {
-      icon.classList.remove("fa-times");
-      icon.classList.add("fa-bars");
-    }
-  });
-
-  // Закрытие меню при клике на пункт
-  document.querySelectorAll(".nav-item").forEach((item) => {
-    item.addEventListener("click", function () {
-      navList.classList.remove("active");
-      menuToggle.classList.remove("active");
-      body.classList.remove("no-scroll");
-
-      // Возвращаем иконку бургера
-      const icon = menuToggle.querySelector("i");
-      icon.classList.remove("fa-times");
-      icon.classList.add("fa-bars");
-    });
-  });
-});
-/**************************************** */
-// Анимация появления элементов при скролле
-document.addEventListener("DOMContentLoaded", function () {
-  const features = document.querySelectorAll(".gas-tech-feature");
+  // Initialize animations with Intersection Observer
+  const animateElements = document.querySelectorAll('[class*="animate-"]');
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+          const element = entry.target;
+          const delay = element.getAttribute("data-delay") || 0;
+
+          setTimeout(() => {
+            element.style.animationDelay = delay + "s";
+            element.classList.add("animated");
+          }, delay * 1000);
+
+          observer.unobserve(element);
         }
       });
     },
@@ -56,12 +23,84 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   );
 
-  features.forEach((feature) => {
-    observer.observe(feature);
+  animateElements.forEach((el) => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: "smooth",
+        });
+      }
+    });
   });
 
-  // Задержка для последовательного появления
-  features.forEach((feature, index) => {
-    feature.style.animationDelay = `${index * 0.2}s`;
+  // Share buttons functionality
+  const shareButtons = {
+    vk: function () {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      window.open(
+        `https://vk.com/share.php?url=${url}&title=${title}`,
+        "_blank",
+        "width=550,height=400"
+      );
+    },
+    tg: function () {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(document.title);
+      window.open(
+        `https://t.me/share/url?url=${url}&text=${text}`,
+        "_blank",
+        "width=550,height=400"
+      );
+    },
+    wa: function () {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(document.title);
+      window.open(
+        `https://wa.me/?text=${text}%20${url}`,
+        "_blank",
+        "width=550,height=400"
+      );
+    },
+  };
+
+  document.querySelectorAll(".share-button").forEach((button) => {
+    const platform = button.classList[1];
+    if (shareButtons[platform]) {
+      button.addEventListener("click", shareButtons[platform]);
+    }
   });
+
+  // Lazy loading for images
+  if ("loading" in HTMLImageElement.prototype) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach((img) => {
+      img.src = img.dataset.src;
+    });
+  } else {
+    // Fallback for browsers that don't support native lazy loading
+    const lazyLoadObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          lazyLoadObserver.unobserve(img);
+        }
+      });
+    });
+
+    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      lazyLoadObserver.observe(img);
+    });
+  }
 });
