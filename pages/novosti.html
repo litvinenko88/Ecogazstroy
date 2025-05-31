@@ -1,59 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Новости о газификации и инженерных системах | ЭкоГазСтрой</title>
     <meta
       name="description"
-      content="Читайте свежие новости от компании Экогазстрой - монтаж газового оборудования, 
-      реализованные проекты, изменения в законодательстве и полезные статьи. 
-      Будьте в курсе последних событий!" />
+      content="Актуальные новости о газификации, проектировании, водоснабжении и вентиляции. Последние технологии, изменения в законодательстве и реализованные проекты." />
     <meta
       name="keywords"
-      content="Новости по газу, Новости газификации Ставрополь" />
-    <meta
-      name="author"
-      content="Создатель сайта Николай 'litvinenko_n.v@mail.ru'" />
-    <link rel="icon" href="/assets/img/icon.webp" type="image/x-icon" />
-    <title>Новости от компании ЭкоГазСтрой - актуальные события</title>
-    <link rel="canonical" href="https://example.com/ecogazstroy" />
+      content="новости газификации, газовое оборудование, проектирование инженерных сетей, системы водоснабжения, вентиляция и кондиционирование" />
+    <link rel="stylesheet" href="news-page.css" />
     <link rel="stylesheet" href="/assets/css/novosti.css" />
-
+    <link rel="icon" href="/assets/img/icon.webp" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-FWSJ0XJJV0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-FWSJ0XJJV0");
-    </script>
   </head>
   <body>
     <div class="site-wrapper">
-      <div class="header-container">
-        <div class="header-content">
-          <header>
-            <div class="header-logo-container">
-              <a href="/index.html"
-                ><img
-                  src="/assets/img/egs_3.webp"
-                  alt="Логотип ЭкоГазСтрой"
-                  class="header-logo-img"
-              /></a>
-              <p class="header-logo-text">ЭкоГазСтрой</p>
-            </div>
-            <div class="header-right-section">
-              <nav class="main-navigation">
+      <!-- Объединенная шапка и герой-секция -->
+      <section class="header-hero-section">
+        <div class="container">
+          <!-- Шапка -->
+          <header class="main-header">
+            <div class="header-content">
+              <div class="logo-container">
+                <a href="/">
+                  <img
+                    src="/assets/img/egs_3.webp"
+                    alt="Логотип ЭкоГазСтрой"
+                    class="logo-img" />
+                  <span class="logo-text">ЭкоГазСтрой</span>
+                </a>
+              </div>
+
+              <nav class="main-nav">
                 <button class="mobile-menu-toggle" aria-label="Меню">
                   <i class="fas fa-bars"></i>
+                  <i class="fas fa-times"></i>
                 </button>
                 <ul class="nav-list">
                   <li class="nav-item"><a href="/">Газификация</a></li>
@@ -64,224 +49,144 @@
                     <a href="/pages/proyektirovaniye.html">Водоснабжение</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/pages/proyektirovaniye.html"
-                      >Вентиляция и кондиционирование</a
-                    >
+                    <a href="/pages/proyektirovaniye.html">Вентиляция</a>
                   </li>
                 </ul>
               </nav>
             </div>
           </header>
 
-          <div class="hero-section">
-            <div class="hero-text-container">
-              <h1 class="hero-title">Новости</h1>
-            </div>
+          <!-- Герой-секция -->
+          <div class="hero-content">
+            <h1 class="hero-title animate-fade-up">Новости компании</h1>
+            <p class="hero-subtitle animate-fade-up" data-delay="0.2s">
+              Будьте в курсе последних событий, технологий и реализованных
+              проектов
+            </p>
           </div>
-        </div>
-      </div>
-
-      <!-- Секция новостей с фильтрами -->
-      <section class="news-section">
-        <div class="news-filter">
-          <div class="filter-select-wrapper">
-            <select class="filter-select">
-              <option value="all">Все новости</option>
-              <option value="gazifikaciya">Газификация</option>
-              <option value="proektirovanie">Проектирование</option>
-              <option value="vodosnabzhenie">Водоснабжение</option>
-              <option value="ventilyaciya">
-                Вентиляция и кондиционирование
-              </option>
-            </select>
-          </div>
-
-          <div class="filter-buttons">
-            <button class="filter-btn active" data-category="all">
-              Все новости
-            </button>
-            <button class="filter-btn" data-category="gazifikaciya">
-              Газификация
-            </button>
-            <button class="filter-btn" data-category="proektirovanie">
-              Проектирование
-            </button>
-            <button class="filter-btn" data-category="vodosnabzhenie">
-              Водоснабжение
-            </button>
-            <button class="filter-btn" data-category="ventilyaciya">
-              Вентиляция и кондиционирование
-            </button>
-          </div>
-        </div>
-
-        <div class="news-grid">
-          <!-- Карточка 1 -->
-          <a
-            href="/pages/pages-novosti/gazifikaciya/tekhnologii-gazifikatsii.html"
-            class="news-card"
-            data-category="gazifikaciya">
-            <img
-              src="/assets/img/nevosti/gaz/montazh-inzhenernyh-_11zon.webp"
-              alt="Новость 1"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Газификация</span>
-              <h3 class="news-card-title">
-                Технологии в газификации частных домов
-              </h3>
-              <p class="news-card-excerpt">
-                Раньше газификация означала трубы, котлы и ручные настройки.
-                Сейчас – это умные системы, которые:
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 2 -->
-          <a
-            href="/pages/news-article.html?id=2"
-            class="news-card"
-            data-category="gazifikaciya">
-            <img
-              src="https://via.placeholder.com/400x300?text=Газификация"
-              alt="Новость 2"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Газификация</span>
-              <h3 class="news-card-title">
-                Газификация поселков в Московской области
-              </h3>
-              <p class="news-card-excerpt">
-                В 2023 году планируется подключить к газовой сети 15 новых
-                поселков...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 3 -->
-          <a
-            href="/pages/news-article.html?id=3"
-            class="news-card"
-            data-category="proektirovanie">
-            <img
-              src="https://via.placeholder.com/400x300?text=Проектирование"
-              alt="Новость 3"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Проектирование</span>
-              <h3 class="news-card-title">
-                Новые стандарты проектирования инженерных сетей
-              </h3>
-              <p class="news-card-excerpt">
-                С 2024 года вступают в силу новые требования к проектированию
-                коммуникаций...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 4 -->
-          <a
-            href="/pages/news-article.html?id=4"
-            class="news-card"
-            data-category="proektirovanie">
-            <img
-              src="https://via.placeholder.com/400x300?text=Проектирование"
-              alt="Новость 4"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Проектирование</span>
-              <h3 class="news-card-title">
-                Автоматизация процессов проектирования
-              </h3>
-              <p class="news-card-excerpt">
-                Наши инженеры внедрили новые программные решения для ускорения
-                работы...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 5 -->
-          <a
-            href="/pages/news-article.html?id=5"
-            class="news-card"
-            data-category="vodosnabzhenie">
-            <img
-              src="https://via.placeholder.com/400x300?text=Водоснабжение"
-              alt="Новость 5"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Водоснабжение</span>
-              <h3 class="news-card-title">
-                Модернизация систем водоснабжения в регионе
-              </h3>
-              <p class="news-card-excerpt">
-                Завершены работы по реконструкции водопроводных сетей в
-                центральном районе...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 6 -->
-          <a
-            href="/pages/news-article.html?id=6"
-            class="news-card"
-            data-category="vodosnabzhenie">
-            <img
-              src="https://via.placeholder.com/400x300?text=Водоснабжение"
-              alt="Новость 6"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Водоснабжение</span>
-              <h3 class="news-card-title">Новые технологии очистки воды</h3>
-              <p class="news-card-excerpt">
-                Представляем инновационные системы фильтрации для частных домов
-                и предприятий...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 7 -->
-          <a
-            href="/pages/news-article.html?id=7"
-            class="news-card"
-            data-category="ventilyaciya">
-            <img
-              src="https://via.placeholder.com/400x300?text=Вентиляция"
-              alt="Новость 7"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Вентиляция</span>
-              <h3 class="news-card-title">
-                Энергоэффективные системы вентиляции
-              </h3>
-              <p class="news-card-excerpt">
-                Как сократить расходы на вентиляцию без потери качества воздуха
-                в помещении...
-              </p>
-            </div>
-          </a>
-
-          <!-- Карточка 8 -->
-          <a
-            href="/pages/news-article.html?id=8"
-            class="news-card"
-            data-category="ventilyaciya">
-            <img
-              src="https://via.placeholder.com/400x300?text=Кондиционирование"
-              alt="Новость 8"
-              class="news-card-img" />
-            <div class="news-card-content">
-              <span class="news-card-category">Вентиляция</span>
-              <h3 class="news-card-title">Умные системы кондиционирования</h3>
-              <p class="news-card-excerpt">
-                Новое поколение климатических систем с искусственным
-                интеллектом...
-              </p>
-            </div>
-          </a>
         </div>
       </section>
+
+      <!-- Основной контент -->
+      <main class="main-content">
+        <div class="container">
+          <!-- Фильтры новостей -->
+          <section class="news-filters">
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option value="all">Все новости</option>
+                <option value="gazifikaciya">Газификация</option>
+                <option value="proektirovanie">Проектирование</option>
+                <option value="vodosnabzhenie">Водоснабжение</option>
+                <option value="ventilyaciya">Вентиляция</option>
+              </select>
+            </div>
+
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-category="all">
+                Все новости
+              </button>
+              <button class="filter-btn" data-category="gazifikaciya">
+                Газификация
+              </button>
+              <button class="filter-btn" data-category="proektirovanie">
+                Проектирование
+              </button>
+              <button class="filter-btn" data-category="vodosnabzhenie">
+                Водоснабжение
+              </button>
+              <button class="filter-btn" data-category="ventilyaciya">
+                Вентиляция
+              </button>
+            </div>
+          </section>
+
+          <!-- Сетка новостей -->
+          <section class="news-grid">
+            <!-- Карточка 1 -->
+            <a
+              href="/pages/pages-novosti/gazifikaciya/tekhnologii-gazifikatsii.html"
+              class="news-card animate-fade-up"
+              data-category="gazifikaciya"
+              data-delay="0.1s">
+              <div class="card-image">
+                <img
+                  src="/assets/img/nevosti/gaz/montazh-inzhenernyh-_11zon.webp"
+                  alt="Современные технологии газификации"
+                  loading="lazy" />
+              </div>
+              <div class="card-content">
+                <span class="card-category">Газификация</span>
+                <h3 class="card-title">
+                  Технологии в газификации частных домов
+                </h3>
+                <p class="card-excerpt">
+                  Раньше газификация означала трубы, котлы и ручные настройки.
+                  Сейчас – это умные системы, которые следят за безопасностью и
+                  экономят ваши деньги.
+                </p>
+                <time class="card-date" datetime="2023-11-15"
+                  >15 ноября 2023</time
+                >
+              </div>
+            </a>
+
+            <!-- Остальные карточки новостей (2-8) -->
+            <!-- ... -->
+          </section>
+        </div>
+      </main>
+
+      <!-- Подвал -->
+      <footer class="main-footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-logo">
+              <img
+                src="/assets/img/egs_3.webp"
+                alt="Логотип ЭкоГазСтрой"
+                class="footer-logo-img" />
+              <p class="footer-logo-text">ЭкоГазСтрой</p>
+            </div>
+            <div class="footer-links">
+              <div class="footer-column">
+                <h4>Компания</h4>
+                <ul>
+                  <li><a href="/about.html">О нас</a></li>
+                  <li><a href="/projects.html">Проекты</a></li>
+                  <li><a href="/news.html">Новости</a></li>
+                  <li><a href="/contacts.html">Контакты</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <h4>Услуги</h4>
+                <ul>
+                  <li><a href="/gazifikaciya.html">Газификация</a></li>
+                  <li><a href="/proektirovanie.html">Проектирование</a></li>
+                  <li><a href="/vodosnabzhenie.html">Водоснабжение</a></li>
+                  <li><a href="/ventilyaciya.html">Вентиляция</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <h4>Контакты</h4>
+                <ul>
+                  <li><i class="fas fa-phone"></i> +7 (123) 456-78-90</li>
+                  <li><i class="fas fa-envelope"></i> info@ecogazstroy.ru</li>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> г. Ставрополь, ул.
+                    Примерная, 123
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2023 ЭкоГазСтрой. Все права защищены.</p>
+          </div>
+        </div>
+      </footer>
     </div>
+
     <script src="/js/novosti.js"></script>
   </body>
 </html>

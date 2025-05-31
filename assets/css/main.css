@@ -115,14 +115,13 @@ header {
 }
 
 .header-logo-img {
-  height: 80px;
+  height: 60px;
   width: auto;
 }
 
 .header-logo-text {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  color: var(--accent-color);
 }
 
 /* Навигация */

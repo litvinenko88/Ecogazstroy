@@ -1,3 +1,7 @@
+@import "/assets/css/normalize.css";
+@import "/assets/css/reset.css";
+@import "/assets/fonts/stylesheet.css";
+
 /* Base styles */
 :root {
   --primary-color: #2560b8;
@@ -13,7 +17,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Roboto Condensed";
   line-height: 1.6;
   color: var(--text-color);
   background-color: #fff;
@@ -29,7 +33,11 @@ body {
 
 /* Article header */
 .article-header {
-  background-color: var(--primary-color);
+  background-image: linear-gradient(
+      rgb(37, 96, 184, 0.8),
+      rgb(37, 96, 184, 0.8)
+    ),
+    url("/assets/img/Главное\ фото.webp");
   color: white;
   padding: 60px 0 40px;
   margin-bottom: 40px;
