@@ -123,7 +123,7 @@ header {
 .header-logo-text {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  color: #ffffff
+  color: #ffffff;
 }
 
 /* Навигация */
@@ -2185,7 +2185,8 @@ body.gas-step-modal-open {
 .documents-slider-section {
   width: 100%;
   padding: 80px 0;
-  background: url("/src/assets/img/main-page/Блок\ 7.webp") no-repeat center center;
+  background: url("/src/assets/img/main-page/Блок\ 7.webp") no-repeat center
+    center;
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -2219,7 +2220,7 @@ body.gas-step-modal-open {
 
 .documents-marquee {
   width: 100%;
-  height: 250px;
+  height: 350px; /* Увеличена высота для лучшего отображения */
   position: relative;
   overflow: hidden;
 }
@@ -2239,14 +2240,16 @@ body.gas-step-modal-open {
   height: 100%;
   display: flex;
   align-items: center;
-  animation: documents-scrolling 60s linear infinite;
+  animation: documents-scrolling 20s linear infinite; /* Ускоренная анимация */
   padding: 0;
   margin: 0;
+  will-change: transform;
+  touch-action: pan-y; /* Для свайпа */
 }
 
 .documents-marquee-content li {
-  flex: 0 0 calc(10% - 20px);
-  margin: 0 10px;
+  flex: 0 0 250px; /* Фиксированная ширина элементов */
+  margin: 0 20px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -2260,16 +2263,23 @@ body.gas-step-modal-open {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.document-image-container:hover {
+  transform: translateY(-5px);
 }
 
 .documents-marquee-content img {
-  max-height: 100%;
-  object-fit: contain;
+  height: 100%;
+  width: auto;
+  object-fit: cover;
   cursor: pointer;
   transition: all 0.3s ease;
   background-color: #fff;
-  padding: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .document-overlay {
@@ -2296,29 +2306,29 @@ body.gas-step-modal-open {
   background-color: #2560b8;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 10px 15px;
   margin: 5px;
   cursor: pointer;
   border-radius: 4px;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 150px;
+  text-align: center;
 }
 
 .document-view-btn:hover,
 .document-download-btn:hover {
   background-color: #1a4a8f;
+  transform: scale(1.05);
 }
 
-.documents-marquee-content:hover {
-  animation-play-state: paused;
-}
-
+/* Анимации */
 @keyframes documents-scrolling {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-250px * 5)); /* Более точный расчет */
   }
 }
 
@@ -2344,6 +2354,7 @@ body.gas-step-modal-open {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit: contain;
 }
 
 .documents-modal-close {
@@ -2359,6 +2370,7 @@ body.gas-step-modal-open {
 
 .documents-modal-close:hover {
   color: #ccc;
+  transform: scale(1.2);
 }
 
 @keyframes documents-fadeIn {
@@ -2479,7 +2491,8 @@ body.gas-step-modal-open {
 /* Основные стили секции */
 .contact-help-section {
   position: relative;
-  background: url("/src/assets/img/main-page/Блок\ 9.webp") no-repeat center center;
+  background: url("/src/assets/img/main-page/Блок\ 9.webp") no-repeat center
+    center;
   background-size: cover;
   padding: 60px 100px;
   overflow: hidden;
@@ -3633,12 +3646,38 @@ body.gas-step-modal-open {
   }
 
   /* Для слайдера документов */
-  .documents-marquee-content li {
-    flex: 0 0 calc(33.333% - 20px);
+  .documents-slider-section {
+    padding: 50px 0;
   }
+
   .documents-slider-title {
-    font-size: 36px;
-    padding: 0 20px;
+    font-size: calc(var(--font-size-huge) - 0.5rem);
+    margin-bottom: 30px;
+  }
+
+  .documents-marquee {
+    height: 250px;
+  }
+
+  .documents-marquee-content li {
+    flex: 0 0 200px;
+    margin: 0 10px;
+  }
+
+  @keyframes documents-scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-200px * 5));
+    }
+  }
+
+  .document-view-btn,
+  .document-download-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    width: 120px;
   }
 
   /* Для шагов по газу */

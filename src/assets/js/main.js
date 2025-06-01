@@ -846,10 +846,14 @@ document.addEventListener("DOMContentLoaded", function () {
 /*******************слайдер документов**************************** */
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы слайдера
+  const marquee = document.querySelector(".documents-marquee");
   const marqueeContent = document.querySelector(".documents-marquee-content");
   const modal = document.getElementById("documentsModal");
   const modalImg = document.getElementById("documentsExpandedImage");
   const closeModal = document.querySelector(".documents-modal-close");
+
+  // Увеличиваем скорость прокрутки
+  marqueeContent.style.animationDuration = "20s";
 
   // Клонируем элементы для бесконечной прокрутки
   const items = marqueeContent.querySelectorAll("li");
@@ -858,6 +862,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
   for (let i = 0; i < displayedItems; i++) {
     marqueeContent.appendChild(items[i].cloneNode(true));
+  }
+
+  // Добавляем обработчики свайпа
+  let startX = 0;
+  let isDragging = false;
+  let currentTranslate = 0;
+  let animationId = 0;
+  let isAnimationPaused = false;
+
+  marqueeContent.addEventListener("mousedown", handleDragStart);
+  marqueeContent.addEventListener("touchstart", handleDragStart, {
+    passive: false,
+  });
+
+  marqueeContent.addEventListener("mousemove", handleDrag);
+  marqueeContent.addEventListener("touchmove", handleDrag, { passive: false });
+
+  marqueeContent.addEventListener("mouseup", handleDragEnd);
+  marqueeContent.addEventListener("mouseleave", handleDragEnd);
+  marqueeContent.addEventListener("touchend", handleDragEnd);
+
+  function handleDragStart(e) {
+    if (e.type === "touchstart") {
+      startX = e.touches[0].clientX;
+    } else {
+      startX = e.clientX;
+      e.preventDefault();
+    }
+
+    isDragging = true;
+    pauseAnimation();
+
+    // Получаем текущее положение трансформации
+    const style = window.getComputedStyle(marqueeContent);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    currentTranslate = matrix.m41;
+  }
+
+  function handleDrag(e) {
+    if (!isDragging) return;
+
+    let clientX;
+    if (e.type === "touchmove") {
+      clientX = e.touches[0].clientX;
+      e.preventDefault();
+    } else {
+      clientX = e.clientX;
+      e.preventDefault();
+    }
+
+    const diffX = clientX - startX;
+    marqueeContent.style.transform = `translateX(${
+      currentTranslate + diffX
+    }px)`;
+  }
+
+  function handleDragEnd() {
+    isDragging = false;
+    if (!isAnimationPaused) {
+      resumeAnimation();
+    }
+  }
+
+  function pauseAnimation() {
+    isAnimationPaused = true;
+    marqueeContent.style.animationPlayState = "paused";
+    cancelAnimationFrame(animationId);
+  }
+
+  function resumeAnimation() {
+    isAnimationPaused = false;
+    marqueeContent.style.animationPlayState = "running";
   }
 
   // Обработчики событий для кнопок просмотра и скачивания
@@ -877,21 +953,40 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".document-download-btn").forEach((btn) => {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
-      const pdfUrl = this.closest(".document-image-container").querySelector(
+      const img = this.closest(".document-image-container").querySelector(
         "img"
-      ).dataset.pdf;
+      );
+      const pdfUrl = img.dataset.pdf;
+
       if (pdfUrl) {
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = "";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Исправляем проблему с загрузкой PDF
+        fetch(pdfUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = pdfUrl.split("/").pop();
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+          })
+          .catch((error) => {
+            console.error("Ошибка при загрузке PDF:", error);
+            // Альтернативный способ, если fetch не работает
+            const a = document.createElement("a");
+            a.href = pdfUrl;
+            a.download = pdfUrl.split("/").pop();
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          });
       }
     });
   });
 
-  // Обработчики событий для модального окна (старый функционал)
+  // Обработчики событий для модального окна
   document.querySelectorAll(".documents-marquee-content img").forEach((img) => {
     img.addEventListener("click", function () {
       modalImg.src = this.src;
@@ -924,11 +1019,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Пауза при наведении
   marqueeContent.addEventListener("mouseenter", function () {
-    this.style.animationPlayState = "paused";
+    pauseAnimation();
   });
 
   marqueeContent.addEventListener("mouseleave", function () {
-    this.style.animationPlayState = "running";
+    if (!isDragging) {
+      resumeAnimation();
+    }
   });
 });
 /**********************как найти нас ***************************** */
