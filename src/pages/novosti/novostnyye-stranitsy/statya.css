@@ -533,4 +533,8 @@ body {
   .cta-section h2 {
     font-size: 1.5rem;
   }
+  .share-buttons {
+    flex-direction: column;
+    align-items: baseline;
+  }
 }
