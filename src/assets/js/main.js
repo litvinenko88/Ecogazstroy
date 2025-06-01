@@ -1,43 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.querySelector(".mobile-menu-toggle");
-  const navList = document.querySelector(".nav-list");
-  const body = document.body;
+// document.addEventListener("DOMContentLoaded", function () {
+//   const menuToggle = document.querySelector(".mobile-menu-toggle");
+//   const navList = document.querySelector(".nav-list");
+//   const body = document.body;
 
-  // Создаем элемент для крестика
-  const closeIcon = document.createElement("i");
-  closeIcon.className = "fas fa-times";
-  menuToggle.appendChild(closeIcon);
+//   // Создаем элемент для крестика
+//   const closeIcon = document.createElement("i");
+//   closeIcon.className = "fas fa-times";
+//   menuToggle.appendChild(closeIcon);
 
-  menuToggle.addEventListener("click", function () {
-    navList.classList.toggle("active");
-    this.classList.toggle("active");
-    body.classList.toggle("no-scroll");
+//   menuToggle.addEventListener("click", function () {
+//     navList.classList.toggle("active");
+//     this.classList.toggle("active");
+//     body.classList.toggle("no-scroll");
 
-    // Переключаем иконку между бургером и крестиком
-    const icon = this.querySelector("i");
-    if (navList.classList.contains("active")) {
-      icon.classList.remove("fa-bars");
-      icon.classList.add("fa-times");
-    } else {
-      icon.classList.remove("fa-times");
-      icon.classList.add("fa-bars");
-    }
-  });
+//     // Переключаем иконку между бургером и крестиком
+//     const icon = this.querySelector("i");
+//     if (navList.classList.contains("active")) {
+//       icon.classList.remove("fa-bars");
+//       icon.classList.add("fa-times");
+//     } else {
+//       icon.classList.remove("fa-times");
+//       icon.classList.add("fa-bars");
+//     }
+//   });
 
-  // Закрытие меню при клике на пункт
-  document.querySelectorAll(".nav-item").forEach((item) => {
-    item.addEventListener("click", function () {
-      navList.classList.remove("active");
-      menuToggle.classList.remove("active");
-      body.classList.remove("no-scroll");
+//   // Закрытие меню при клике на пункт
+//   document.querySelectorAll(".nav-item").forEach((item) => {
+//     item.addEventListener("click", function () {
+//       navList.classList.remove("active");
+//       menuToggle.classList.remove("active");
+//       body.classList.remove("no-scroll");
 
-      // Возвращаем иконку бургера
-      const icon = menuToggle.querySelector("i");
-      icon.classList.remove("fa-times");
-      icon.classList.add("fa-bars");
-    });
-  });
-});
+//       // Возвращаем иконку бургера
+//       const icon = menuToggle.querySelector("i");
+//       icon.classList.remove("fa-times");
+//       icon.classList.add("fa-bars");
+//     });
+//   });
+// });
 /*******************слайдер проектов******************************** */
 document.addEventListener("DOMContentLoaded", function () {
   // Данные для слайдеров (пути к изображениям и описания)
@@ -1163,109 +1163,109 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 /**************Главная форма**************************************** */
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector(".contact-form");
-  const thankYouOverlay = document.getElementById("calcThankYouOverlay");
-  const thankYouBtn = document.getElementById("calcThankYouBtn");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const form = document.querySelector(".contact-form");
+//   const thankYouOverlay = document.getElementById("calcThankYouOverlay");
+//   const thankYouBtn = document.getElementById("calcThankYouBtn");
 
-  // Функция для форматирования телефона
-  function formatPhone(phone) {
-    return phone
-      .replace(/\D/g, "")
-      .replace(/^(\d)/, "+7")
-      .replace(/^(\+\d{3})(\d)/, "$1 ($2")
-      .replace(/^(\+\d{3}\s\(\d{2})(\d)/, "$1) $2")
-      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3})(\d)/, "$1-$2")
-      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2})(\d)/, "$1-$2");
-  }
+//   // Функция для форматирования телефона
+//   function formatPhone(phone) {
+//     return phone
+//       .replace(/\D/g, "")
+//       .replace(/^(\d)/, "+7")
+//       .replace(/^(\+\d{3})(\d)/, "$1 ($2")
+//       .replace(/^(\+\d{3}\s\(\d{2})(\d)/, "$1) $2")
+//       .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3})(\d)/, "$1-$2")
+//       .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2})(\d)/, "$1-$2");
+//   }
 
-  // Обработчик отправки формы
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+//   // Обработчик отправки формы
+//   form.addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    // Получаем данные из формы
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const consent = document.getElementById("consent").checked;
+//     // Получаем данные из формы
+//     const name = document.getElementById("name").value.trim();
+//     const phone = document.getElementById("phone").value.trim();
+//     const consent = document.getElementById("consent").checked;
 
-    // Валидация
-    if (!name) {
-      alert("Пожалуйста, введите ваше имя");
-      return;
-    }
+//     // Валидация
+//     if (!name) {
+//       alert("Пожалуйста, введите ваше имя");
+//       return;
+//     }
 
-    if (!phone) {
-      alert("Пожалуйста, введите ваш телефон");
-      return;
-    }
+//     if (!phone) {
+//       alert("Пожалуйста, введите ваш телефон");
+//       return;
+//     }
 
-    if (!consent) {
-      alert("Пожалуйста, дайте согласие на обработку персональных данных");
-      return;
-    }
+//     if (!consent) {
+//       alert("Пожалуйста, дайте согласие на обработку персональных данных");
+//       return;
+//     }
 
-    // Форматируем телефон
-    const cleanPhone = phone.replace(/\D/g, "");
-    let formattedPhone;
-    if (cleanPhone.startsWith("8")) {
-      formattedPhone = "+7" + cleanPhone.substring(1);
-    } else if (cleanPhone.startsWith("7")) {
-      formattedPhone = "+" + cleanPhone;
-    } else if (cleanPhone.startsWith("9")) {
-      formattedPhone = "+7" + cleanPhone;
-    } else {
-      formattedPhone = "+7" + cleanPhone;
-    }
+//     // Форматируем телефон
+//     const cleanPhone = phone.replace(/\D/g, "");
+//     let formattedPhone;
+//     if (cleanPhone.startsWith("8")) {
+//       formattedPhone = "+7" + cleanPhone.substring(1);
+//     } else if (cleanPhone.startsWith("7")) {
+//       formattedPhone = "+" + cleanPhone;
+//     } else if (cleanPhone.startsWith("9")) {
+//       formattedPhone = "+7" + cleanPhone;
+//     } else {
+//       formattedPhone = "+7" + cleanPhone;
+//     }
 
-    // Отправка данных в Telegram
-    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-    const chatId = "682859146";
-    const message = `📌 Новая заявка на расчет:\n\n👤 Имя: ${name}\n📞 Телефон: ${formattedPhone}\n🌐 Источник: Форма "Заказать расчет"`;
+//     // Отправка данных в Telegram
+//     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+//     const chatId = "682859146";
+//     const message = `📌 Новая заявка на расчет:\n\n👤 Имя: ${name}\n📞 Телефон: ${formattedPhone}\n🌐 Источник: Форма "Заказать расчет"`;
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
-          // Показываем окно благодарности
-          thankYouOverlay.style.display = "flex";
-          document.body.classList.add("calc-modal-open");
-          // Очищаем форму
-          form.reset();
-        } else {
-          throw new Error("Ошибка при отправке");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert(
-          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
-        );
-      });
-  });
+//     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         chat_id: chatId,
+//         text: message,
+//       }),
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         if (data.ok) {
+//           // Показываем окно благодарности
+//           thankYouOverlay.style.display = "flex";
+//           document.body.classList.add("calc-modal-open");
+//           // Очищаем форму
+//           form.reset();
+//         } else {
+//           throw new Error("Ошибка при отправке");
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//         alert(
+//           "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+//         );
+//       });
+//   });
 
-  // Закрытие окна благодарности
-  thankYouBtn.addEventListener("click", function () {
-    thankYouOverlay.style.display = "none";
-    document.body.classList.remove("calc-modal-open");
-  });
+//   // Закрытие окна благодарности
+//   thankYouBtn.addEventListener("click", function () {
+//     thankYouOverlay.style.display = "none";
+//     document.body.classList.remove("calc-modal-open");
+//   });
 
-  // Закрытие по клику вне окна
-  thankYouOverlay.addEventListener("click", function (e) {
-    if (e.target === thankYouOverlay) {
-      thankYouOverlay.style.display = "none";
-      document.body.classList.remove("calc-modal-open");
-    }
-  });
-});
+//   // Закрытие по клику вне окна
+//   thankYouOverlay.addEventListener("click", function (e) {
+//     if (e.target === thankYouOverlay) {
+//       thankYouOverlay.style.display = "none";
+//       document.body.classList.remove("calc-modal-open");
+//     }
+//   });
+// });
 /***********************кнопка консультации******************************** */
 
 document.addEventListener("DOMContentLoaded", function () {
