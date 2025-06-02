@@ -867,7 +867,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeModal = document.querySelector(".documents-modal-close");
 
   // Увеличиваем скорость прокрутки
-  marqueeContent.style.animationDuration = "20s";
+  marqueeContent.style.animationDuration = "15s";
 
   // Клонируем элементы для бесконечной прокрутки
   const items = marqueeContent.querySelectorAll("li");
