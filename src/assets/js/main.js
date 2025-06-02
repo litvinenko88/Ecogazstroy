@@ -1,44 +1,46 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   const menuToggle = document.querySelector(".mobile-menu-toggle");
-//   const navList = document.querySelector(".nav-list");
-//   const body = document.body;
+// ==================== Мобильное меню ====================
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".mobile-menu-toggle");
+  const navList = document.querySelector(".nav-list");
+  const body = document.body;
 
-//   // Создаем элемент для крестика
-//   const closeIcon = document.createElement("i");
-//   closeIcon.className = "fas fa-times";
-//   menuToggle.appendChild(closeIcon);
+  // Создаем элемент для крестика
+  const closeIcon = document.createElement("i");
+  closeIcon.className = "fas fa-times";
+  menuToggle.appendChild(closeIcon);
 
-//   menuToggle.addEventListener("click", function () {
-//     navList.classList.toggle("active");
-//     this.classList.toggle("active");
-//     body.classList.toggle("no-scroll");
+  menuToggle.addEventListener("click", function () {
+    navList.classList.toggle("active");
+    this.classList.toggle("active");
+    body.classList.toggle("no-scroll");
 
-//     // Переключаем иконку между бургером и крестиком
-//     const icon = this.querySelector("i");
-//     if (navList.classList.contains("active")) {
-//       icon.classList.remove("fa-bars");
-//       icon.classList.add("fa-times");
-//     } else {
-//       icon.classList.remove("fa-times");
-//       icon.classList.add("fa-bars");
-//     }
-//   });
+    // Переключаем иконку между бургером и крестиком
+    const icon = this.querySelector("i");
+    if (navList.classList.contains("active")) {
+      icon.classList.remove("fa-bars");
+      icon.classList.add("fa-times");
+    } else {
+      icon.classList.remove("fa-times");
+      icon.classList.add("fa-bars");
+    }
+  });
 
-//   // Закрытие меню при клике на пункт
-//   document.querySelectorAll(".nav-item").forEach((item) => {
-//     item.addEventListener("click", function () {
-//       navList.classList.remove("active");
-//       menuToggle.classList.remove("active");
-//       body.classList.remove("no-scroll");
+  // Закрытие меню при клике на пункт
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      navList.classList.remove("active");
+      menuToggle.classList.remove("active");
+      body.classList.remove("no-scroll");
 
-//       // Возвращаем иконку бургера
-//       const icon = menuToggle.querySelector("i");
-//       icon.classList.remove("fa-times");
-//       icon.classList.add("fa-bars");
-//     });
-//   });
-// });
-/*******************слайдер проектов******************************** */
+      // Возвращаем иконку бургера
+      const icon = menuToggle.querySelector("i");
+      icon.classList.remove("fa-times");
+      icon.classList.add("fa-bars");
+    });
+  });
+});
+
+// ==================== Слайдер проектов ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Данные для слайдеров (пути к изображениям и описания)
   const slidersData = [
@@ -198,8 +200,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const dsTotalTime = document.getElementById("dsTotalTime");
   const dsFullscreenBtn = document.getElementById("dsFullscreenBtn");
 
-  // Функция для инициализации слайдера
-  // Замените функцию initSlider в вашем коде на эту улучшенную версию:
+  /**
+   * Инициализация слайдера
+   * @param {string} sliderId - ID контейнера слайдера
+   * @param {string} dotsId - ID контейнера точек навигации
+   * @param {Array} images - Массив объектов с изображениями
+   * @returns {Function} Функция для перемещения слайдов
+   */
   function initSlider(sliderId, dotsId, images) {
     const slider = document.getElementById(sliderId);
     const dotsContainer = document.getElementById(dotsId);
@@ -247,7 +254,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Получаем все слайды
     const slides = slider.querySelectorAll(".slide");
 
-    // Функция для перехода к конкретному слайду
+    /**
+     * Переход к конкретному слайду
+     * @param {number} index - Индекс слайда
+     */
     function goToSlide(index) {
       if (index < 0 || index >= images.length) return;
 
@@ -267,7 +277,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Функция для перемещения слайда
+    /**
+     * Перемещение слайда
+     * @param {number} direction - Направление (1 - вперед, -1 - назад)
+     */
     function moveSlide(direction) {
       let newSlide = currentSlide + direction;
 
@@ -280,14 +293,14 @@ document.addEventListener("DOMContentLoaded", function () {
       goToSlide(newSlide);
     }
 
-    // Функция для автоматического переключения слайдов
+    // Автоматическое переключение слайдов
     function startAutoSlide() {
       autoSlideInterval = setInterval(() => {
         moveSlide(1);
       }, 4000);
     }
 
-    // Функция для сброса автоматического переключения
+    // Сброс автоматического переключения
     function resetAutoSlide() {
       clearInterval(autoSlideInterval);
       startAutoSlide();
@@ -304,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     slider.addEventListener("touchmove", touchMove, { passive: false });
     slider.addEventListener("touchend", touchEnd);
 
-    // Обработчики событий для мыши (для тестирования на десктопе)
+    // Обработчики событий для мыши
     slider.addEventListener("mousedown", touchStart);
     slider.addEventListener("mousemove", touchMove);
     slider.addEventListener("mouseup", touchEnd);
@@ -315,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
         touchStartX = e.touches[0].clientX;
       } else {
         touchStartX = e.clientX;
-        e.preventDefault(); // Только для mouse events
+        e.preventDefault();
       }
       startPos = touchStartX;
       isDragging = true;
@@ -331,7 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let currentPos;
       if (e.type === "touchmove") {
         currentPos = e.touches[0].clientX;
-        e.preventDefault(); // Предотвращаем скролл страницы
+        e.preventDefault();
       } else {
         currentPos = e.clientX;
         e.preventDefault();
@@ -364,11 +377,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Запускаем автоматическое переключение
     startAutoSlide();
 
-    // Возвращаем функцию для внешнего использования
     return moveSlide;
   }
 
-  // Функция для форматирования времени в мм:сс
+  /**
+   * Форматирование времени в мм:сс
+   * @param {number} seconds - Количество секунд
+   * @returns {string} Отформатированное время
+   */
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
@@ -468,48 +484,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const dotsId = `dots${index + 1}`;
 
     const sliderHTML = `
-                    <div class="project-slider">
-                        <div class="slider-container">
-                            <div class="slider" id="${sliderId}"></div>
-                            <div class="slider-nav">
-                                <div class="slider-arrow prev">
-                                    <div class="arrow-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
-                                    fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 
-                                    5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/></svg>
-                                    </div>
-                                </div>
-                                <div class="slider-arrow next">
-                                    <div class="arrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" 
-                                    height="16" fill="currentColor" class="bi bi-chevron-compact-right" 
-                                    viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 
-                                    1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 
-                                    2.224a.5.5 0 0 1 .223-.671"/></svg></div>
-                                </div>
-                            </div>
-                            <div class="slider-dots" id="${dotsId}"></div>
-                        </div>
-                        <div class="project-info">
-                            <h3>${sliderData.title}</h3>
-                            <a href="${
-                              sliderData.videoLink
-                            }" class="watch-video">
-                                <div class="video-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
-                                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
-                                    </svg>
-                                </div>
-                                ${
-                                  sliderData.videoLink &&
-                                  sliderData.videoLink !== "#"
-                                    ? "Смотреть видео"
-                                    : "Просмотр недоступен"
-                                }
-                            </a>
-                        </div>
-                    </div>
-                `;
+      <div class="project-slider">
+        <div class="slider-container">
+          <div class="slider" id="${sliderId}"></div>
+          <div class="slider-nav">
+            <div class="slider-arrow prev">
+              <div class="arrow-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
+                </svg>
+              </div>
+            </div>
+            <div class="slider-arrow next">
+              <div class="arrow-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="slider-dots" id="${dotsId}"></div>
+        </div>
+        <div class="project-info">
+          <h3>${sliderData.title}</h3>
+          <a href="${sliderData.videoLink}" class="watch-video">
+            <div class="video-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4z"/>
+              </svg>
+            </div>
+            ${
+              sliderData.videoLink && sliderData.videoLink !== "#"
+                ? "Смотреть видео"
+                : "Просмотр недоступен"
+            }
+          </a>
+        </div>
+      </div>
+    `;
 
     projectsContainer.insertAdjacentHTML("beforeend", sliderHTML);
 
@@ -559,7 +571,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализируем состояние при загрузке
   initSectionState();
 });
-/**********************квиз****************************** */
+
+// ==================== Квиз ====================
 document.addEventListener("DOMContentLoaded", function () {
   const quizForm = document.getElementById("quizForm");
   const currentQuestionEl = document.getElementById("currentQuestion");
@@ -646,11 +659,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const question = questions[currentQuestion];
 
     let html = `
-            <div class="question-container">
-                <h3 class="question-title">${question.question}</h3>
-                <select class="answer-select" name="question${currentQuestion}" required>
-                    <option value="" selected disabled>Выберите ответ</option>
-        `;
+      <div class="question-container">
+        <h3 class="question-title">${question.question}</h3>
+        <select class="answer-select" name="question${currentQuestion}" required>
+          <option value="" selected disabled>Выберите ответ</option>
+    `;
 
     question.answers.forEach((answer) => {
       html += `<option value="${answer}">${answer}</option>`;
@@ -735,30 +748,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     quizForm.innerHTML = `
-            <form class="question-container">
-                <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
-                
-                <div class="quiz-form-group">
-                    <label for="name">Ваше имя</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="quiz-form-group">
-                    <label for="phone">Ваш телефон</label>
-                    <input type="tel" id="phone" name="phone" required pattern="[+]{0,1}[0-9]{10,15}" title="Введите корректный номер телефона">
-                    <small class="error-message" style="display:none;color:red;">Пожалуйста, введите корректный номер телефона</small>
-                </div>
-                
-                <div class="quiz-checkbox-group">
-                    <div class="quiz-checkbox-item">
-                        <input type="checkbox" id="consent" name="consent" required>
-                        <label for="consent">Я согласен на обработку персональных данных</label>
-                    </div>
-                </div>
-                
-                <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
-            </form>
-        `;
+      <form class="question-container">
+        <h3 class="question-title">Оставьте контактные данные для получения расчета</h3>
+        
+        <div class="quiz-form-group">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="quiz-form-group">
+          <label for="phone">Ваш телефон</label>
+          <input type="tel" id="phone" name="phone" required pattern="[+]{0,1}[0-9]{10,15}" title="Введите корректный номер телефона">
+          <small class="error-message" style="display:none;color:red;">Пожалуйста, введите корректный номер телефона</small>
+        </div>
+        
+        <div class="quiz-checkbox-group">
+          <div class="quiz-checkbox-item">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">Я согласен на обработку персональных данных</label>
+          </div>
+        </div>
+        
+        <button type="submit" class="quiz-btn btn-submit">Получить расчет</button>
+      </form>
+    `;
 
     // Валидация телефона
     const phoneInput = quizForm.querySelector("#phone");
@@ -843,7 +856,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Запуск квиза
   initQuiz();
 });
-/*******************слайдер документов**************************** */
+
+// ==================== Слайдер документов ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы слайдера
   const marquee = document.querySelector(".documents-marquee");
@@ -1028,7 +1042,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-/**********************как найти нас ***************************** */
+
+// ==================== Форма "Как найти нас" ====================
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactHelpForm");
   const phoneInput = document.getElementById("contactHelpPhone");
@@ -1096,7 +1111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-/***********************частые вопросы************************** */
+
+// ==================== Частые вопросы (аккордеон) ====================
 document.addEventListener("DOMContentLoaded", function () {
   const faqItems = document.querySelectorAll(".faq-custom-item");
 
@@ -1116,8 +1132,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-/****************якорные ссылки плавная анимация********************** */
-// Плавная прокрутка к якорям
+
+// ==================== Якорные ссылки (плавная прокрутка) ====================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     // Отменяем стандартное поведение
@@ -1162,112 +1178,112 @@ window.addEventListener("DOMContentLoaded", function () {
   window.scrollTo(0, 0);
 });
 
-/**************Главная форма**************************************** */
-// document.addEventListener("DOMContentLoaded", function () {
-//   const form = document.querySelector(".contact-form");
-//   const thankYouOverlay = document.getElementById("calcThankYouOverlay");
-//   const thankYouBtn = document.getElementById("calcThankYouBtn");
+// ==================== Главная форма ====================
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".contact-form");
+  const thankYouOverlay = document.getElementById("calcThankYouOverlay");
+  const thankYouBtn = document.getElementById("calcThankYouBtn");
 
-//   // Функция для форматирования телефона
-//   function formatPhone(phone) {
-//     return phone
-//       .replace(/\D/g, "")
-//       .replace(/^(\d)/, "+7")
-//       .replace(/^(\+\d{3})(\d)/, "$1 ($2")
-//       .replace(/^(\+\d{3}\s\(\d{2})(\d)/, "$1) $2")
-//       .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3})(\d)/, "$1-$2")
-//       .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2})(\d)/, "$1-$2");
-//   }
+  // Функция для форматирования телефона
+  function formatPhone(phone) {
+    return phone
+      .replace(/\D/g, "")
+      .replace(/^(\d)/, "+7")
+      .replace(/^(\+\d{3})(\d)/, "$1 ($2")
+      .replace(/^(\+\d{3}\s\(\d{2})(\d)/, "$1) $2")
+      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3})(\d)/, "$1-$2")
+      .replace(/^(\+\d{3}\s\(\d{2}\)\s\d{3}-\d{2})(\d)/, "$1-$2");
+  }
 
-//   // Обработчик отправки формы
-//   form.addEventListener("submit", function (e) {
-//     e.preventDefault();
+  // Обработчик отправки формы
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-//     // Получаем данные из формы
-//     const name = document.getElementById("name").value.trim();
-//     const phone = document.getElementById("phone").value.trim();
-//     const consent = document.getElementById("consent").checked;
+    // Получаем данные из формы
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const consent = document.getElementById("consent").checked;
 
-//     // Валидация
-//     if (!name) {
-//       alert("Пожалуйста, введите ваше имя");
-//       return;
-//     }
+    // Валидация
+    if (!name) {
+      alert("Пожалуйста, введите ваше имя");
+      return;
+    }
 
-//     if (!phone) {
-//       alert("Пожалуйста, введите ваш телефон");
-//       return;
-//     }
+    if (!phone) {
+      alert("Пожалуйста, введите ваш телефон");
+      return;
+    }
 
-//     if (!consent) {
-//       alert("Пожалуйста, дайте согласие на обработку персональных данных");
-//       return;
-//     }
+    if (!consent) {
+      alert("Пожалуйста, дайте согласие на обработку персональных данных");
+      return;
+    }
 
-//     // Форматируем телефон
-//     const cleanPhone = phone.replace(/\D/g, "");
-//     let formattedPhone;
-//     if (cleanPhone.startsWith("8")) {
-//       formattedPhone = "+7" + cleanPhone.substring(1);
-//     } else if (cleanPhone.startsWith("7")) {
-//       formattedPhone = "+" + cleanPhone;
-//     } else if (cleanPhone.startsWith("9")) {
-//       formattedPhone = "+7" + cleanPhone;
-//     } else {
-//       formattedPhone = "+7" + cleanPhone;
-//     }
+    // Форматируем телефон
+    const cleanPhone = phone.replace(/\D/g, "");
+    let formattedPhone;
+    if (cleanPhone.startsWith("8")) {
+      formattedPhone = "+7" + cleanPhone.substring(1);
+    } else if (cleanPhone.startsWith("7")) {
+      formattedPhone = "+" + cleanPhone;
+    } else if (cleanPhone.startsWith("9")) {
+      formattedPhone = "+7" + cleanPhone;
+    } else {
+      formattedPhone = "+7" + cleanPhone;
+    }
 
-//     // Отправка данных в Telegram
-//     const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
-//     const chatId = "682859146";
-//     const message = `📌 Новая заявка на расчет:\n\n👤 Имя: ${name}\n📞 Телефон: ${formattedPhone}\n🌐 Источник: Форма "Заказать расчет"`;
+    // Отправка данных в Telegram
+    const botToken = "8178591992:AAEv1_IhHBIWNBET9_xI0cJL4iZI-MF4gA4";
+    const chatId = "682859146";
+    const message = `📌 Новая заявка на расчет:\n\n👤 Имя: ${name}\n📞 Телефон: ${formattedPhone}\n🌐 Источник: Форма "Заказать расчет"`;
 
-//     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         chat_id: chatId,
-//         text: message,
-//       }),
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         if (data.ok) {
-//           // Показываем окно благодарности
-//           thankYouOverlay.style.display = "flex";
-//           document.body.classList.add("calc-modal-open");
-//           // Очищаем форму
-//           form.reset();
-//         } else {
-//           throw new Error("Ошибка при отправке");
-//         }
-//       })
-//       .catch((error) => {
-//         console.error("Error:", error);
-//         alert(
-//           "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
-//         );
-//       });
-//   });
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          // Показываем окно благодарности
+          thankYouOverlay.style.display = "flex";
+          document.body.classList.add("calc-modal-open");
+          // Очищаем форму
+          form.reset();
+        } else {
+          throw new Error("Ошибка при отправке");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже."
+        );
+      });
+  });
 
-//   // Закрытие окна благодарности
-//   thankYouBtn.addEventListener("click", function () {
-//     thankYouOverlay.style.display = "none";
-//     document.body.classList.remove("calc-modal-open");
-//   });
+  // Закрытие окна благодарности
+  thankYouBtn.addEventListener("click", function () {
+    thankYouOverlay.style.display = "none";
+    document.body.classList.remove("calc-modal-open");
+  });
 
-//   // Закрытие по клику вне окна
-//   thankYouOverlay.addEventListener("click", function (e) {
-//     if (e.target === thankYouOverlay) {
-//       thankYouOverlay.style.display = "none";
-//       document.body.classList.remove("calc-modal-open");
-//     }
-//   });
-// });
-/***********************кнопка консультации******************************** */
+  // Закрытие по клику вне окна
+  thankYouOverlay.addEventListener("click", function (e) {
+    if (e.target === thankYouOverlay) {
+      thankYouOverlay.style.display = "none";
+      document.body.classList.remove("calc-modal-open");
+    }
+  });
+});
 
+// ==================== Кнопка консультации ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы модального окна
   const modalOverlay = document.getElementById("consultModalOverlay");
@@ -1440,7 +1456,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-/**********************кнопка второго блока оставить заявку********************************** */
+
+// ==================== Кнопка второго блока "Оставить заявку" ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы модального окна
   const modalOverlay = document.getElementById("requestModalOverlay");
@@ -1612,7 +1629,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-/*****************блок с призидентом ************************* */
+
+// ==================== Блок с президентом ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы модального окна
   const modalOverlay = document.getElementById("detailsModalOverlay");
@@ -1782,7 +1800,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-/*********************карточка что нужно кнопка заявки *********************************** */
+
+// ==================== Карточка "Что нужно для работы" ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы модального окна
   const modalOverlay = document.getElementById("gasStepModalOverlay");
@@ -1862,7 +1881,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Отправка формы
   // Отправка формы
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1960,7 +1978,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-/****************контакты************************** */
+
+// ==================== Контакты ====================
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactHelpForm");
   const submitBtn = document.querySelector(".js-contact-help-submit");
@@ -2100,7 +2119,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/********************ватсап*********************************** */
+// ==================== Кнопка WhatsApp ====================
 document.addEventListener("DOMContentLoaded", function () {
   const whatsappBtn = document.querySelector(".js-egs-whatsapp-btn");
   const benefitsSection = document.querySelector(".benefits-section");
@@ -2111,9 +2130,6 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             whatsappBtn.style.display = "block";
-          } else {
-            // Если хотите, чтобы кнопка скрывалась при скролле вверх
-            // whatsappBtn.style.display = 'none';
           }
         });
       },
@@ -2135,7 +2151,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 });
-/***********прайс************************** */
+
+// ==================== Прайс ====================
 document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.querySelector(".price-toggle-btn");
   const hiddenRows = document.querySelectorAll(".price-table-row.hidden");
@@ -2173,7 +2190,8 @@ document.addEventListener("DOMContentLoaded", function () {
     row.style.display = "none";
   });
 });
-/******************скрипт ленивой загрузки********************** */
+
+// ==================== Ленивая загрузка изображений ====================
 document.addEventListener("DOMContentLoaded", function () {
   // Проверяем поддержку loading="lazy"
   const supportsLazyLoading = "loading" in HTMLImageElement.prototype;
@@ -2221,7 +2239,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
-
-  // Для браузеров с поддержкой loading="lazy" ничего дополнительно не делаем
-  // Они сами позаботятся о ленивой загрузке
 });
