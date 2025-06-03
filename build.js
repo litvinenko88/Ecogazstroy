@@ -10,6 +10,13 @@ const rootDir = __dirname;
 const srcDir = path.join(rootDir, "src");
 const distDir = path.join(rootDir, "dist");
 
+// Импорты, которые нужно сохранить во всех CSS файлах
+const PRESERVED_IMPORTS = [
+  '@import "/src/assets/css/normalize.css";',
+  '@import "/src/assets/css/reset.css";',
+  '@import "/src/assets/fonts/stylesheet.css";',
+];
+
 // Очистка папки dist
 fse.emptyDirSync(distDir);
 
@@ -32,22 +39,22 @@ async function minifyHtml(filePath, destPath) {
   }
 }
 
-// Функция для минификации CSS с сохранением импортов
-async function minifyCssWithImports(filePath, destPath) {
+// Функция для минификации CSS с сохранением нужных импортов
+async function minifyCssWithPreservedImports(filePath, destPath) {
   try {
     let css = await fs.promises.readFile(filePath, "utf8");
 
-    // Выделяем импорты
+    // Выделяем все импорты
     const importRegex = /@import\s+(['"])(.*?)\1[^;]*;/g;
-    const imports = [];
+    const allImports = [];
     let match;
 
     while ((match = importRegex.exec(css)) !== null) {
-      imports.push(match[0]);
+      allImports.push(match[0]);
     }
 
-    // Удаляем импорты из CSS для минификации
-    const cssWithoutImports = css.replace(importRegex, "");
+    // Удаляем все импорты из CSS для минификации
+    let cssWithoutImports = css.replace(importRegex, "");
 
     // Минифицируем CSS без импортов
     const minifiedCss = new cleanCSS({
@@ -58,32 +65,30 @@ async function minifyCssWithImports(filePath, destPath) {
       rebase: false,
     }).minify(cssWithoutImports).styles;
 
-    // Собираем финальный CSS: импорты + минифицированный код
-    const finalCss = imports.join("\n") + "\n" + minifiedCss;
+    // Фильтруем импорты, оставляя только те, которые нужно сохранить
+    const preservedImports = allImports.filter((imp) =>
+      PRESERVED_IMPORTS.some((preserved) =>
+        imp.includes(preserved.split('"')[1])
+      )
+    );
+
+    // Добавляем все сохраненные импорты (если их еще нет)
+    PRESERVED_IMPORTS.forEach((preserved) => {
+      if (!preservedImports.includes(preserved)) {
+        preservedImports.push(preserved);
+      }
+    });
+
+    // Собираем финальный CSS: сохраненные импорты + минифицированный код
+    const finalCss = preservedImports.join("\n") + "\n" + minifiedCss;
 
     await fse.ensureDir(path.dirname(destPath));
     await fs.promises.writeFile(destPath, finalCss);
   } catch (err) {
-    console.error(`Error minifying CSS with imports ${filePath}:`, err);
-  }
-}
-
-// Функция для обычной минификации CSS
-async function minifyCss(filePath, destPath) {
-  try {
-    const css = await fs.promises.readFile(filePath, "utf8");
-    const minified = new cleanCSS({
-      level: {
-        1: { specialComments: "none" },
-        2: { mergeMedia: true },
-      },
-      rebase: false,
-    }).minify(css).styles;
-
-    await fse.ensureDir(path.dirname(destPath));
-    await fs.promises.writeFile(destPath, minified);
-  } catch (err) {
-    console.error(`Error minifying CSS ${filePath}:`, err);
+    console.error(
+      `Error minifying CSS with preserved imports ${filePath}:`,
+      err
+    );
   }
 }
 
@@ -133,13 +138,10 @@ async function processPath(srcPath) {
       if (ext === ".html") {
         await minifyHtml(srcPath, destPath);
       } else if (ext === ".css") {
-        if (filename === "main.css") {
-          await minifyCssWithImports(srcPath, destPath);
-        } else {
-          await minifyCss(srcPath, destPath);
-        }
+        // Теперь применяем сохранение импортов для всех CSS файлов
+        await minifyCssWithPreservedImports(srcPath, destPath);
       } else if (ext === ".js") {
-        await minifyJs(srcPath, destPath); // Теперь минифицирует и server.js
+        await minifyJs(srcPath, destPath);
       } else {
         await copyFile(srcPath, destPath);
       }
@@ -162,7 +164,7 @@ async function processPath(srcPath) {
       "index.html",
       "yandex_ee4b3c3cc884db38.html",
       ".htaccess",
-    ]; // Добавлен .htaccess
+    ];
     for (const file of rootFiles) {
       const filePath = path.join(rootDir, file);
       if (fs.existsSync(filePath)) {
