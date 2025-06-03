@@ -8,7 +8,6 @@ const { minify } = require("uglify-js");
 // Пути
 const rootDir = __dirname;
 const srcDir = path.join(rootDir, "src");
-const serverDir = path.join(rootDir, "server");
 const distDir = path.join(rootDir, "dist");
 
 // Очистка папки dist
@@ -157,10 +156,13 @@ async function processPath(srcPath) {
 
     // Обрабатываем основные папки
     await processPath(srcDir);
-    await processPath(serverDir); // Обрабатываем папку server
 
     // Обрабатываем файлы из корня
-    const rootFiles = ["index.html", "yandex_ee4b3c3cc884db38.html"];
+    const rootFiles = [
+      "index.html",
+      "yandex_ee4b3c3cc884db38.html",
+      ".htaccess",
+    ]; // Добавлен .htaccess
     for (const file of rootFiles) {
       const filePath = path.join(rootDir, file);
       if (fs.existsSync(filePath)) {
