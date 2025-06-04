@@ -1,0 +1,4 @@
+@import "/src/assets/css/normalize.css";
+@import "/src/assets/css/reset.css";
+@import "/src/assets/fonts/stylesheet.css";
+body{background:#2560b8}.cnt{text-align:center;color:#fff}a{display:block;text-align:center;width:100%;padding:20px;margin-top:40px;background:#fff;border:none;color:#2560b8;text-decoration:none}
