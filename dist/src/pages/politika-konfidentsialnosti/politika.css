@@ -1,4 +1,0 @@
-@import "/src/assets/css/normalize.css";
-@import "/src/assets/css/reset.css";
-@import "/src/assets/fonts/stylesheet.css";
-.cnt{padding:50px 100px}h2,h3,p{text-align:center}a{display:block;text-align:center;width:100%;padding:20px;margin-top:40px;background:#2560b8;border:none;color:#fff;text-decoration:none}@media (max-width:1024px){.cnt{padding:50px 60px}}@media (max-width:480px){.cnt{padding:40px 20px}}
