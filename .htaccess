@@ -1,0 +1,16 @@
+# Убираем .html
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L,QSA]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+# Убираем лишние слеши на конце URL
+RewriteEngine On
+RewriteCond %{THE_REQUEST} //
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$0 [R=301,L]
+
+# Страницы пользовательских ошибок
+ErrorDocument 404 /src/pages/404.html
