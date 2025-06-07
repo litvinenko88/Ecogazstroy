@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated with https://sitemap-xml.ru-->
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd">
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/404.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/novosti/novosti.html</loc>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/news-card/Газификация дома.webp</image:loc>
+      <image:caption>Современные технологии газификации</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/news-card/Поднятие тарифов.webp</image:loc>
+      <image:caption>Повышение тарифов 20% на газ в 2025 году</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/news-card/Социальная газификация.webp</image:loc>
+      <image:caption>Социальная газификация</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/politika-konfidentsialnosti/politika-konfidentsialnosti.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/novosti/novostnyye-stranitsy/gazifikaciya/tekhnologii-gazifikatsii.html</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/1_1_11zon.webp</image:loc>
+      <image:caption>Процесс газификации частного дома</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/2.webp</image:loc>
+      <image:caption>Централизованный газопровод</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/3.webp</image:loc>
+      <image:caption>Газгольдер для автономной газификации</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/4.webp</image:loc>
+      <image:caption>Современный газовый котел</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/5_5_11zon.webp</image:loc>
+      <image:caption>Система контроля газа</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/6_6_11zon.webp</image:loc>
+      <image:caption>Модульная газовая система</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/gazifikatsiya-chastnogo-doma/7_7_11zon.webp</image:loc>
+      <image:caption>Меры безопасности при газификации дома</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/novosti/novostnyye-stranitsy/gazifikaciya/povysheniye-tarifov.html</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/1_1_11zon.webp</image:loc>
+      <image:caption>График повышения тарифов на газ</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/2_2_11zon.webp</image:loc>
+      <image:caption>График убытков Газпрома</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/3_3_11zon.webp</image:loc>
+      <image:caption>Сравнение тарифов на газ</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/4_4_11zon.webp</image:loc>
+      <image:caption>Металлургический завод</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/5_5_11zon.webp</image:loc>
+      <image:caption>Коммунальные платежи</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/6_6_11zon.webp</image:loc>
+      <image:caption>Инфляция и тарифы</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/povysheniye-tarifov/7_7_11zon.webp</image:loc>
+      <image:caption>Карта повышения тарифов по регионам</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ecogazstroy.ru/src/pages/novosti/novostnyye-stranitsy/gazifikaciya/sotsialnaya-gazifikatsiya.html</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/1_1_11zon.webp</image:loc>
+      <image:caption>Подключение газа в частном доме</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/2_2_11zon.webp</image:loc>
+      <image:caption>Документы на субсидию</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/3.webp</image:loc>
+      <image:caption>Пожилые люди в сельской местности</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/4_4_11zon.webp</image:loc>
+      <image:caption>Документы для субсидии</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/5_5_11zon.webp</image:loc>
+      <image:caption>Подача заявления через Госуслуги</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/7_6_11zon.webp</image:loc>
+      <image:caption>Получение средств</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecogazstroy.ru/src/assets/img/news-page/articles/gaz/sotsialnaya-gazifikatsiya/8_7_11zon.webp</image:loc>
+      <image:caption>Карта газификации регионов</image:caption>
+    </image:image>
+  </url>
+</urlset>
