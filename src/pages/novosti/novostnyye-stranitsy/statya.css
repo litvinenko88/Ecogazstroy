@@ -43,6 +43,13 @@ body {
   margin-bottom: 40px;
 }
 
+.news-article {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #333;
+  line-height: 1.6;
+}
+
 .breadcrumbs {
   font-size: 0.9rem;
   margin-bottom: 20px;
@@ -56,6 +63,7 @@ body {
 
 .breadcrumbs a:hover {
   color: white;
+  text-decoration: underline;
 }
 
 .breadcrumbs span {
@@ -538,3 +546,5 @@ body {
     align-items: baseline;
   }
 }
+/******************************************************/
+
