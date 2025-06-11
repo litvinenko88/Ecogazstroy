@@ -1,3 +1,19 @@
+@import "/src/assets/css/normalize.css";
+@import "/src/assets/css/reset.css";
+@import "/src/assets/fonts/stylesheet.css";
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Roboto Condensed";
+  background-color: #f5f5f5;
+  color: #333;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .cnt {
   padding: 50px 100px;
 }
