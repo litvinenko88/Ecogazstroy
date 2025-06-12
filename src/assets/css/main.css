@@ -251,7 +251,7 @@ header {
   padding: var(--spacing-xl);
   color: var(--text-color);
   min-width: 350px;
-  max-width: 40%;
+  max-width: 400px;
 }
 
 .form-title {
