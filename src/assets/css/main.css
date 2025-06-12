@@ -116,7 +116,7 @@ header {
 }
 
 .header-logo-img {
-  height: 60px;
+  height: 50px;
   width: auto;
 }
 
@@ -3319,10 +3319,6 @@ body.gas-step-modal-open {
     margin-bottom: 20px;
   }
 
-  .header-logo-img {
-    height: 80px;
-  }
-
   .header-logo-text {
     font-size: 26px;
   }
@@ -3509,10 +3505,6 @@ body.gas-step-modal-open {
 
   .header-right-section {
     gap: var(--spacing-md);
-  }
-
-  .header-logo-img {
-    height: 70px;
   }
 
   .header-logo-text {
@@ -3815,10 +3807,6 @@ body.gas-step-modal-open {
 
   .header-logo-container {
     gap: var(--spacing-xs);
-  }
-
-  .header-logo-img {
-    height: 55px;
   }
 
   .header-logo-text {
