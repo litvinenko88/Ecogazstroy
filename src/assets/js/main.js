@@ -1,5 +1,21 @@
 // ==================== Мобильное меню ====================
 document.addEventListener("DOMContentLoaded", function () {
+  // Оптимизированная загрузка изображений
+  function loadLCPImage() {
+    const lcpImage = document.querySelector(".header-container");
+    if (lcpImage) {
+      lcpImage.style.backgroundImage =
+        'url("/src/assets/img/main-page/Инжинерные системы.webp")';
+    }
+  }
+
+  // Загружаем LCP изображение после загрузки страницы
+  if (document.readyState === "complete") {
+    loadLCPImage();
+  } else {
+    window.addEventListener("load", loadLCPImage);
+  }
+
   const menuToggle = document.querySelector(".mobile-menu-toggle");
   const navList = document.querySelector(".nav-list");
   const body = document.body;
