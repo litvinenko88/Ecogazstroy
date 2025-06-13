@@ -17,8 +17,25 @@ const PRESERVED_IMPORTS = [
   '@import "/src/assets/fonts/stylesheet.css";',
 ];
 
+// Папки и файлы, которые нужно исключить из обработки
+const EXCLUDE_PATHS = [
+  path.join(rootDir, "node_modules"),
+  path.join(rootDir, "dist"),
+  path.join(rootDir, ".git"),
+  path.join(rootDir, ".vscode"),
+];
+
 // Очистка папки dist
 fse.emptyDirSync(distDir);
+
+// Функция для проверки, нужно ли исключить путь
+function shouldExclude(filePath) {
+  return EXCLUDE_PATHS.some(
+    (excludedPath) =>
+      filePath.startsWith(excludedPath) ||
+      path.relative(excludedPath, filePath).indexOf("..") !== 0
+  );
+}
 
 // Функция для минификации HTML
 async function minifyHtml(filePath, destPath) {
@@ -120,6 +137,10 @@ async function copyFile(filePath, destPath) {
 
 // Обработка файла или папки
 async function processPath(srcPath) {
+  if (shouldExclude(srcPath)) {
+    return;
+  }
+
   const relativePath = path.relative(rootDir, srcPath);
   const destPath = path.join(distDir, relativePath);
 
@@ -138,7 +159,6 @@ async function processPath(srcPath) {
       if (ext === ".html") {
         await minifyHtml(srcPath, destPath);
       } else if (ext === ".css") {
-        // Теперь применяем сохранение импортов для всех CSS файлов
         await minifyCssWithPreservedImports(srcPath, destPath);
       } else if (ext === ".js") {
         await minifyJs(srcPath, destPath);
@@ -156,20 +176,14 @@ async function processPath(srcPath) {
   try {
     console.log("Starting build process...");
 
-    // Обрабатываем основные папки
-    await processPath(srcDir);
+    // Обрабатываем все содержимое корневой директории
+    const rootItems = await fs.promises.readdir(rootDir, {
+      withFileTypes: true,
+    });
 
-    // Обрабатываем файлы из корня
-    const rootFiles = [
-      "index.html",
-      "yandex_ee4b3c3cc884db38.html",
-      ".htaccess",
-    ];
-    for (const file of rootFiles) {
-      const filePath = path.join(rootDir, file);
-      if (fs.existsSync(filePath)) {
-        await processPath(filePath);
-      }
+    for (const item of rootItems) {
+      const itemPath = path.join(rootDir, item.name);
+      await processPath(itemPath);
     }
 
     console.log("Build completed successfully!");
